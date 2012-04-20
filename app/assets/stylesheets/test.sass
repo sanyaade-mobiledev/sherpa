@@ -40,3 +40,27 @@ h2
 // Content       |Content
 // Content       |Content
 
+
+//= ## Container
+// Mixin            |Params|Usage
+// -----------------|------|----------------------------------------------
+// `+hidden`        |none  |Totally hidden from screen readers and browsers
+// `+shown`         |none  |Reverse the effects of hidden
+// `+visuallyhidden`|none  |Only visually hidden, still available to screen readers
+// `+visuallyshown` |none  |Reverse the settings applied by `.visuallyhidden`
+// `+invisible`     |none  |Hide visually and from screenreaders, but maintain layout
+
+.container
+  +box-sizing(border-box)
+  +clearfixer
+  max-width: $base_width * 1px
+  margin-left: auto
+  margin-right: auto
+  &.outer
+    padding-left: 1%
+    padding-right: 1%
+  &.fluid, &.fixed
+    max-width: none
+  &.fixed
+    width: $base_width * 1px
+
