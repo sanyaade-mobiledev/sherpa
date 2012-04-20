@@ -10,19 +10,6 @@ module Sherpa
       !!(line =~ /^\s*\/\//)
     end
 
-    def self.parse_line(line)
-      cleaned = line.to_s.sub(/\s*\/\//, '').to_s.sub(/\s*=\s/, '')
-      cleaned.rstrip
-    end
-
-    def self.left_trim(line, content)
-      cleaned = line
-      if content[content.size - 1] == "\n"
-        cleaned = cleaned.lstrip
-      end
-      cleaned
-    end
-
     def self.examples?(line)
       !!(line =~ /^\s*Examples/)
     end
@@ -33,6 +20,20 @@ module Sherpa
 
     def self.header?(line)
       !!(line =~ /:\z/)
+    end
+
+    # Remove comment markers, sherpa identifier and EOL whitespace
+    def self.trim_comments(line)
+      cleaned = line.to_s.sub(/\s*\/\//, '').to_s.sub(/\s*=\s/, '')
+      cleaned.rstrip
+    end
+
+    def self.trim_left(line, content)
+      cleaned = line
+      if content[content.size - 1] == "\n"
+        cleaned = cleaned.lstrip
+      end
+      cleaned
     end
 
     # Return a markdown header unless it already starts in markdown format
@@ -67,9 +68,9 @@ module Sherpa
           if in_block && self.class.line_comment?(line)
 
             # Trim up the lines from comment markers and left spacing
-            stripped = self.class.parse_line(line)
+            stripped = self.class.trim_comments(line)
             if in_examples == false && in_usage == false
-              stripped = self.class.left_trim(stripped, current_block[:description])
+              stripped = self.class.trim_left(stripped, current_block[:description])
             end
 
             # Save the current line for tweaking
