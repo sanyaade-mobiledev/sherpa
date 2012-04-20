@@ -65,11 +65,11 @@ module Sherpa
     end
   end
 
-  files = Dir["./app/assets/stylesheets/*.sass"]
-  # files = [
-    # "./app/assets/stylesheets/ocd.sass",
-    # "./app/assets/stylesheets/visibility.sass"
-  # ]
+  # files = Dir["./app/assets/stylesheets/*.sass"]
+  files = [
+    "./app/assets/stylesheets/ocd.sass",
+    "./app/assets/stylesheets/visibility.sass"
+  ]
 
   builder = Builder.new(files, false)
   builder.build
