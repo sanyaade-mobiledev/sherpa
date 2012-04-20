@@ -5,7 +5,7 @@ require 'mustache'
 require 'json'
 
 module Sherpa
-  @parser = Sherpa::Parser.new('./app/assets/stylesheets/breadcrumbs.sass')
+  @parser = Sherpa::Parser.new('./app/assets/stylesheets/visibility.sass')
   @renderer = Sherpa::Renderer.new
 
   blocks = @parser.blocks

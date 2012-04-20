@@ -1,11 +1,16 @@
 
 //= Use `rems` to insert a font size
 //
-// @ $target_px     - The target
-// @ $context_px    - The context
+// ### Arguments:
+// - `$target_px`     - The target
+// - `$context_px`    - The context
 //
 // Usage:
-//    +font-size(48)
+//    h1
+//      +font-size(48)
+//
+// Examples:
+//    <h1>Heading</h1>
 
 @mixin font-size($target_px, $context:$context_px)
   font-size: $target_px * 1px

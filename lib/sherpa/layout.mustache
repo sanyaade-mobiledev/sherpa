@@ -4,19 +4,23 @@
   <head>
     <meta http-equiv="content-type" content="text/html;charset=utf-8">
     <title>sherpa.</title>
+    <link rel="stylesheet" href="app/assets/stylesheets/sherpa.css" type="text/css">
     <link rel="stylesheet" href="http://underoos.modeset.com/assets/underoos.css" type="text/css">
   </head>
 
   <body>
-    {{#blocks}}
-      <div>
-        {{{ markup }}}
-      </div>
-      <div>
-        {{{ examples }}}
-      </div>
-    {{/blocks}}
+    <div class="sherpa-container sherpa-clearfix">
+      {{#blocks}}
+        <div class="sherpa-section sherpa-clearfix">
+          <div class="sherpa-example sherpa-clearfix">
+            {{{ examples }}}
+          </div>
+          <div class="sherpa-description sherpa-clearfix">
+            {{{ markup }}}
+          </div>
+        </div>
+      {{/blocks}}
+    </div>
   </body>
-
 </html>
 

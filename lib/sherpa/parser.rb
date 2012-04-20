@@ -27,12 +27,18 @@ module Sherpa
       !!(line =~ /^\s*Examples/)
     end
 
+    def self.usage?(line)
+      !!(line =~ /^\s*Usage/)
+    end
+
     def self.header?(line)
       !!(line =~ /:\z/)
     end
 
+    # Return a markdown header unless it already starts in markdown format
     def self.add_markdown_header(line)
-      return "## #{line}\n"
+      line = "### #{line}\n" unless !!(line =~ /^#/)
+      line
     end
 
     def initialize(file)
@@ -49,6 +55,7 @@ module Sherpa
       File.open @file_path do |file|
         in_block = false
         in_examples = false
+        in_usage = false
         current_block = nil
 
         file.each_line do |line|
@@ -66,7 +73,9 @@ module Sherpa
 
             # Trim up the lines from comment markers and left spacing
             stripped = self.class.parse_line(line)
-            stripped = self.class.left_trim(stripped, current_block[:description]) unless in_examples
+            if in_examples == false && in_usage == false
+              stripped = self.class.left_trim(stripped, current_block[:description])
+            end
 
             # Save the current line for tweaking
             current_line = stripped
@@ -81,10 +90,17 @@ module Sherpa
               current_block[:examples] += stripped.gsub(/^\s{4}/, "\n")
             end
 
+            # Test if entering into a usage block
+            if self.class.usage?(stripped)
+              in_examples = false
+              in_usage = true
+            end
+
             # Test if entering into an example block
             if self.class.examples?(stripped)
               current_block[:examples] = ''
               in_examples = true
+              in_usage = false
             end
 
             # Push the current line into the description object
@@ -93,6 +109,7 @@ module Sherpa
           else
             in_block = false
             in_examples = false
+            in_usage = false
           end
         end
       end

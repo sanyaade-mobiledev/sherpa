@@ -1,0 +1,82 @@
+
+//= ## Visibility mixins
+//
+// Mixin            |Params|Usage
+// -----------------|------|----------------------------------------------
+// `+hidden`        |none  |Totally hidden from screen readers and browsers
+// `+shown`         |none  |Reverse the effects of hidden
+// `+visuallyhidden`|none  |Only visually hidden, still available to screen readers
+// `+visuallyshown` |none  |Reverse the settings applied by `.visuallyhidden`
+// `+invisible`     |none  |Hide visually and from screenreaders, but maintain layout
+
+@mixin hidden
+  display: none !important
+  visibility: hidden
+
+@mixin shown
+  display: block
+  visibility: visible
+
+@mixin visuallyhidden
+  border: 0
+  clip: rect(0 0 0 0)
+  position: absolute
+  overflow: hidden
+  margin: -1px
+  padding: 0
+  width: 1px
+  height: 1px
+  &.focusable:active,
+  &.focusable:focus
+    clip: auto
+    position: static
+    overflow: visible
+    margin: 0
+    width: auto
+    height: auto
+
+@mixin visuallyshown
+  clip: auto
+  position: static
+  overflow: visible
+  margin: 0
+  width: auto
+  height: auto
+
+@mixin invisible
+  visibility: hidden
+
+//= Apply the `.breadcrumb` class to the `ol` or `ul` element to provide
+// linkable references to nested sections within the application.
+//
+// Examples:
+//    <nav>
+//      <ol class="nav breadcrumb">
+//        <li><a href="#">Level 1</a></li>
+//        <li><a href="#">Level 2</a></li>
+//        <li><a href="#">Level 3</a></li>
+//        <li class="active"><a href="#">Active</a></li>
+//      </ol>
+//    </nav>
+
+.breadcrumb > li
+  +inline-block
+  font-weight: bold
+  color: $component_normal
+  &:after
+    content: " /"
+  &:last-child:after
+    content: ""
+
+.breadcrumb > li > a
+  display: inline
+  color: $link_normal
+
+.breadcrumb > li > a:hover,
+.breadcrumb > li > a:active
+  color: $link_hover
+
+.breadcrumb > .active > a,
+.breadcrumb > .active > a:hover
+  color: $component_normal
+
