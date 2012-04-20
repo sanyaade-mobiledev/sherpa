@@ -46,6 +46,7 @@ module Sherpa
       end
     end
 
+    # View the contents of each sherpa block
     def spect(block)
       puts '----------------------------------------'
       puts "\n------ Description --------"
@@ -56,6 +57,7 @@ module Sherpa
       puts block[:examples]
     end
 
+    # What does the object and json look like?
     def output
       puts @blocks
       # puts @blocks.to_json
@@ -63,7 +65,13 @@ module Sherpa
     end
   end
 
-  builder = Builder.new(Dir["./app/assets/stylesheets/*.sass"], false)
+  files = Dir["./app/assets/stylesheets/*.sass"]
+  # files = [
+    # "./app/assets/stylesheets/ocd.sass",
+    # "./app/assets/stylesheets/visibility.sass"
+  # ]
+
+  builder = Builder.new(files, false)
   builder.build
   # builder.output
 end
