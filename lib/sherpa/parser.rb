@@ -41,18 +41,13 @@ module Sherpa
       line
     end
 
-    def initialize(file)
-      @file_path = file
+    def initialize()
       @blocks = []
-      @parsed = false
     end
 
-    def blocks
-      @parsed ? @blocks : parse_comments
-    end
-
-    def parse_comments
-      File.open @file_path do |file|
+    def parse_comments(file_path)
+      @blocks = []
+      File.open file_path do |file|
         in_block = false
         in_examples = false
         in_usage = false
