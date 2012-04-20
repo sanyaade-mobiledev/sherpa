@@ -63,13 +63,7 @@ module Sherpa
     end
   end
 
-  # Testing data
-  files = [
-    './app/assets/stylesheets/visibility.sass',
-    './app/assets/stylesheets/test.sass',
-    './app/assets/stylesheets/breadcrumbs.sass'
-  ]
-  builder = Builder.new(files, false)
+  builder = Builder.new(Dir["./app/assets/stylesheets/*.sass"], false)
   builder.build
   # builder.output
 end
