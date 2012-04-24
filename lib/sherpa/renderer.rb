@@ -18,7 +18,7 @@ module Sherpa
 
 
     def render(block)
-      @markdown.render(block).gsub(/^\n/, "<br />\n")
+      @markdown.render(block).gsub(/^\n/, "<br />")
     end
   end
 end

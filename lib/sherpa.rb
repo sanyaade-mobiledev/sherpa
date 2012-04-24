@@ -22,7 +22,12 @@ module Sherpa
       @files.each do |file|
         file_blocks = @parser.parse_comments file
         file_blocks.each do |file_block|
-          file_block[:markup] = @renderer.render file_block[:description]
+          file_block[:markup] = @renderer.render file_block[:raw]
+          file_block.each do |key, value|
+            if key.to_s != 'raw' && key.to_s != 'examples'
+              file_block[key] = @renderer.render value
+            end
+          end
         end
         @blocks.push(file_blocks)
       end
@@ -49,8 +54,8 @@ module Sherpa
     # View the contents of each sherpa block
     def spect(block)
       puts '----------------------------------------'
-      puts "\n------ Description --------"
-      puts block[:description]
+      puts "\n--------- Raw -----------"
+      puts block[:raw]
       puts '--------- Markup ----------'
       puts block[:markup]
       puts '-------- Examples ---------'
@@ -59,7 +64,7 @@ module Sherpa
 
     # What does the object and json look like?
     def output
-      puts @blocks
+      # puts @blocks
       # puts @blocks.to_json
       puts JSON.pretty_generate(@blocks)
     end
@@ -67,8 +72,9 @@ module Sherpa
 
   # files = Dir["./app/assets/stylesheets/*.sass"]
   files = [
-    "./app/assets/stylesheets/ocd.sass",
-    "./app/assets/stylesheets/visibility.sass"
+    "./app/assets/stylesheets/breadcrumbs.sass",
+    "./app/assets/stylesheets/visibility.sass",
+    "./app/assets/stylesheets/box-sizing.sass"
   ]
 
   builder = Builder.new(files, false)
