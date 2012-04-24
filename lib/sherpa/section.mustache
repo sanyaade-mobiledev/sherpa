@@ -1,18 +1,47 @@
 
 {{#blocks}}
   <div class="sherpa-section sherpa-clearfix">
-
-    {{#markup}}
-      <div class="sherpa-description sherpa-clearfix">
-        {{{markup}}}
+    {{#filename}}
+      <div class="sherpa-filename sherpa-clearfix">
+        {{{filename}}}
       </div>
-    {{/markup}}
+    {{/filename}}
+
+    {{#summary}}
+      <div class="sherpa-summary sherpa-clearfix">
+        {{{summary}}}
+      </div>
+    {{/summary}}
+
+    {{#arguments}}
+      <div class="sherpa-description sherpa-clearfix">
+        {{{arguments}}}
+      </div>
+    {{/arguments}}
 
     {{#examples}}
       <div class="sherpa-example sherpa-clearfix">
         {{{examples}}}
       </div>
     {{/examples}}
+
+    {{#example_code}}
+      <div class="sherpa-description sherpa-clearfix">
+        {{{example_code}}}
+      </div>
+    {{/example_code}}
+
+    {{#usage}}
+      <div class="sherpa-description sherpa-clearfix">
+        {{{usage}}}
+      </div>
+    {{/usage}}
+
+    {{#notes}}
+      <div class="sherpa-description sherpa-notes sherpa-clearfix">
+        {{{notes}}}
+      </div>
+    {{/notes}}
 
   </div>
 
