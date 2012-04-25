@@ -12,7 +12,7 @@ module Sherpa
       @blocks = []
       @parser = Sherpa::Parser.new
       @renderer = Sherpa::Renderer.new
-      @stache_layout = File.read('./lib/sherpa/layout.mustache')
+      @stache_layout = File.read('./lib/layouts/layout.mustache')
       @html = ""
       @debug = debug
     end

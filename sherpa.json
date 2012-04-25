@@ -1,12 +1,12 @@
 
 {
    "root_dir": "./app/assets/"
-  ,"layout_dir": "./lib/sherpa/"
+  ,"layout_dir": "./lib/layouts/"
   ,"default_template": "section.mustache"
   ,"manifest": [
      {"file":"stylesheets/breadcrumbs.sass"}
+    ,{"file":"stylesheets/box-sizing.sass", "template": "raw.mustache"}
     ,{"file":"stylesheets/visibility.sass"}
-    ,{"file":"stylesheets/box-sizing.sass", "template": "blah.mustache"}
   ]
 }
 
