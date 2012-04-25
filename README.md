@@ -17,9 +17,10 @@ Theoretically, this json file can be used by any sort of renderer. A user could 
 
 
 ### Sherpa Layouts
-Sherpa layouts render the json file output by Sherpa. It needs to augment the json file by merging in a configuration file (`json|yaml`) which describes various properties associated with rendering layouts (see configuration options below). It then renders the augmented configuration file to a mustache template based off of mustache sections.
+Sherpa layouts utilize a configuration file to output markup from Sherpa parsed files. It needs to augment the returned ruby object from sherpa and merge in the settings from the configuration file (`json|yaml`) which describes various properties associated with rendering layouts (see configuration options below). It then renders the augmented configuration file to a mustache template based off of mustache sections.
 
 - Configuration File: `json|yaml` file applicable for layouts
+- Builder: reads the configuration file and sends out files to Sherpa's parser/renderer
 - Layout Renderer: renders the layout to sections and finally the page
 - Layouts:
   - `layout.mustache`: the shell page
@@ -35,6 +36,7 @@ Typically from the command line, but can come from Rails/Sinatra
 
 - Determine if the files are globbed or coming from a `json|yaml` file
 - If coming from a configuration file, load that file and convert into an array of files
+- Unless not set, see if there is a README file in the base directory to use as an overview
 - Send each file out to the parser
   - Parser reads each file line by line
   - Once it comes to a sherpa block (denoted with `//~`)
@@ -54,16 +56,19 @@ Typically from the command line, but can come from Rails/Sinatra
 - Send out the current file's comment blocks to the `Renderer`
 - The `Renderer` parses each key and converts to markdown using redcarpet unless it's the `raw` or `examples` key
 - `Renderer` returns the existing block back to push into an array
+- Add a few other settings to the object: publication time, publisher, etc..
 - Once complete for each file, Sherpa converts the object to json and saves the file
 
-# TODO: FINISH THIS
 ### Sherpa with Layout
 Typically from Rails/Sinatra, but could come from the command line as well
 
-- Load the `.json` file output from parsing Sherpa comment blocks
 - Load the configuration `json|yaml` file which contains the settings related to rendering a layout
 - Set defaults for anything related to the configuration file
-- Merge the configuration file and the sherpa output (mainly creating)
+- Find the file list within the configuration file and send to Sherpa for parsing (Sherpa only returns the parsed ruby object)
+- Merge the configuration file and the sherpa output (mainly creating templates associated with files and any other relevant information)
+- Render each section with their associated template (templates should be cached once read in)
+- Render and write the layout to an html file
+- Optionally save the raw json file as well
 
 
 ## Configuration file for layouts
