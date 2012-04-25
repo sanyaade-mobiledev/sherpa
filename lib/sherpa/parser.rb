@@ -1,63 +1,8 @@
 
+require './lib/sherpa/sherpa_utils'
 
 module Sherpa
   class Parser
-
-    def self.sherpa_block?(line)
-      !!(line =~ /^\s*\/\/~/)
-    end
-
-    def self.line_comment?(line)
-      !!(line =~ /^\s*\/\//)
-    end
-
-    def self.examples?(line)
-      !!(line =~ /^\s*Examples/)
-    end
-
-    def self.usage?(line)
-      !!(line =~ /^\s*Usage/)
-    end
-
-    def self.header?(line)
-      !!(line =~ /:\z/)
-    end
-
-    # Remove comment markers, sherpa identifier and EOL whitespace
-    def self.trim_comments(line)
-      cleaned = line.to_s.sub(/\s*\/\//, '').to_s.sub(/\s*~\s/, '')
-      cleaned.rstrip
-    end
-
-    def self.trim_left(line, content)
-      cleaned = line
-      if content[content.size - 1] == "\n"
-        cleaned = cleaned.lstrip
-      end
-      cleaned
-    end
-
-    def self.trim_header(line)
-      cleaned = line.to_s.sub(/#+/, '').to_s.sub(/:/, '')
-      cleaned.strip.downcase
-    end
-
-    # Return a markdown header unless it already starts in markdown format
-    def self.add_markdown_header(line)
-      line = "### #{line}\n" unless !!(line =~ /^#/)
-      line
-    end
-
-    def self.get_title(file)
-      parent = File.dirname(file).split('/').last
-      title = File.basename(file, File.extname(file)).gsub(/_/, "")
-      "<h2 id='#{parent}_#{title}'>#{title.capitalize}</h2>"
-    end
-
-    def self.get_filename(file)
-      parent = File.dirname(file).split('/').last
-      "#{parent}/#{File.basename(file)}"
-    end
 
     def initialize()
       @blocks = []
@@ -67,61 +12,48 @@ module Sherpa
       @blocks = []
       File.open file_path do |file|
         in_block = false
-        in_examples = false
-        in_usage = false
         current_block = nil
         current_key = 'summary'
 
         file.each_line do |line|
 
           # Entering a block
-          if self.class.sherpa_block?(line)
+          if SherpaUtils.sherpa_block? line
             in_block = true
             current_block = {}
             current_block[:raw] = ''
-            # current_block[:title] = self.class.get_title(file_path)
-            current_block[:filename] = self.class.get_filename(file_path)
-            current_block[:examples] = nil
+            current_block[:filename] = SherpaUtils.get_filename(file_path)
             current_block[current_key] = ''
-            @blocks.push(current_block)
+            @blocks.push current_block
           end
 
-          if in_block && self.class.line_comment?(line)
+          if in_block && SherpaUtils.line_comment?(line)
 
-            # Trim up the lines from comment markers and left spacing
-            stripped = self.class.trim_comments(line)
-            if in_examples == false && in_usage == false
-              stripped = self.class.trim_left(stripped, current_block[:raw])
+            # Trim up the lines from comment markers and right spacing
+            stripped = SherpaUtils.trim_comment_markers line
+
+            # Trim left spacing unless this is a `pre` block
+            if !SherpaUtils.pre_line? stripped
+              stripped = SherpaUtils.trim_left(stripped, current_block[:raw])
             end
 
             # Save the current line for tweaking
             current_line = stripped
 
             # If line ends with ":" turn it into an h2
-            if self.class.header?(current_line)
-              current_line = self.class.add_markdown_header(stripped)
-              current_key = self.class.trim_header(current_line)
-              current_block[current_key] = '' unless current_key == 'examples'
-            end
-
-            # While within the examples block, add the current line to the examples object
-            if in_examples
-              current_block[:examples] += stripped.gsub(/^\s{4}/, "\n")
-            end
-
-            # Test if entering into a usage block
-            if self.class.usage?(stripped)
-              in_examples = false
-              in_usage = true
-            end
-
-            # Test if entering into an example block
-            if self.class.examples?(stripped)
-              current_block[:examples] = ''
-              in_examples = true
-              in_usage = false
-              current_key = 'example_code'
+            if SherpaUtils.header?(current_line)
+              current_line = SherpaUtils.add_markdown_header(stripped)
+              current_key = SherpaUtils.trim_header(current_line)
               current_block[current_key] = ''
+            end
+
+            # If in a usage block create a showcase block that gets rendered as straight markup (style guides)
+            if current_key == 'usage'
+              if current_block[:usage_showcase]
+                current_block[:usage_showcase] += stripped.gsub(/^\s{4}/, "\n")
+              else
+                current_block[:usage_showcase] = ''
+              end
             end
 
             # Push the current line into the raw object
@@ -130,20 +62,19 @@ module Sherpa
 
           else
             in_block = false
-            in_examples = false
-            in_usage = false
+            current_key = 'summary'
           end
         end
       end
-      clean_examples()
+      clean_showcase()
       @blocks
     end
 
     # Strip out the first blank line within a
-    def clean_examples()
+    def clean_showcase()
       @blocks.each do |block|
-        if block[:examples] != nil
-          block[:examples] = block[:examples].gsub(/^\n/, "")
+        if block[:usage_showcase] != nil
+          block[:usage_showcase] = block[:usage_showcase].gsub(/^\n/, "")
         end
       end
       @blocks
