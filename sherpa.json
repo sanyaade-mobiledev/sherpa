@@ -1,0 +1,12 @@
+
+{
+   "root_dir": "./app/assets/"
+  ,"layout_dir": "./lib/sherpa/"
+  ,"default_template": "section.mustache"
+  ,"manifest": [
+     {"file":"stylesheets/breadcrumbs.sass"}
+    ,{"file":"stylesheets/visibility.sass"}
+    ,{"file":"stylesheets/box-sizing.sass", "template": "blah.mustache"}
+  ]
+}
+

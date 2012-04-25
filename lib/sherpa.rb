@@ -12,7 +12,6 @@ module Sherpa
       @blocks = []
       @parser = Sherpa::Parser.new
       @renderer = Sherpa::Renderer.new
-      @stache_section = File.read('./lib/sherpa/section.mustache')
       @stache_layout = File.read('./lib/sherpa/layout.mustache')
       @html = ""
       @debug = debug
@@ -20,7 +19,7 @@ module Sherpa
 
     def build
       @files.each do |file|
-        file_blocks = @parser.parse_comments file
+        file_blocks = @parser.parse_comments file["file"]
         file_blocks.each do |file_block|
           file_block[:markup] = @renderer.render file_block[:raw]
           file_block.each do |key, value|
@@ -28,6 +27,7 @@ module Sherpa
               file_block[key] = @renderer.render value
             end
           end
+          file_block[:tmpl] = file["template"]
         end
         @blocks.push(file_blocks)
       end
@@ -37,8 +37,7 @@ module Sherpa
     def render_sections
       @blocks.each do |block|
         block.each do |section_block|
-          @html += Mustache.render(@stache_section, :blocks => section_block)
-          spect(section_block) unless @debug == false
+          @html += Mustache.render(File.read(section_block[:tmpl]), :blocks => section_block)
         end
       end
       render_layout()
@@ -51,17 +50,6 @@ module Sherpa
       end
     end
 
-    # View the contents of each sherpa block
-    def spect(block)
-      puts '----------------------------------------'
-      puts "\n--------- Raw -----------"
-      puts block[:raw]
-      puts '--------- Markup ----------'
-      puts block[:markup]
-      puts '-------- Examples ---------'
-      puts block[:examples]
-    end
-
     # What does the object and json look like?
     def output
       # puts @blocks
@@ -69,16 +57,5 @@ module Sherpa
       puts JSON.pretty_generate(@blocks)
     end
   end
-
-  # files = Dir["./app/assets/stylesheets/*.sass"]
-  files = [
-    "./app/assets/stylesheets/breadcrumbs.sass",
-    "./app/assets/stylesheets/visibility.sass",
-    "./app/assets/stylesheets/box-sizing.sass"
-  ]
-
-  builder = Builder.new(files, false)
-  builder.build
-  # builder.output
 end
 
