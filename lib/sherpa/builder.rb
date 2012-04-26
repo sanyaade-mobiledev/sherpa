@@ -23,9 +23,9 @@ module Sherpa
 
     def build
       @files.each do |file|
-        file_blocks = @parser.parse_comments file
-        file_blocks = @renderer.render_blocks file_blocks
-        @output[:sherpas].push file_blocks
+        file_blocks = @parser.parse(file)
+        file_blocks = @renderer.render_blocks(file_blocks)
+        @output[:sherpas].push(file_blocks)
       end
       @output[:deets] = publish_deets
       @output

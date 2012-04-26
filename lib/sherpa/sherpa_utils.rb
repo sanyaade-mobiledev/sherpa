@@ -13,20 +13,9 @@ module Sherpa
       !!(line =~ /^\s*\/\//)
     end
 
+    # Determines if a line is a `pre` block
     def self.pre_line?(line)
       !!(line =~ /^\s{4,}/)
-    end
-
-    # Tests for the special heading "Examples"
-    # NOTE: not being used currently
-    def self.examples?(line)
-      !!(line =~ /^\s*Examples/)
-    end
-
-    # Tests for the special heading "Usage"
-    # NOTE: not being used currently
-    def self.usage?(line)
-      !!(line =~ /^\s*Usage/)
     end
 
     # Tests to see if the line ends in ":"
@@ -34,7 +23,7 @@ module Sherpa
       !!(line =~ /:\z/)
     end
 
-    # Remove comment markers, sherpa identifier and EOL whitespace
+    # Remove comment markers, sherpa identifier, and EOL whitespace
     def self.trim_comment_markers(line)
       cleaned = line.to_s.sub(/\s*\/\//, '').to_s.sub(/\s*~\s/, '')
       cleaned.rstrip
@@ -49,27 +38,20 @@ module Sherpa
       cleaned
     end
 
-    # Trim the header of markdown and tail colon
-    def self.trim_header(line)
+    # Trim the header of markdown, tail colon, and downcase for use as a key
+    def self.trim_header_for_key(line)
       cleaned = line.to_s.sub(/#+/, '').to_s.sub(/:/, '')
       cleaned.strip.downcase
     end
 
-    # Return a markdown header unless it already starts in markdown format
+    # Return an `h3` markdown header unless it already starts in markdown format
     def self.add_markdown_header(line)
       line = "### #{line}\n" unless !!(line =~ /^#/)
       line
     end
 
-    # NOTE: not being used currently
-    def self.get_title(file)
-      parent = File.dirname(file).split('/').last
-      title = File.basename(file, File.extname(file)).gsub(/_/, "")
-      "<h2 id='#{parent}_#{title}'>#{title.capitalize}</h2>"
-    end
-
     # Return the current filename and it's parent directory
-    def self.get_filename(file)
+    def self.printable_path(file)
       parent = File.dirname(file).split('/').last
       "#{parent}/#{File.basename(file)}"
     end

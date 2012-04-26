@@ -28,7 +28,7 @@ module Sherpa
       blocks.each do |block|
         block.each do |key, value|
           if key.to_s != 'raw' && key.to_s != 'usage_showcase'
-            block[key] = render value
+            block[key] = render(value)
           end
         end
         block[:markup] = render block[:raw]
