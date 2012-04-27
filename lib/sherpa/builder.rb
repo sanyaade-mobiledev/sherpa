@@ -2,8 +2,8 @@
 module Sherpa
   class Builder
 
-    def initialize(files)
-      @files = Sherpa::Sources.new.find_files(files)
+    def initialize(config)
+      @files = get_manifest(config["manifest"], config['base_dir'])
       @output = {}
       @output[:sherpas] = []
       @output[:deets] = {}
@@ -26,6 +26,27 @@ module Sherpa
       published[:published_at] = Time.now.strftime("%m/%d/%Y %I:%M%P %Z")
       published[:published_by] = `git config user.name`.gsub(/\n/, "")
       published
+    end
+
+    def get_manifest(manifest, base_dir)
+      base = base_dir || ""
+      files = []
+
+      # If the manifest is a listing of files..
+      if manifest[0].kind_of? String
+        manifest.each do |file|
+          files.push("#{base}#{file}")
+        end
+
+      # If the manifest is a listing of objects..
+      elsif manifest[0].kind_of? Hash
+        manifest.each do |file|
+          files.push("#{base}#{file['file']}")
+        end
+      else
+        raise "Couldn't find the manifest of files."
+      end
+      return files
     end
 
   end

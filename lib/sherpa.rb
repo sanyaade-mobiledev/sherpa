@@ -2,7 +2,6 @@
 require 'json'
 require 'yaml'
 require './lib/sherpa/builder'
-require './lib/sherpa/sources'
 require './lib/sherpa/parser'
 require './lib/sherpa/renderer'
 require './lib/sherpa/layout'
