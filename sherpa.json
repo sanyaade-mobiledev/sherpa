@@ -1,12 +1,12 @@
 
 {
-   "root_dir": "./app/assets/"
+   "base_dir": "./app/assets/stylesheets/"
   ,"layout_dir": "./lib/layouts/"
   ,"default_template": "section.mustache"
   ,"manifest": [
-     {"file":"./app/assets/stylesheets/breadcrumbs.sass"}
-    ,{"file":"./app/assets/stylesheets/box-sizing.sass", "template": "raw.mustache"}
-    ,{"file":"./app/assets/stylesheets/visibility.sass"}
+     {"file":"breadcrumbs.sass"}
+    ,{"file":"box-sizing.sass", "template": "raw.mustache"}
+    ,{"file":"visibility.sass"}
   ]
 }
 

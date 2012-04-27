@@ -1,5 +1,9 @@
 
+base_dir: ./app/assets/stylesheets/
+
 manifest:
-  - ./app/assets/stylesheets/breadcrumbs.sass
-  - ./app/assets/stylesheets/visibility.sass
+  - font-size.sass
+  - box-sizing.sass
+  - breadcrumbs.sass
+  - visibility.sass
 
