@@ -4,9 +4,9 @@
   ,"layout_dir": "./lib/layouts/"
   ,"default_template": "section.mustache"
   ,"manifest": [
-     {"file":"stylesheets/breadcrumbs.sass"}
-    ,{"file":"stylesheets/visibility.sass"}
-    ,{"file":"stylesheets/box-sizing.sass", "template": "raw.mustache"}
+     {"file":"./app/assets/stylesheets/breadcrumbs.sass"}
+    ,{"file":"./app/assets/stylesheets/box-sizing.sass", "template": "raw.mustache"}
+    ,{"file":"./app/assets/stylesheets/visibility.sass"}
   ]
 }
 

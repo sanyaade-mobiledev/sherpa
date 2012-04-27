@@ -1,6 +1,4 @@
 
-require './lib/sherpa/sherpa_utils'
-
 module Sherpa
   class Parser
 
