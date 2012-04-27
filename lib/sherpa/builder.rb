@@ -4,9 +4,7 @@ module Sherpa
 
     def initialize(config)
       @files = get_manifest(config["manifest"], config['base_dir'])
-      @output = {}
-      @output[:sherpas] = []
-      @output[:deets] = {}
+      @output = {sherpas:[], deets:{}}
       @parser = Sherpa::Parser.new
       @renderer = Sherpa::Renderer.new
     end

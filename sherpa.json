@@ -2,7 +2,8 @@
 {
    "base_dir": "./app/assets/stylesheets/"
   ,"layout_dir": "./lib/layouts/"
-  ,"default_template": "section.mustache"
+  ,"layout_template": "layout.mustache"
+  ,"section_template": "section.mustache"
   ,"manifest": [
      {"file":"breadcrumbs.sass"}
     ,{"file":"box-sizing.sass", "template": "raw.mustache"}

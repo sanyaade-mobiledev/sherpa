@@ -4,10 +4,17 @@ require 'mustache'
 module Sherpa
   class Layout
 
-    def initialize
+    def initialize(config)
       @html = ""
-      @stache_layout = File.read('./lib/layouts/layout.mustache')
-      @stache_section = File.read('./lib/layouts/raw.mustache')
+      @blocks = nil
+      @config = config
+
+      @layout_dir = @config["layout_dir"] || "./lib/layouts/"
+      @layout_template = File.join(@layout_dir, @config["layout_template"] || "layout.mustache")
+      @section_template = File.join(@layout_dir, @config["section_template"] || "raw.mustache")
+
+      @stache_layout = File.read(@layout_template)
+      @stache_section = File.read(@section_template)
     end
 
     def render_and_save(blocks)
@@ -25,7 +32,8 @@ module Sherpa
     end
 
     def save_markup
-      layout = Mustache.render(@stache_layout, :layout => @html)
+      deets = @blocks[:deets]
+      layout = Mustache.render(@stache_layout, :layout => @html, :deets => deets)
       File.open('./index.html', "w") do |file|
         file.write(layout)
       end

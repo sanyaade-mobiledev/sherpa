@@ -12,6 +12,12 @@
     <div class="sherpa-container sherpa-clearfix">
       {{{layout}}}
     </div>
+
+    {{#deets}}
+      <div class="sherpa-footer sherpa-container sherpa-clearfix">
+        <p>Published: {{{deets.published_at}}} by {{{deets.published_by}}}</p>
+      </div>
+    {{/deets}}
   </body>
 </html>
 

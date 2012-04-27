@@ -33,7 +33,6 @@ else
 end
 
 
-
 # Send out for the build
 if config
   builder = Sherpa::Builder.new(config)
@@ -45,8 +44,8 @@ end
 # Render outputs
 if blocks
   json = JSON.pretty_generate(blocks)
-  puts json
-  layout = Sherpa::Layout.new
+  # puts json
+  layout = Sherpa::Layout.new(config)
   layout.render_and_save(blocks)
 else
   abort_with_note "No blocks found!"
