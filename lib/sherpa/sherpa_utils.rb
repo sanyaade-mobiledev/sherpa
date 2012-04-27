@@ -56,6 +56,10 @@ module Sherpa
       "#{parent}/#{File.basename(file)}"
     end
 
+    def self.filetype?(filename)
+      File.extname(filename).gsub(/\./, "")
+    end
+
   end
 end
 

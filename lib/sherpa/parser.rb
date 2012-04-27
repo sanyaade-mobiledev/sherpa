@@ -19,7 +19,7 @@ module Sherpa
             in_block = true
             current_block = {}
             current_block[:raw] = ''
-            current_block[:filepath] = SherpaUtils.printable_path(file_path)
+            current_block[:filepath] = file_path
             current_key = 'summary'
             current_block[current_key] = ''
             @blocks.push(current_block)

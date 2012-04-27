@@ -12,32 +12,87 @@
     <div class="sherpa-container sherpa-clearfix">
       
   <div class="sherpa-section sherpa-clearfix">
-      <div class="sherpa-filename sherpa-clearfix">
-        <p>stylesheets/breadcrumbs.sass</p>
+
+      <div class="sherpa-description sherpa-clearfix">
+        <h2>Mixin: font-size</h2>
+<br /><p>Use <code>rems</code> to insert a font size</p>
+<br /><h3>Arguments:</h3>
+<br /><ul>
+<li><code>$target_px</code>     - The target</li>
+<li><code>$context_px</code>    - The context</li>
+</ul>
+<br /><h3>Examples:</h3>
+<br /><pre><code>h1
+  +font-size(48)
+</code></pre>
+<br /><h3>Usage:</h3>
+<br /><pre><code>&lt;h1&gt;Heading&lt;/h1&gt;
+&lt;h2&gt;Heading&lt;/h2&gt;
+</code></pre>
 
       </div>
 
-      <div class="sherpa-summary sherpa-clearfix">
+      <div class="sherpa-example sherpa-clearfix">
+        <h1>Heading</h1>
+<h2>Heading</h2>
+      </div>
+
+  </div>
+
+
+
+  <div class="sherpa-section sherpa-clearfix">
+
+      <div class="sherpa-description sherpa-clearfix">
+        <p>Another simple summary in same file</p>
+<br /><h3>Usage:</h3>
+<br /><pre><code>&lt;h3&gt;Heading&lt;/h3&gt;
+&lt;h4&gt;Heading&lt;/h4&gt;
+</code></pre>
+
+      </div>
+
+      <div class="sherpa-example sherpa-clearfix">
+        <h3>Heading</h3>
+<h4>Heading</h4>
+      </div>
+
+  </div>
+
+
+
+  <div class="sherpa-section sherpa-clearfix">
+
+      <div class="sherpa-description sherpa-clearfix">
+        <h2>box-sizing</h2>
+<br /><p>Change the box model for Mozilla, Webkit, IE8 and the future</p>
+<br /><h3>Arguments:</h3>
+<br /><ul>
+<li><code>$type</code>  - content-box | border-box |inherit</li>
+</ul>
+<br /><h3>Notes:</h3>
+<br /><ul>
+<li><strong>Heads Up!</strong> This is important!</li>
+</ul>
+<br /><h3>Examples:</h3>
+<br /><pre><code>.base-column
+  +box-sizing(border-box)
+</code></pre>
+
+      </div>
+
+
+  </div>
+
+
+
+  <div class="sherpa-section sherpa-clearfix">
+
+      <div class="sherpa-description sherpa-clearfix">
         <h2>Breadcrumbs</h2>
 <br /><p>Apply the <code>.breadcrumb</code> class to the <code>ol</code> or <code>ul</code> element to provide
 linkable references to nested sections within the application.</p>
-
-      </div>
-
-
-      <div class="sherpa-example sherpa-clearfix">
-        <nav>
-  <ol class="nav breadcrumb">
-    <li><a href="#">Level 1</a></li>
-    <li><a href="#">Level 2</a></li>
-    <li><a href="#">Level 3</a></li>
-    <li class="active"><a href="#">Active</a></li>
-  </ol>
-</nav>
-      </div>
-
-      <div class="sherpa-description sherpa-clearfix">
-        <h3>Examples:</h3>
+<br /><h3>Usage:</h3>
 <br /><pre><code>&lt;nav&gt;
   &lt;ol class=&quot;nav breadcrumb&quot;&gt;
     &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Level 1&lt;/a&gt;&lt;/li&gt;
@@ -50,19 +105,24 @@ linkable references to nested sections within the application.</p>
 
       </div>
 
-
+      <div class="sherpa-example sherpa-clearfix">
+        <nav>
+  <ol class="nav breadcrumb">
+    <li><a href="#">Level 1</a></li>
+    <li><a href="#">Level 2</a></li>
+    <li><a href="#">Level 3</a></li>
+    <li class="active"><a href="#">Active</a></li>
+  </ol>
+</nav>
+      </div>
 
   </div>
 
 
 
   <div class="sherpa-section sherpa-clearfix">
-      <div class="sherpa-filename sherpa-clearfix">
-        <p>stylesheets/visibility.sass</p>
 
-      </div>
-
-      <div class="sherpa-summary sherpa-clearfix">
+      <div class="sherpa-description sherpa-clearfix">
         <h2>Visibility mixins</h2>
 <br /><table><thead>
 <tr>
@@ -97,35 +157,6 @@ linkable references to nested sections within the application.</p>
 <td>Hide visually and from screenreaders, but maintain layout</td>
 </tr>
 </tbody></table>
-
-      </div>
-
-
-
-
-
-
-  </div>
-
-
-
-  <div class="sherpa-section sherpa-clearfix">
-
-      <div class="sherpa-description sherpa-clearfix">
-        <h2>box-sizing</h2>
-<br /><p><br /><p>Change the box model for Mozilla, Webkit, IE8 and the future</p>
-<br /><h3>Arguments:</h3>
-<br /><ul>
-<li><code>$type</code>  - content-box | border-box |inherit</li>
-</ul>
-<br /><h3>Notes:</h3>
-<br /><ul>
-<li><strong>Heads Up!</strong> This is important!</li>
-</ul>
-<br /><h3>Usage:</h3>
-<br /><pre><code>.base-column
-  +box-sizing(border-box)
-</code></pre></p>
 
       </div>
 

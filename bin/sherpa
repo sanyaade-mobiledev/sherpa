@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+require './lib/sherpa'
+
+def usage
+  puts ARGV.options
+  abort
+end
+
+def abort_with_note(message=nil)
+  $stderr.puts message if message
+  abort "See `sherpa --help' for usage information."
+end
+
+input = "./"
+options = {}
+ARGV.options { |o|
+  o.on("-i", "--input=FILE") { |file| input += file }
+  o.on_tail("-h", "--help") { usage }
+  o.parse!
+} or abort_with_note
+
+if input != "./"
+  builder = Sherpa::Builder.new(input)
+  blocks = builder.build
+  json = JSON.pretty_generate(blocks)
+else
+  abort_with_note "Sherpa requires an input file!"
+end
+
+layout = Sherpa::Layout.new
+layout.render_and_save(blocks)
+
