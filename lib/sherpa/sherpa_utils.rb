@@ -40,7 +40,7 @@ module Sherpa
 
     # Trim the header of markdown, tail colon, and downcase for use as a key
     def self.trim_header_for_key(line)
-      cleaned = line.to_s.sub(/#+/, '').to_s.sub(/:/, '')
+      cleaned = line.gsub(/#+/, '').gsub(/:/, '').strip.gsub(/\s/,'_')
       cleaned.strip.downcase
     end
 
@@ -54,9 +54,6 @@ module Sherpa
     def self.pretty_path(base_path, filename)
       expression = Regexp.new(Regexp.escape(base_path.gsub(/^\./, "")))
       filename.gsub(/^\./, "").gsub(expression,"")
-    end
-
-    def self.get_section_name(path)
     end
 
     def self.filetype?(filename)
