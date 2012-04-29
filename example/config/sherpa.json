@@ -1,7 +1,8 @@
 
 {
   "styles": {
-     "base_dir": "./test/fixtures/stylesheets/"
+     "base_dir": "./test/fixtures/sass/"
+    ,"output_dir": "./example/app/views/sherpa/"
     ,"layout_dir": "./lib/layouts/"
     ,"layout_template": "layout.mustache"
     ,"section_template": "section.mustache"
@@ -13,7 +14,8 @@
     ]
   },
   "behaviors": {
-     "base_dir": "./test/fixtures/javascripts/"
+     "base_dir": "./test/fixtures/js/"
+    ,"output_dir": "./example/app/views/sherpa/"
     ,"layout_dir": "./lib/layouts/"
     ,"layout_template": "layout.mustache"
     ,"section_template": "section.mustache"

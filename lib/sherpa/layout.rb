@@ -11,6 +11,7 @@ module Sherpa
 
     def set_options(key)
       @base_dir = @config[key]["base_dir"]
+      @output_dir = @config[key]["output_dir"]
       @layout_dir = @config[key]["layout_dir"] || "./lib/layouts/"
       @layout_template = File.join(@layout_dir, @config[key]["layout_template"] || "layout.mustache")
       @section_template = File.join(@layout_dir, @config[key]["section_template"] || "raw.mustache")
@@ -75,7 +76,7 @@ module Sherpa
 
     def save_markup(key)
       layout = Mustache.render(@stache_layout, :nav => @main_nav, :aside => @aside_nav, :layout => @html, :deets => @blocks[:deets])
-      File.open("./#{key}.html", "w") do |file|
+      File.open("#{@output_dir}#{key}.html", "w") do |file|
         file.write(layout)
       end
     end

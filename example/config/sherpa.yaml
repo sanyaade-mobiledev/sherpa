@@ -1,0 +1,24 @@
+
+styles:
+  base_dir: ./test/fixtures/sass/
+  output_dir: ./example/app/views/sherpa/
+  layout_dir: ./lib/layouts/
+  layout_template: layout.mustache
+  section_template: section.mustache
+  manifest:
+    - base/visibility.sass
+    - components/breadcrumbs.sass
+    - mixins/box-sizing.sass
+    - mixins/font-size.sass
+    - ocd.sass
+    - test.sass
+
+behaviors:
+  base_dir: ./test/fixtures/js/
+  output_dir: ./example/app/views/sherpa/
+  layout_dir: ./lib/layouts/
+  layout_template: layout.mustache
+  section_template: section.mustache
+  manifest:
+    - test.js
+
