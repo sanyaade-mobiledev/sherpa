@@ -1,5 +1,0 @@
-
-manifest:
-  - ./app/assets/stylesheets/breadcrumbs.sass
-  - ./app/assets/stylesheets/visibility.sass
-
