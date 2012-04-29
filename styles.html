@@ -26,16 +26,20 @@
           </ul>
 
         <ul class="sherpa-anchor-nav sherpa-nav-list">
-          <li class='sherpa-nav-header'>Base</li><li><a href='#visibility0'>Visibility</a></li><li class='sherpa-nav-header'>Components</li><li><a href='#breadcrumbs0'>Breadcrumbs</a></li><li class='sherpa-nav-header'>Mixins</li><li><a href='#box-sizing0'>Box-sizing</a></li><li><a href='#font-size0'>Font-size</a></li><li class='sherpa-nav-header'>Top level</li><li><a href='#ocd0'>Ocd</a></li><li><a href='#test0'>Test</a></li>
+          <li class='sherpa-nav-header'>Base</li><li><a href='#base-visibility'>Visibility</a></li><li class='sherpa-nav-header'>Components</li><li><a href='#components-breadcrumbs'>Breadcrumbs</a></li><li class='sherpa-nav-header'>Mixins</li><li><a href='#mixins-box-sizing'>Box-sizing</a></li><li><a href='#mixins-font-size'>Font-size</a></li>
         </ul>
       </nav>
     </aside>
 
     <section class="sherpa-container sherpa-clearfix">
       
-  <section class="sherpa-section sherpa-clearfix">
+  <section class="sherpa-section sherpa-clearfix" id="base-visibility">
 
-      <div class="sherpa-description sherpa-clearfix">
+      <div class="sherpa-filepath sherpa-clearfix">
+        <p>base/visibility.sass</p>
+      </div>
+
+      <div class="sherpa-summary sherpa-clearfix">
         <h2>Visibility mixins</h2>
 <br /><table><thead>
 <tr>
@@ -74,28 +78,27 @@
       </div>
 
 
+
+
+
+
   </section>
 
 
 
-  <section class="sherpa-section sherpa-clearfix">
+  <section class="sherpa-section sherpa-clearfix" id="components-breadcrumbs">
 
-      <div class="sherpa-description sherpa-clearfix">
+      <div class="sherpa-filepath sherpa-clearfix">
+        <p>components/breadcrumbs.sass</p>
+      </div>
+
+      <div class="sherpa-summary sherpa-clearfix">
         <h2>Breadcrumbs</h2>
 <br /><p>Apply the <code>.breadcrumb</code> class to the <code>ol</code> or <code>ul</code> element to provide
 linkable references to nested sections within the application.</p>
-<br /><h3>Usage:</h3>
-<br /><pre><code>&lt;nav&gt;
-  &lt;ol class=&quot;nav breadcrumb&quot;&gt;
-    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Level 1&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Level 2&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Level 3&lt;/a&gt;&lt;/li&gt;
-    &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#&quot;&gt;Active&lt;/a&gt;&lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/nav&gt;
-</code></pre>
 
       </div>
+
 
       <div class="sherpa-showcase sherpa-clearfix">
         <nav>
@@ -108,53 +111,86 @@ linkable references to nested sections within the application.</p>
 </nav>
       </div>
 
+      <div class="sherpa-description sherpa-clearfix">
+        <h3>Usage:</h3>
+<br /><pre><code>&lt;nav&gt;
+  &lt;ol class=&quot;nav breadcrumb&quot;&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Level 1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Level 2&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Level 3&lt;/a&gt;&lt;/li&gt;
+    &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#&quot;&gt;Active&lt;/a&gt;&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/nav&gt;
+</code></pre>
+
+      </div>
+
+
+
   </section>
 
 
 
-  <section class="sherpa-section sherpa-clearfix">
+  <section class="sherpa-section sherpa-clearfix" id="mixins-box-sizing">
 
-      <div class="sherpa-description sherpa-clearfix">
+      <div class="sherpa-filepath sherpa-clearfix">
+        <p>mixins/box-sizing.sass</p>
+      </div>
+
+      <div class="sherpa-summary sherpa-clearfix">
         <h2>box-sizing</h2>
 <br /><p>Change the box model for Mozilla, Webkit, IE8 and the future</p>
-<br /><h3>Arguments:</h3>
+
+      </div>
+
+      <div class="sherpa-description sherpa-clearfix">
+        <h3>Arguments:</h3>
 <br /><ul>
 <li><code>$type</code>  - content-box | border-box |inherit</li>
 </ul>
-<br /><h3>Notes:</h3>
-<br /><ul>
-<li><strong>Heads Up!</strong> This is important!</li>
-</ul>
-<br /><h3>Examples:</h3>
+
+      </div>
+
+
+
+      <div class="sherpa-description sherpa-clearfix">
+        <h3>Examples:</h3>
 <br /><pre><code>.base-column
   +box-sizing(border-box)
 </code></pre>
 
       </div>
 
+      <div class="sherpa-description sherpa-notes sherpa-clearfix">
+        <h3>Notes:</h3>
+<br /><ul>
+<li><strong>Heads Up!</strong> This is important!</li>
+</ul>
+
+      </div>
 
   </section>
 
 
 
-  <section class="sherpa-section sherpa-clearfix">
+  <section class="sherpa-section sherpa-clearfix" id="mixins-font-size">
 
-      <div class="sherpa-description sherpa-clearfix">
+      <div class="sherpa-filepath sherpa-clearfix">
+        <p>mixins/font-size.sass</p>
+      </div>
+
+      <div class="sherpa-summary sherpa-clearfix">
         <h2>Mixin: font-size</h2>
 <br /><p>Use <code>rems</code> to insert a font size</p>
-<br /><h3>Arguments:</h3>
+
+      </div>
+
+      <div class="sherpa-description sherpa-clearfix">
+        <h3>Arguments:</h3>
 <br /><ul>
 <li><code>$target_px</code>     - The target</li>
 <li><code>$context_px</code>    - The context</li>
 </ul>
-<br /><h3>Examples:</h3>
-<br /><pre><code>h1
-  +font-size(48)
-</code></pre>
-<br /><h3>Usage:</h3>
-<br /><pre><code>&lt;h1&gt;Heading&lt;/h1&gt;
-&lt;h2&gt;Heading&lt;/h2&gt;
-</code></pre>
 
       </div>
 
@@ -163,164 +199,49 @@ linkable references to nested sections within the application.</p>
 <h2>Heading</h2>
       </div>
 
+      <div class="sherpa-description sherpa-clearfix">
+        <h3>Usage:</h3>
+<br /><pre><code>&lt;h1&gt;Heading&lt;/h1&gt;
+&lt;h2&gt;Heading&lt;/h2&gt;
+</code></pre>
+
+      </div>
+
+      <div class="sherpa-description sherpa-clearfix">
+        <h3>Examples:</h3>
+<br /><pre><code>h1
+  +font-size(48)
+</code></pre>
+
+      </div>
+
+
   </section>
 
 
 
-  <section class="sherpa-section sherpa-clearfix">
+  <section class="sherpa-section sherpa-clearfix" id="mixins-font-size_1">
 
-      <div class="sherpa-description sherpa-clearfix">
+
+      <div class="sherpa-summary sherpa-clearfix">
         <p>Another simple summary in same file</p>
-<br /><h3>Usage:</h3>
-<br /><pre><code>&lt;h3&gt;Heading&lt;/h3&gt;
-&lt;h4&gt;Heading&lt;/h4&gt;
-</code></pre>
 
       </div>
+
 
       <div class="sherpa-showcase sherpa-clearfix">
         <h3>Heading</h3>
 <h4>Heading</h4>
       </div>
 
-  </section>
-
-
-
-  <section class="sherpa-section sherpa-clearfix">
-
       <div class="sherpa-description sherpa-clearfix">
-        <h2>Breadcrumb</h2>
-<br /><p>Breadcrumb navigation is used as a way to show users where they are within
-an app or a site, but not for primary navigation. Keep their use sparse and
-succinct to be most effective.</p>
-<br /><h3>Notes:</h3>
-<br /><ul>
-<li>Add .pagination-center or .pagination-right on the container to change the alignment</li>
-</ul>
-<br /><h3>Arguments:</h3>
-<br /><ul>
-<li><code>$target_px</code>     - The target</li>
-<li><code>$context_px</code>    - The context</li>
-</ul>
-<br /><h3>Examples:</h3>
-<br /><pre><code>h1
-  +font-size(48)
-</code></pre>
-<br /><h3>Usage:</h3>
-<br /><pre><code>&lt;nav&gt;
-  &lt;ol class=&quot;nav breadcrumb&quot;&gt;
-    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Level 1&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Level 2&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Level 3&lt;/a&gt;&lt;/li&gt;
-    &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#&quot;&gt;Active&lt;/a&gt;&lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/nav&gt;
+        <h3>Usage:</h3>
+<br /><pre><code>&lt;h3&gt;Heading&lt;/h3&gt;
+&lt;h4&gt;Heading&lt;/h4&gt;
 </code></pre>
 
       </div>
 
-      <div class="sherpa-showcase sherpa-clearfix">
-        <nav>
-  <ol class="nav breadcrumb">
-    <li><a href="#">Level 1</a></li>
-    <li><a href="#">Level 2</a></li>
-    <li><a href="#">Level 3</a></li>
-    <li class="active"><a href="#">Active</a></li>
-  </ol>
-</nav>
-      </div>
-
-  </section>
-
-
-
-  <section class="sherpa-section sherpa-clearfix">
-
-      <div class="sherpa-description sherpa-clearfix">
-        <p>The first <code>line</code> starts with equals and is the summary.</p>
-<br /><p>The next line (and subsequent lines) are used as a description,
-these can span many lines including empty lines.</p>
-<br /><p>Description continued after an empty line (requires a comment delimeter before).</p>
-<br /><ul>
-<li>:hover   The hover state.</li>
-<li>.small   A smaller button.</li>
-</ul>
-<br /><h3>Usage:</h3>
-<br /><pre><code>&lt;button class=&quot;btn primary&quot;&gt;Button&lt;/button&gt;
-&lt;button class=&quot;btn small&quot;&gt;Button&lt;/button&gt;
-<br />&lt;button class=&quot;btn danger&quot;&gt;Button&lt;/button&gt;
-</code></pre>
-
-      </div>
-
-      <div class="sherpa-showcase sherpa-clearfix">
-        <button class="btn primary">Button</button>
-<button class="btn small">Button</button>
-<button class="btn danger">Button</button>
-      </div>
-
-  </section>
-
-
-
-  <section class="sherpa-section sherpa-clearfix">
-
-      <div class="sherpa-description sherpa-clearfix">
-        <p>This is the start of another block.</p>
-<br /><h3>Usage:</h3>
-<br /><pre><code>&lt;h2&gt;Heading 2&lt;/h2&gt;
-</code></pre>
-
-      </div>
-
-      <div class="sherpa-showcase sherpa-clearfix">
-        <h2>Heading 2</h2>
-      </div>
-
-  </section>
-
-
-
-  <section class="sherpa-section sherpa-clearfix">
-
-      <div class="sherpa-description sherpa-clearfix">
-        <h2>Container</h2>
-<br /><table><thead>
-<tr>
-<th>Mixin</th>
-<th>Params</th>
-<th>Usage</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code>+hidden</code></td>
-<td>none</td>
-<td>Totally hidden from screen readers and browsers</td>
-</tr>
-<tr>
-<td><code>+shown</code></td>
-<td>none</td>
-<td>Reverse the effects of hidden</td>
-</tr>
-<tr>
-<td><code>+visuallyhidden</code></td>
-<td>none</td>
-<td>Only visually hidden, still available to screen readers</td>
-</tr>
-<tr>
-<td><code>+visuallyshown</code></td>
-<td>none</td>
-<td>Reverse the settings applied by <code>.visuallyhidden</code></td>
-</tr>
-<tr>
-<td><code>+invisible</code></td>
-<td>none</td>
-<td>Hide visually and from screenreaders, but maintain layout</td>
-</tr>
-</tbody></table>
-
-      </div>
 
 
   </section>
@@ -330,7 +251,7 @@ these can span many lines including empty lines.</p>
     </section>
 
       <footer class="sherpa-footer sherpa-container sherpa-clearfix">
-        <p>Published: 04/29/2012 10:03am MDT by Matthew Kitt</p>
+        <p>Published: 04/29/2012 11:41am MDT by Matthew Kitt</p>
       </footer>
   </body>
 </html>

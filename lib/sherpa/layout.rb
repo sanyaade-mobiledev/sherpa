@@ -50,8 +50,8 @@ module Sherpa
           sections.each_with_index do |section, x|
             path = SherpaUtils.pretty_path(@base_dir, section[:filepath])
             name = File.basename(path,File.extname(path))
-            id = "#{name}#{x}"
-            cur_section = !!(path =~ /\//) ? path.split('/')[0] : "Top level"
+            cur_section = !!(path =~ /\//) ? path.split('/')[0] : "root"
+            id = "#{cur_section}-#{name}#{x > 0 ? "_#{x}": ""}"
 
             section[:filepath] = path
             section[:id] = id
