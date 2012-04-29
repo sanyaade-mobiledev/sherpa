@@ -3,20 +3,32 @@ module Sherpa
   class Builder
 
     def initialize(config)
-      @files = get_manifest(config["manifest"], config['base_dir'])
-      @output = {sherpas:[], deets:{}}
+      @config = config
+      @output = nil
       @parser = Sherpa::Parser.new
       @renderer = Sherpa::Renderer.new
     end
 
     def build
-      @files.each do |file|
-        file_blocks = @parser.parse(file)
-        file_blocks = @renderer.render_blocks(file_blocks)
-        @output[:sherpas].push(file_blocks)
+      @output = {}
+      @config.each do |key, value|
+        @output[key] = build_section value
       end
       @output[:deets] = publish_deets
       @output
+    end
+
+    def build_section(config)
+      outputs = []
+      files = get_manifest(config["manifest"], config["base_dir"] )
+      files.each do |file|
+        output = {}
+        file_blocks = @parser.parse(file)
+        file_blocks = @renderer.render_blocks(file_blocks)
+        output[:sherpas] = file_blocks
+        outputs.push output
+      end
+      outputs
     end
 
     def publish_deets

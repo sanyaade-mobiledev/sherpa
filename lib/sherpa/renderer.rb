@@ -27,7 +27,7 @@ module Sherpa
     def render_blocks(blocks)
       blocks.each do |block|
         block.each do |key, value|
-          if key.to_s != 'raw' && key.to_s != 'usage_showcase'
+          if key.to_s != 'raw' && key.to_s != 'usage_showcase' && key.to_s != 'filepath'
             block[key] = render(value)
           end
         end

@@ -42,10 +42,10 @@
   list-style: none;
 }
 .sherpa-nav-list > li > a {
-  border-right: 2px solid transparent;
+  border-left: 3px solid transparent;
   color: #777;
   display: block;
-  padding: 0.3em 1em;
+  padding: 0.3em 0.75em;
 }
 .sherpa-nav-list > li > a:hover {
   background-color: #f3f3f3;
@@ -55,14 +55,14 @@
 .sherpa-nav-list .active > a,
 .sherpa-nav-list .active > a:hover {
   background-color: #eee;
-  border-right-color: #b22222;
+  border-left-color: #b22222;
   color: #333;
   cursor: default;
 }
 .sherpa-dox-nav > li > a:active,
 .sherpa-dox-nav .active > a,
 .sherpa-dox-nav .active > a:hover {
-  border-right-color: #268bd2;
+  border-left-color: #268bd2;
 }
 
 .sherpa-nav-header {
@@ -98,7 +98,6 @@
 .sherpa-section {
   padding: 0.5em 0;
   margin: 0.5em 0;
-  border-bottom: 1px dotted #aaa;
   padding-left: 2%;
 }
 .sherpa-filepath {

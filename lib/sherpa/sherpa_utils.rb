@@ -51,9 +51,12 @@ module Sherpa
     end
 
     # Return the current filename and it's parent directory
-    def self.printable_path(file)
-      parent = File.dirname(file).split('/').last
-      "#{parent}/#{File.basename(file)}"
+    def self.pretty_path(base_path, filename)
+      expression = Regexp.new(Regexp.escape(base_path.gsub(/^\./, "")))
+      filename.gsub(/^\./, "").gsub(expression,"")
+    end
+
+    def self.get_section_name(path)
     end
 
     def self.filetype?(filename)

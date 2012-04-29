@@ -1,9 +1,11 @@
 
-base_dir: ./app/assets/stylesheets/
+base_dir: ./test/fixtures/stylesheets/
 
 manifest:
-  - font-size.sass
-  - box-sizing.sass
-  - breadcrumbs.sass
-  - visibility.sass
+  - base/visibility.sass
+  - components/breadcrumbs.sass
+  - mixins/box-sizing.sass
+  - mixins/font-size.sass
+  - ocd.sass
+  - test.sass
 

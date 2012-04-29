@@ -4,37 +4,69 @@ require 'mustache'
 module Sherpa
   class Layout
 
-    def initialize(config)
-      @html = ""
-      @blocks = nil
+    def initialize(config, blocks)
       @config = config
+      @blocks = blocks
+    end
 
-      @layout_dir = @config["layout_dir"] || "./lib/layouts/"
-      @layout_template = File.join(@layout_dir, @config["layout_template"] || "layout.mustache")
-      @section_template = File.join(@layout_dir, @config["section_template"] || "raw.mustache")
+    def set_options(key)
+      @base_dir = @config[key]["base_dir"]
+      @layout_dir = @config[key]["layout_dir"] || "./lib/layouts/"
+      @layout_template = File.join(@layout_dir, @config[key]["layout_template"] || "layout.mustache")
+      @section_template = File.join(@layout_dir, @config[key]["section_template"] || "raw.mustache")
 
       @stache_layout = File.read(@layout_template)
       @stache_section = File.read(@section_template)
     end
 
-    def render_and_save(blocks)
-      @blocks = blocks
-      render
-      save_markup
-    end
-
-    def render
-      @blocks[:sherpas].each do |block|
-        block.each do |section|
-          @html += Mustache.render(@stache_section, :blocks => section)
+    def render_and_save
+      @blocks.each do |key, value|
+        if key.to_s != "deets"
+          set_options key
+          render value
+          save_markup key
         end
       end
     end
 
-    def save_markup
+    def render(blocks)
+      @html = ""
+      @aside_nav = ""
+      @current_path = ""
+      @current_section = ""
+
+      blocks.each do |block|
+        block.each do |key, sections|
+          sections.each_with_index do |section, x|
+            path = SherpaUtils.pretty_path(@base_dir, section[:filepath])
+            name = File.basename(path,File.extname(path))
+            id = "#{name}#{x}"
+            cur_section = !!(path =~ /\//) ? path.split('/')[0] : "Top level"
+
+            section[:filepath] = path
+            section[:id] = id
+
+            if cur_section != @current_section
+              @current_section = cur_section
+              @aside_nav += "<li class='sherpa-nav-header'>#{@current_section.capitalize}</li>"
+            end
+
+            if path != @current_path
+              @current_path = path
+              @aside_nav += "<li><a href='##{id}'>#{name.capitalize}</a></li>"
+            else
+              section[:filepath] = nil
+            end
+            @html += Mustache.render(@stache_section, :blocks => section)
+          end
+        end
+      end
+    end
+
+    def save_markup(key)
       deets = @blocks[:deets]
-      layout = Mustache.render(@stache_layout, :layout => @html, :deets => deets)
-      File.open('./index.html', "w") do |file|
+      layout = Mustache.render(@stache_layout, :layout => @html, :aside => @aside_nav, :deets => deets)
+      File.open("./#{key}.html", "w") do |file|
         file.write(layout)
       end
     end

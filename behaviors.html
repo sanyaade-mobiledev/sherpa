@@ -28,23 +28,61 @@
           <li><a href="#">Behaviors</a></li>
         </ul>
 
-      {{#aside}}
         <ul class="sherpa-anchor-nav sherpa-nav-list">
-          {{{aside}}}
+          <li class='sherpa-nav-header'>Top level</li><li><a href='#test0'>Test</a></li>
         </ul>
-      {{/aside}}
       </nav>
     </aside>
 
     <section class="sherpa-container sherpa-clearfix">
-      {{{layout}}}
+      
+  <section class="sherpa-section sherpa-clearfix" id="test0">
+
+      <div class="sherpa-filepath sherpa-clearfix">
+        <p>test.js</p>
+      </div>
+
+      <div class="sherpa-summary sherpa-clearfix">
+        <h2>JavaScript Functions</h2>
+<br /><p>Change the box model for Mozilla, Webkit, IE8 and the future</p>
+
+      </div>
+
+      <div class="sherpa-description sherpa-clearfix">
+        <h3>Arguments:</h3>
+<br /><ul>
+<li><code>$type</code>  - content-box | border-box |inherit</li>
+</ul>
+
+      </div>
+
+
+
+      <div class="sherpa-description sherpa-clearfix">
+        <h3>Examples:</h3>
+<br /><pre><code>.base-column
+  +box-sizing(border-box)
+</code></pre>
+
+      </div>
+
+      <div class="sherpa-description sherpa-notes sherpa-clearfix">
+        <h3>Notes:</h3>
+<br /><ul>
+<li><strong>Heads Up!</strong> This is important!</li>
+</ul>
+
+      </div>
+
+  </section>
+
+
+
     </section>
 
-    {{#deets}}
       <footer class="sherpa-footer sherpa-container sherpa-clearfix">
-        <p>Published: {{{deets.published_at}}} by {{{deets.published_by}}}</p>
+        <p>Published: 04/29/2012 02:50am MDT by Matthew Kitt</p>
       </footer>
-    {{/deets}}
   </body>
 </html>
 
