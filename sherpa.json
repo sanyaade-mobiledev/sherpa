@@ -1,14 +1,25 @@
 
 {
-   "base_dir": "./test/fixtures/stylesheets/"
-  ,"layout_dir": "./lib/layouts/"
-  ,"layout_template": "layout.mustache"
-  ,"section_template": "section.mustache"
-  ,"manifest": [
-     {"file":"base/visibility.sass"}
-    ,{"file":"components/breadcrumbs.sass"}
-    ,{"file":"mixins/box-sizing.sass", "template": "raw.mustache"}
-    ,{"file":"mixins/font-size.sass"}
-  ]
+  "styles": {
+     "base_dir": "./test/fixtures/stylesheets/"
+    ,"layout_dir": "./lib/layouts/"
+    ,"layout_template": "layout.mustache"
+    ,"section_template": "section.mustache"
+    ,"manifest": [
+       {"file":"base/visibility.sass"}
+      ,{"file":"components/breadcrumbs.sass"}
+      ,{"file":"mixins/box-sizing.sass", "template": "raw.mustache"}
+      ,{"file":"mixins/font-size.sass"}
+    ]
+  },
+  "behaviors": {
+     "base_dir": "./test/fixtures/javascripts/"
+    ,"layout_dir": "./lib/layouts/"
+    ,"layout_template": "layout.mustache"
+    ,"section_template": "section.mustache"
+    ,"manifest": [
+       {"file":"test.js"}
+    ]
+  }
 }
 

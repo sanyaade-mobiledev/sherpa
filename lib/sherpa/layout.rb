@@ -20,11 +20,21 @@ module Sherpa
     end
 
     def render_and_save
+      render_primary_nav
       @blocks.each do |key, value|
         if key.to_s != "deets"
           set_options key
           render value
           save_markup key
+        end
+      end
+    end
+
+    def render_primary_nav
+      @main_nav = ""
+      @blocks.each do |key, value|
+        if key.to_s != "deets"
+          @main_nav += "<li><a href='/#{key}.html'>#{key.capitalize}</a></li>"
         end
       end
     end
@@ -64,8 +74,7 @@ module Sherpa
     end
 
     def save_markup(key)
-      deets = @blocks[:deets]
-      layout = Mustache.render(@stache_layout, :layout => @html, :aside => @aside_nav, :deets => deets)
+      layout = Mustache.render(@stache_layout, :nav => @main_nav, :aside => @aside_nav, :layout => @html, :deets => @blocks[:deets])
       File.open("./#{key}.html", "w") do |file|
         file.write(layout)
       end
