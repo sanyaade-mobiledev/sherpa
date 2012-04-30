@@ -3,14 +3,13 @@ module Sherpa
   class SherpaUtils
 
     # Determines if a comment block has a sherpa marker (//~)
-    # TODO: Should accept a specific comment marker for a given file type (#~, /*~, /**~)
     def self.sherpa_block?(line)
-      !!(line =~ /^\s*\/\/~/)
+      !!(line =~ /^\s*\/\/~|^\s*#~/)
     end
 
     # Determines if a line is a continuation of a sherpa block
     def self.line_comment?(line)
-      !!(line =~ /^\s*\/\//)
+      !!(line =~ /^\s*\/\/|^\s*#/)
     end
 
     # Determines if a line is a `pre` block
@@ -25,7 +24,7 @@ module Sherpa
 
     # Remove comment markers, sherpa identifier, and EOL whitespace
     def self.trim_comment_markers(line)
-      cleaned = line.to_s.sub(/\s*\/\//, '').to_s.sub(/\s*~\s/, '')
+      cleaned = line.gsub(/^\s*/, '').gsub(/\s*\/\/|\s*^#/, '').gsub(/\s*~\s/, '')
       cleaned.rstrip
     end
 

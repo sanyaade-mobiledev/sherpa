@@ -30,7 +30,7 @@ module Sherpa
             # Trim up the lines from comment markers and right spacing
             current_line = SherpaUtils.trim_comment_markers(line)
 
-            # Trim left spacing unless this is a `pre` block
+            # Trim left spacing unless this is a `pre` block, allows for breaks in comments, but not in output
             if !SherpaUtils.pre_line?(current_line)
               current_line = SherpaUtils.trim_left(current_line, current_block[:raw])
             end

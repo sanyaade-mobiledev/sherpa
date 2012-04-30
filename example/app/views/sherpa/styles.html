@@ -26,7 +26,7 @@
           </ul>
 
         <ul class="sherpa-anchor-nav sherpa-nav-list">
-          <li class='sherpa-nav-header'>Base</li><li><a href='#base-visibility'>Visibility</a></li><li class='sherpa-nav-header'>Components</li><li><a href='#components-breadcrumbs'>Breadcrumbs</a></li><li class='sherpa-nav-header'>Mixins</li><li><a href='#mixins-box-sizing'>Box-sizing</a></li><li><a href='#mixins-font-size'>Font-size</a></li>
+          <li class='sherpa-nav-header'>Base</li><li><a href='#base-visibility'>Visibility</a></li><li class='sherpa-nav-header'>Components</li><li><a href='#components-breadcrumbs'>Breadcrumbs</a></li><li class='sherpa-nav-header'>Mixins</li><li><a href='#mixins-box-sizing'>Box-sizing</a></li><li><a href='#mixins-font-size'>Font-size</a></li><li class='sherpa-nav-header'>Root</li><li><a href='#root-ocd'>Ocd</a></li><li><a href='#root-test'>Test</a></li>
         </ul>
       </nav>
     </aside>
@@ -248,10 +248,226 @@ linkable references to nested sections within the application.</p>
 
 
 
+  <section class="sherpa-section sherpa-clearfix" id="root-ocd">
+
+      <div class="sherpa-filepath sherpa-clearfix">
+        <p>ocd.sass</p>
+      </div>
+
+      <div class="sherpa-summary sherpa-clearfix">
+        <h2>Breadcrumb</h2>
+<br /><p>Breadcrumb navigation is used as a way to show users where they are within
+an app or a site, but not for primary navigation. Keep their use sparse and
+succinct to be most effective.</p>
+
+      </div>
+
+      <div class="sherpa-description sherpa-clearfix">
+        <h3>Arguments:</h3>
+<br /><ul>
+<li><code>$target_px</code>     - The target</li>
+<li><code>$context_px</code>    - The context</li>
+</ul>
+
+      </div>
+
+      <div class="sherpa-showcase sherpa-clearfix">
+        <nav>
+  <ol class="nav breadcrumb">
+    <li><a href="#">Level 1</a></li>
+    <li><a href="#">Level 2</a></li>
+    <li><a href="#">Level 3</a></li>
+    <li class="active"><a href="#">Active</a></li>
+  </ol>
+</nav>
+      </div>
+
+      <div class="sherpa-description sherpa-clearfix">
+        <h3>Usage:</h3>
+<br /><pre><code>&lt;nav&gt;
+  &lt;ol class=&quot;nav breadcrumb&quot;&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Level 1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Level 2&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Level 3&lt;/a&gt;&lt;/li&gt;
+    &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#&quot;&gt;Active&lt;/a&gt;&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/nav&gt;
+</code></pre>
+
+      </div>
+
+      <div class="sherpa-description sherpa-clearfix">
+        <h3>Examples:</h3>
+<br /><pre><code>h1
+  +font-size(48)
+</code></pre>
+
+      </div>
+
+      <div class="sherpa-description sherpa-notes sherpa-clearfix">
+        <h3>Notes:</h3>
+<br /><ul>
+<li>Add .pagination-center or .pagination-right on the container to change the alignment</li>
+</ul>
+
+      </div>
+
+  </section>
+
+
+
+  <section class="sherpa-section sherpa-clearfix" id="root-test">
+
+      <div class="sherpa-filepath sherpa-clearfix">
+        <p>test.sass</p>
+      </div>
+
+      <div class="sherpa-summary sherpa-clearfix">
+        <p>The first <code>line</code> starts with equals and is the summary.</p>
+<br /><p>The next line (and subsequent lines) are used as a description,
+these can span many lines including empty lines.</p>
+<br /><p>Description continued after an empty line (requires a comment delimeter before).</p>
+<br /><ul>
+<li>:hover   The hover state.</li>
+<li>.small   A smaller button.</li>
+</ul>
+
+      </div>
+
+
+      <div class="sherpa-showcase sherpa-clearfix">
+        <button class="btn primary">Button</button>
+<button class="btn small">Button</button>
+<button class="btn danger">Button</button>
+      </div>
+
+      <div class="sherpa-description sherpa-clearfix">
+        <h3>Usage:</h3>
+<br /><pre><code>&lt;button class=&quot;btn primary&quot;&gt;Button&lt;/button&gt;
+&lt;button class=&quot;btn small&quot;&gt;Button&lt;/button&gt;
+<br />&lt;button class=&quot;btn danger&quot;&gt;Button&lt;/button&gt;
+</code></pre>
+
+      </div>
+
+
+
+  </section>
+
+
+
+  <section class="sherpa-section sherpa-clearfix" id="root-test_1">
+
+
+      <div class="sherpa-summary sherpa-clearfix">
+        <p>This is the start of another block.</p>
+
+      </div>
+
+
+      <div class="sherpa-showcase sherpa-clearfix">
+        <h2>Heading 2</h2>
+      </div>
+
+      <div class="sherpa-description sherpa-clearfix">
+        <h3>Usage:</h3>
+<br /><pre><code>&lt;h2&gt;Heading 2&lt;/h2&gt;
+</code></pre>
+
+      </div>
+
+
+
+  </section>
+
+
+
+  <section class="sherpa-section sherpa-clearfix" id="root-test_2">
+
+
+      <div class="sherpa-summary sherpa-clearfix">
+        <p>Table test</p>
+<br /><table><thead>
+<tr>
+<th>Table Header 1</th>
+<th>Table Header 2</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content</td>
+<td>Content</td>
+</tr>
+<tr>
+<td>Content</td>
+<td>Content</td>
+</tr>
+</tbody></table>
+
+      </div>
+
+
+
+
+
+
+  </section>
+
+
+
+  <section class="sherpa-section sherpa-clearfix" id="root-test_3">
+
+
+      <div class="sherpa-summary sherpa-clearfix">
+        <h2>Container</h2>
+<br /><table><thead>
+<tr>
+<th>Mixin</th>
+<th>Params</th>
+<th>Usage</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>+hidden</code></td>
+<td>none</td>
+<td>Totally hidden from screen readers and browsers</td>
+</tr>
+<tr>
+<td><code>+shown</code></td>
+<td>none</td>
+<td>Reverse the effects of hidden</td>
+</tr>
+<tr>
+<td><code>+visuallyhidden</code></td>
+<td>none</td>
+<td>Only visually hidden, still available to screen readers</td>
+</tr>
+<tr>
+<td><code>+visuallyshown</code></td>
+<td>none</td>
+<td>Reverse the settings applied by <code>.visuallyhidden</code></td>
+</tr>
+<tr>
+<td><code>+invisible</code></td>
+<td>none</td>
+<td>Hide visually and from screenreaders, but maintain layout</td>
+</tr>
+</tbody></table>
+
+      </div>
+
+
+
+
+
+
+  </section>
+
+
+
     </section>
 
       <footer class="sherpa-footer sherpa-container sherpa-clearfix">
-        <p>Published: 04/29/2012 03:16pm MDT by Matthew Kitt</p>
+        <p>Published: 04/29/2012 11:16pm MDT by Matthew Kitt</p>
       </footer>
   </body>
 </html>
