@@ -1,6 +1,6 @@
 
-#~
-# ## DimensionViewer
+#~ DimensionViewer:
+#
 # Debugging tool for printing the `innerWidth` of the browser.
 #
 # Notes:
@@ -14,9 +14,9 @@ class DimensionViewer
     @initialize()
 
   #~
-  # ## initialize
-  # Lets see if this works
-  # Examples:
+  # #### `#initialize`
+  # Get this party started by instantiateing a bunch of stuff
+  #
   #    @dimension_viewer.initialize
   initialize: ->
     console.log "Hi There"

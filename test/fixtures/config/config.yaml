@@ -1,0 +1,11 @@
+
+test:
+  base_dir: ./test/fixtures/
+  output_dir: ./example/app/views/sherpa/
+  layout_dir: ./lib/layouts/
+  layout_template: layout.mustache
+  section_template: section.mustache
+  manifest:
+    - sass/components/wells.sass
+    - coffee/coffee.coffee
+

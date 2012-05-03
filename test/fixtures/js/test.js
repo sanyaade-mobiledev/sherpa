@@ -15,5 +15,12 @@
 //      +box-sizing(border-box)
 
 (function() {
-  // body
+  //~
+  // `#bathe` wash the dog
+  //
+  //    dog.bathe()
+  function bathe() {
+    console.log("Mansfield needs a bath")
+  }
 }())
+

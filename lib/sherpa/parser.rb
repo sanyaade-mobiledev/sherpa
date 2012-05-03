@@ -9,13 +9,14 @@ module Sherpa
       @blocks = []
       File.open file_path do |file|
         in_block = false
+        first_line = true
         current_block = nil
         current_key = nil
 
         file.each_line do |line|
 
           # Entering a block
-          if SherpaUtils.sherpa_block?(line)
+          if Utils.sherpa_block?(line)
             in_block = true
             current_block = {}
             current_block[:raw] = ''
@@ -25,20 +26,33 @@ module Sherpa
             @blocks.push(current_block)
           end
 
-          if in_block && SherpaUtils.line_comment?(line)
+          if in_block && Utils.line_comment?(line)
 
             # Trim up the lines from comment markers and right spacing
-            current_line = SherpaUtils.trim_comment_markers(line)
+            current_line = Utils.trim_comment_markers(line)
 
             # Trim left spacing unless this is a `pre` block, allows for breaks in comments, but not in output
-            if !SherpaUtils.pre_line?(current_line)
-              current_line = SherpaUtils.trim_left(current_line, current_block[:raw])
+            if !Utils.pre_line?(current_line)
+              current_line = Utils.trim_left(current_line, current_block[:raw])
             end
 
-            # If line ends with ":" turn it into an h3 and generate a new key for storage off it's name
-            if SherpaUtils.header?(current_line)
-              current_line = SherpaUtils.add_markdown_header(current_line)
-              current_key = SherpaUtils.trim_header_for_key(current_line)
+            # Generate the title and trim up the colon for the very first block in the set
+            if first_line
+              if Utils.sherpa_section?(current_line) || !current_line.empty?
+                current_line = "## #{current_line}\n" unless !!(current_line =~ /^#/)
+              else current_line.empty?
+                current_line = "## #{File.basename(file_path, File.extname(file_path)).capitalize}"
+              end
+              current_block[:title] = Utils.trim_for_title current_line
+              current_line = Utils.trim_colon(current_line)
+              first_line = false
+            end
+
+
+            # If line ends with ":" turn it into an h4 and generate a new key for storage off it's name
+            if Utils.sherpa_section?(current_line)
+              current_line = Utils.add_markdown_header(current_line)
+              current_key = Utils.trim_sherpa_section_for_key(current_line)
               current_block[current_key] = ''
             end
 

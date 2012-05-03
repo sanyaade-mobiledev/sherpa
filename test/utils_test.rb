@@ -1,10 +1,10 @@
 
 require './test/helper'
 
-class SherpaUtilsTest < Sherpa::Test
+class UtilsTest < Sherpa::Test
 
   def setup
-    @utils = Sherpa::SherpaUtils
+    @utils = Sherpa::Utils
   end
 
   test "If the current line is the start of a sherpa block" do
@@ -38,12 +38,10 @@ class SherpaUtilsTest < Sherpa::Test
     refute @utils.pre_line?(normal)
   end
 
-  # TODO: headers should also be able to be denoted as just markdown
-  test "If the current line is a header" do
-    assert @utils.header?("Header:")
-    assert @utils.header?("## Header:")
-    # assert @utils.header?("## Header")
-    refute @utils.header?("Header")
+  test "If the current line is a sherpa section" do
+    assert @utils.sherpa_section?("Section:")
+    assert @utils.sherpa_section?("## Section:")
+    refute @utils.sherpa_section?("Section")
   end
 
   test "Trim off any comment markers for supported languages without trimming whitespace" do
@@ -68,14 +66,14 @@ class SherpaUtilsTest < Sherpa::Test
     assert_equal @utils.trim_left(pre, content_no_trail), pre
   end
 
-  test "Converts a markdown header into a key" do
-    assert_equal @utils.trim_header_for_key("### Heading: "), "heading"
-    assert_equal @utils.trim_header_for_key("### Heading Key: "), "heading_key"
-    assert_equal @utils.trim_header_for_key("## Heading Key: "), "heading_key"
+  test "Converts a sherpa section into a key" do
+    assert_equal @utils.trim_sherpa_section_for_key("### Section: "), "section"
+    assert_equal @utils.trim_sherpa_section_for_key("### Section Key: "), "section_key"
+    assert_equal @utils.trim_sherpa_section_for_key("## Section Key: "), "section_key"
   end
 
   test "Turns a line into a markdown h3 unless the line is already a markdown header" do
-    assert_equal @utils.add_markdown_header("Heading:"), "### Heading:\n"
+    assert_equal @utils.add_markdown_header("Heading:"), "#### Heading:\n"
     assert_equal @utils.add_markdown_header("## Heading:"), "## Heading:"
   end
 

@@ -8,6 +8,7 @@ styles:
   manifest:
     - base/visibility.sass
     - components/breadcrumbs.sass
+    - components/wells.sass
     - mixins/box-sizing.sass
     - mixins/font-size.sass
     - ocd.sass
@@ -22,4 +23,13 @@ behaviors:
   manifest:
     - coffee/coffee.coffee
     - js/test.js
+
+ruby:
+  base_dir: ./lib/
+  output_dir: ./example/app/views/sherpa/
+  layout_dir: ./lib/layouts/
+  layout_template: layout.mustache
+  section_template: section.mustache
+  manifest:
+    - sherpa/utils.rb
 

@@ -1,0 +1,25 @@
+
+//~
+// Wells are simple containers for popping elements off the page.
+// They come in a few different flavors.
+//
+// Usage:
+//    <div class="well">well</div>
+
+.well
+  +box-sizing(border-box)
+  border: 1px solid $component_border
+  border-radius: $radii
+  background-color: transparent
+  margin-bottom: 1.25em
+  padding: 1.25em
+
+//~
+// ### `well.dark`
+// They also come in a `dark` version
+//
+// Usage:
+//    <div class="well dark">well</div>
+.well.dark
+  background-color: $off_white
+

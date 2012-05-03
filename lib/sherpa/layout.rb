@@ -49,7 +49,7 @@ module Sherpa
       blocks.each do |block|
         block.each do |key, sections|
           sections.each_with_index do |section, x|
-            path = SherpaUtils.pretty_path(@base_dir, section[:filepath])
+            path = Utils.pretty_path(@base_dir, section[:filepath])
             name = File.basename(path,File.extname(path))
             cur_section = !!(path =~ /\//) ? path.split('/')[0] : "root"
             id = "#{cur_section}-#{name}#{x > 0 ? "_#{x}": ""}"
@@ -64,7 +64,8 @@ module Sherpa
 
             if path != @current_path
               @current_path = path
-              @aside_nav += "<li><a href='##{id}'>#{name.capitalize}</a></li>"
+              # @aside_nav += "<li><a href='##{id}'>#{name.capitalize}</a></li>"
+              @aside_nav += "<li><a href='##{id}'>#{section[:title]}</a></li>"
             else
               section[:filepath] = nil
             end
