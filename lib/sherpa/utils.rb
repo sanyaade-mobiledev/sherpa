@@ -85,6 +85,11 @@ module Sherpa
       File.extname(filename).gsub(/\./, "")
     end
 
+    def self.is_markdown_file?(filename)
+      file = File.extname(filename).gsub(/\./, "")
+      !!(file =~ /md|mkdn?|mdown|markdown/)
+    end
+
   end
 end
 

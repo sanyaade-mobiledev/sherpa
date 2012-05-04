@@ -7,42 +7,66 @@ module Sherpa
     def initialize(config, blocks)
       @config = config
       @blocks = blocks
-      inherit_settings()
+      @templates = {}
+      set_defaults()
+      set_section_templates()
+      preload_templates()
     end
 
-    def inherit_settings
+    # Set default global properties from the settings item
+    def set_defaults
       settings = @config["settings"]
-      output_dir = settings["output_dir"] || "./"
-      layout_dir = settings["layout_dir"] || "./lib/layouts/"
-      layout_template = settings["layout_template"] || "layout.mustache"
-      section_template = settings["section_template"] || "raw.mustache"
+      @output_dir = settings["output_dir"] || "./"
+      @layout_dir = settings["layout_dir"] || "./lib/layouts/"
+      @stache_layout = File.read(File.join(@layout_dir, settings["layout_template"] || "layout.mustache"))
+    end
 
+    # Populate the rest of the config so each main section has a section template to render
+    def set_section_templates
+      settings = @config["settings"]
+      default_template = settings["default_section_template"] || "raw.mustache"
       @config.each do |key, value|
         if key != "settings"
-          value["output_dir"] = output_dir if value["output_dir"].nil?
-          value["layout_dir"] = layout_dir if value["layout_dir"].nil?
-          value["layout_template"] = layout_template if value["layout_template"].nil?
-          value["section_template"] = section_template if value["section_template"].nil?
+          value["section_template"] = default_template if value["section_template"].nil?
         end
       end
     end
 
-    def set_options(key)
-      @base_dir = @config[key]["base_dir"]
-      @output_dir = @config[key]["output_dir"]
-      @layout_dir = @config[key]["layout_dir"]
-      @layout_template = File.join(@layout_dir, @config[key]["layout_template"])
-      @section_template = File.join(@layout_dir, @config[key]["section_template"])
-
-      @stache_layout = File.read(@layout_template)
-      @stache_section = File.read(@section_template)
+    # Preload all of the templates and store them off a key
+    def preload_templates
+      find_templates()
+      @templates.each do |key, value|
+        @templates[key] = File.read(File.join(@layout_dir, value))
+      end
     end
 
+    # Finde templates within sections and manifests
+    def find_templates
+      @config.each do |name, item|
+        item.each do |key, value|
+          if key == "section_template"
+            add_template(value)
+          elsif key == "manifest"
+            value.each do |prop|
+              add_template(prop["template"]) if prop["template"]
+            end
+          end
+        end
+      end
+    end
+
+    # Add a template unless one already exists
+    def add_template(name)
+      key = name.gsub(/\./, "_")
+      @templates[key] = name unless @templates[key]
+    end
+
+    # Render out each of the blocks to a section template and save as a layout
     def render_and_save
       render_primary_nav
       @blocks.each do |key, value|
         if key.to_s != "deets"
-          set_options key
+          @base_dir = @config[key]["base_dir"]
           render key, value
           save_markup key
         end
@@ -64,7 +88,7 @@ module Sherpa
       section = nil
       repo = @config["settings"]["repo"]
 
-      blocks.each do |key|
+      blocks.each_with_index do |key, x|
         key.each do |keys, block|
           raw = block[:raw]
           markup = block[:markup]
@@ -88,7 +112,8 @@ module Sherpa
               block[:sherpas][n + 1][:id] = "#{link_id}"
             end
           end
-          @html += Mustache.render(@stache_section, raw: raw, markup: markup, title: title, filepath: filepath, sherpas: sherpas, id: id, repo_url: repo_url)
+          template_name = (@config[name]["manifest"][x]["template"] || @config[name]["section_template"]).gsub(/\./,"_")
+          @html += Mustache.render(@templates[template_name], raw: raw, markup: markup, title: title, filepath: filepath, sherpas: sherpas, id: id, repo_url: repo_url)
         end
       end
     end

@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>sherpa.</title>
+    <meta name="imagetoolbar" content="no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="apple-mobile-web-app-capable" content="YES" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../../assets/stylesheets/sherpa.css" type="text/css">
+    <link rel="stylesheet" href="../../assets/stylesheets/underoos.css" type="text/css">
+  </head>
+
+  <body>
+    <aside class="sherpa-sidebar">
+      <nav>
+        <a class="sherpa-brand" href="/">sherpa.</a>
+          <ul class="sherpa-dox-nav sherpa-nav-list">
+            <li class="sherpa-nav-header">Documentation</li>
+            <li><a href='/overview.html'>Overview</a></li><li><a href='/test.html'>Test</a></li>
+          </ul>
+
+        <ul class="sherpa-anchor-nav sherpa-nav-list">
+          <li class='sherpa-nav-header'>Root</li><li><a href='#README'>Readme</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <section class="sherpa-container sherpa-clearfix">
+      
+<section class="sherpa-section sherpa-clearfix" id="README">
+
+    <div class="sherpa-filepath sherpa-clearfix">
+      <a href="https://github.com/modeset/sherpa/blob/master/README.md" target="_blank">README.md</a>
+    </div>
+
+    <div class="sherpa-description sherpa-clearfix">
+      <h1>sherpa</h1>
+<br /><p>Documentation generator for various languages.</p>
+<br /><h2>What it contains</h2>
+<br /><h3>Sherpa</h3>
+<br /><p>Sherpa parses files and outputs a json file with relevant sections converted from markdown to html. It can be loaded from a Rails app, Sinatra app or from the command line. It should accept a list of files (globbed, yaml, or json), output directory/filename, overview file. The contents of Sherpa looks like:</p>
+<br /><ul>
+<li>Builder: accepts an array of files and outputs json</li>
+<li>Parser: parses a file for sherpa comment blocks</li>
+<li>Renderer: renders sections to markdown</li>
+<li>Utilities: helpers for stripping comments, determining block types, languages, etc..</li>
+</ul>
+<br /><p>Theoretically, this json file can be used by any sort of renderer. A user could write their own layout engine, or send it to something like <a href="https://github.com/visionmedia/mad">mad</a> for man style pages.</p>
+<br /><h3>Sherpa Layouts</h3>
+<br /><p>Sherpa layouts utilize a configuration file to output markup from Sherpa parsed files. It needs to augment the returned ruby object from sherpa and merge in the settings from the configuration file (<code>json|yaml</code>) which describes various properties associated with rendering layouts (see configuration options below). It then renders the augmented configuration file to a mustache template based off of mustache sections.</p>
+<br /><ul>
+<li>Configuration File: <code>json|yaml</code> file applicable for layouts</li>
+<li>Builder: reads the configuration file and sends out files to Sherpa&#39;s parser/renderer</li>
+<li>Layout Renderer: renders the layout to sections and finally the page</li>
+<li>Layouts:
+<br /><ul>
+<li><code>layout.mustache</code>: the shell page</li>
+<li><code>default_section.mustache</code>: the default section used if there is no default <code>language.mustache</code></li>
+<li><code>language.mustache</code>: the default section used by most templates for a given language (include 1 for each language type)</li>
+<li><code>alternatives.mustache</code>: a few alternative sections (mainly for the style guides)</li>
+</ul></li>
+</ul>
+<br /><h2>Use Cases</h2>
+<br /><h3>Sherpa no layout</h3>
+<br /><p>Typically from the command line, but can come from Rails/Sinatra</p>
+<br /><ul>
+<li>Determine if the files are globbed or coming from a <code>json|yaml</code> file</li>
+<li>If coming from a configuration file, load that file and convert into an array of files</li>
+<li>Unless not set, see if there is a README file in the base directory to use as an overview</li>
+<li>Send each file out to the parser
+<br /><ul>
+<li>Parser reads each file line by line</li>
+<li>Once it comes to a sherpa block (denoted with <code>//~</code>)</li>
+<li>Add the current block to a <code>@blocks</code> array (there can be multiple sherpa blocks within a single file)</li>
+<li>Create <code>raw</code> key to store the entire comment block</li>
+<li>Create <code>filename</code> key to store the current file name (stripped as <code>parent_dir/filename</code>)</li>
+<li>Create a <code>current_key</code> as a summary` key to store the initial description</li>
+<li>Continue and strip off the comment markers</li>
+<li>Trim left spacing unless in an <code>examples</code> or <code>usage</code> block (need to maintain formatting for markdown conversion)</li>
+<li>Determine if the current line is a header (if line ends in <code>:</code> it gets converted to an <code>h3</code>)</li>
+<li>If it is a header, set a new <code>current_key</code> as the name of the header</li>
+<li>Determine if the <code>current_key</code> is <code>examples</code>, this will get stored in a separate object for style guides</li>
+<li>If the line is under the <code>examples</code> block, format and store it for rendering in both pre and inline markup</li>
+<li>Store the modified comment line in both the <code>raw</code> key and <code>current_key</code></li>
+<li>Continue and scrub next line or clean the examples for further formatting</li>
+<li>Once complete, look for other sherpa blocks, if found repeat otherwise return the <code>@blocks</code> array</li>
+</ul></li>
+<li>Send out the current file&#39;s comment blocks to the <code>Renderer</code></li>
+<li>The <code>Renderer</code> parses each key and converts to markdown using redcarpet unless it&#39;s the <code>raw</code> or <code>examples</code> key</li>
+<li><code>Renderer</code> returns the existing block back to push into an array</li>
+<li>Add a few other settings to the object: publication time, publisher, etc..</li>
+<li>Once complete for each file, Sherpa converts the object to json and saves the file</li>
+</ul>
+<br /><h3>Sherpa with Layout</h3>
+<br /><p>Typically from Rails/Sinatra, but could come from the command line as well</p>
+<br /><ul>
+<li>Load the configuration <code>json|yaml</code> file which contains the settings related to rendering a layout</li>
+<li>Set defaults for anything related to the configuration file</li>
+<li>Find the file list within the configuration file and send to Sherpa for parsing (Sherpa only returns the parsed ruby object)</li>
+<li>Merge the configuration file and the sherpa output (mainly creating templates associated with files and any other relevant information)</li>
+<li>Render each section with their associated template (templates should be cached once read in)</li>
+<li>Render and write the layout to an html file</li>
+<li>Optionally save the raw json file as well</li>
+</ul>
+<br /><h2>Configuration file for layouts</h2>
+<br /><p>The configuration file is only applicable when generating layouts. Sherpa can run without it based on a listing of files and a few other properties.</p>
+<br /><ul>
+<li>Top level objects for setting defaults across all <em>pages</em>
+<br /><ul>
+<li><code>layout_dir</code>: defaults to a layout dir included with the gem</li>
+<li><code>layout_file</code>: defaults to a <code>layout.mustache</code> included with the gem</li>
+<li><code>default_section_template</code>: defaults to a <code>layout.mustache</code> included with the gem</li>
+<li><code>output_dir</code>: not sure where to store this</li>
+</ul></li>
+<li>Broken into pages <code>&quot;page&quot;:&quot;styles&quot;</code></li>
+<li>Each page represents a language (cs|js, sass|scss|css, html, ruby, etc..)</li>
+<li>Each page object has: (navigation name inferred from <code>&quot;page&quot;</code>)
+<br /><ul>
+<li><code>base_dir</code>: no default</li>
+<li><code>overview_file</code>: based off the <code>readme.md</code> file located in the <code>base_dir</code></li>
+<li><code>layout_dir</code>: overrides top level property</li>
+<li><code>layout_file</code>: overrides top level property</li>
+<li><code>default_section_template</code>: overrides top level property</li>
+<li><code>output_dir</code>: overrides top level property</li>
+<li><code>section</code>: used for navigation items</li>
+<li><code>section.name</code>: navigation category</li>
+<li><code>section.manifest</code>: array of <code>file</code> and <code>template</code> overrides (navigation name inferred from <code>File.basename</code>)</li>
+</ul></li>
+</ul>
+<br /><h2>External Dependencies</h2>
+<br /><ul>
+<li><code>json</code></li>
+<li><code>redcarpet</code></li>
+<li><code>mustache</code> (only for layouts)</li>
+</ul>
+<br /><h2>Future</h2>
+<br /><ul>
+<li>Abstract the Renderer so if someone wants to use Bluecloth, Discount or some other library they can</li>
+<li>Possibly rewrite in C and use Ruby or Node bindings to make platform and framework agnostic</li>
+</ul>
+
+    </div>
+
+
+</section>
+
+
+    </section>
+
+      <footer class="sherpa-footer sherpa-container sherpa-clearfix">
+        <p>Published: 05/04/2012 04:31pm MDT by Matthew Kitt</p>
+      </footer>
+  </body>
+</html>
+

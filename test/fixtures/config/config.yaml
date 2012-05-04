@@ -4,11 +4,17 @@ settings:
   output_dir: ./example/app/views/sherpa/
   layout_dir: ./lib/layouts/
   layout_template: layout.mustache
-  section_template: raw.mustache
+  default_section_template: raw.mustache
+
+overview:
+  base_dir: ./
+  manifest:
+    - README.md
+
 test:
   section_template: section.mustache
   base_dir: ./test/fixtures/
   manifest:
-    - sass/components/wells.sass
-    - coffee/coffee.coffee
+    - file: sass/components/wells.sass
+    - file: coffee/coffee.coffee
 

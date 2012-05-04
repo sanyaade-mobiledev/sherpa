@@ -13,6 +13,7 @@ module Sherpa
       @blocks[:subnav] = []
       @blocks[:filepath] = file_path
       @blocks[:sherpas] = []
+      is_mkd = Utils.is_markdown_file?(file_path)
 
       File.open file_path do |file|
         in_block = false
@@ -22,6 +23,12 @@ module Sherpa
         current_key = nil
 
         file.each_line do |line|
+
+          if is_mkd
+            @blocks[:raw] += line
+            @blocks[:title] = File.basename(file_path, File.extname(file_path)).capitalize
+            next
+          end
 
           # Entering a block
           if Utils.sherpa_block?(line)

@@ -5,18 +5,20 @@ settings:
   output_dir: ./example/app/views/sherpa/
   layout_dir: ./lib/layouts/
   layout_template: layout.mustache
-  section_template: section.mustache
+  default_section_template: section.mustache
 
 styles:
   base_dir: ./test/fixtures/sass/
   manifest:
-    - base/visibility.sass
-    - components/breadcrumbs.sass
-    - components/wells.sass
-    - mixins/box-sizing.sass
-    - mixins/font-size.sass
-    - ocd.sass
-    - test.sass
+    - file: base/visibility.sass
+      template: raw.mustache
+    - file: components/breadcrumbs.sass
+    - file: components/wells.sass
+    - file: mixins/box-sizing.sass
+    - file: mixins/font-size.sass
+    - file: ocd.sass
+    - file: test.sass
+      template: raw.mustache
 
 behaviors:
   base_dir: ./test/fixtures/
@@ -25,6 +27,7 @@ behaviors:
     - js/test.js
 
 ruby:
+  section_template: raw.mustache
   base_dir: ./lib/
   manifest:
     - sherpa/utils.rb
