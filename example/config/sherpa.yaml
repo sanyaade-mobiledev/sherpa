@@ -15,10 +15,10 @@ styles:
     - file: components/breadcrumbs.sass
     - file: components/wells.sass
     - file: mixins/box-sizing.sass
+      template: raw.mustache
     - file: mixins/font-size.sass
     - file: ocd.sass
     - file: test.sass
-      template: raw.mustache
 
 behaviors:
   base_dir: ./test/fixtures/

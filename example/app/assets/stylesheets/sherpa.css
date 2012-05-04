@@ -101,10 +101,13 @@
 
 .sherpa-section {
   padding: 0.5em 0;
-  margin: 0.5em 0;
-  margin-left: 2%;
+  margin: 0.5em 0 0.5em 2%;
   border-bottom: 1px solid #aaa;
 }
+.sherpa-section + .sherpa-section {
+  margin-top: 2em;
+}
+
 .sherpa-filepath {
   float: right;
   margin-top: 1.6em;
@@ -126,11 +129,11 @@
   line-height: 1.2;
   border-bottom: 1px solid #aaa;
 }
-.sherpa-description > h3 {
+.sherpa-description > h4 {
   margin-bottom: 0;
   line-height: 1.5;
 }
-.sherpa-description > h3 + br {
+.sherpa-description > h4 + br {
   display: none;
 }
 .sherpa-summary,
@@ -139,6 +142,9 @@
 }
 .sherpa-description > table tbody tr:nth-child(even) {
   background-color: #eee;
+}
+.sherpa-notes > h4 {
+  display: none;
 }
 .sherpa-notes ul {
   list-style: none;
