@@ -1,6 +1,5 @@
 
-//~
-// ## JavaScript Functions
+//~ ## JavaScript Functions:
 //
 // Change the box model for Mozilla, Webkit, IE8 and the future
 //
@@ -16,7 +15,8 @@
 
 (function() {
   //~
-  // `#bathe` wash the dog
+  // ### `#bathe`
+  // Wash the dog
   //
   //    dog.bathe()
   function bathe() {

@@ -25,7 +25,7 @@ module Sherpa
       @blocks.each do |key, value|
         if key.to_s != "deets"
           set_options key
-          render value
+          render key, value
           save_markup key
         end
       end
@@ -40,37 +40,35 @@ module Sherpa
       end
     end
 
-    def render(blocks)
+    def render(name, blocks)
       @html = ""
       @aside_nav = ""
-      @current_path = ""
-      @current_section = ""
+      section = nil
 
-      blocks.each do |block|
-        block.each do |key, sections|
-          sections.each_with_index do |section, x|
-            path = Utils.pretty_path(@base_dir, section[:filepath])
-            name = File.basename(path,File.extname(path))
-            cur_section = !!(path =~ /\//) ? path.split('/')[0] : "root"
-            id = "#{cur_section}-#{name}#{x > 0 ? "_#{x}": ""}"
+      blocks.each do |key|
+        key.each do |keys, block|
+          raw = block[:raw]
+          markup = block[:markup]
+          title = block[:title]
+          subnav = block[:subnav]
+          filepath = Utils.pretty_path(@base_dir, block[:filepath])
+          id = Utils.uid(filepath).gsub(/_/, '-')
+          sherpas = block[:sherpas]
+          cur_section = !!(filepath =~ /\//) ? filepath.split('/')[0] : "root"
 
-            section[:filepath] = path
-            section[:id] = id
-
-            if cur_section != @current_section
-              @current_section = cur_section
-              @aside_nav += "<li class='sherpa-nav-header'>#{@current_section.capitalize}</li>"
-            end
-
-            if path != @current_path
-              @current_path = path
-              # @aside_nav += "<li><a href='##{id}'>#{name.capitalize}</a></li>"
-              @aside_nav += "<li><a href='##{id}'>#{section[:title]}</a></li>"
-            else
-              section[:filepath] = nil
-            end
-            @html += Mustache.render(@stache_section, :blocks => section)
+          if cur_section != section
+            section = cur_section
+            @aside_nav += "<li class='sherpa-nav-header'>#{section.capitalize}</li>"
           end
+          @aside_nav += "<li><a href='##{id}'>#{block[:title]}</a></li>"
+          if !subnav.empty?
+            subnav.each_with_index do |item, n|
+              link_id = "#{id}-#{item}"
+              @aside_nav += "<li class='sherpa-subnav'><a href='##{link_id}'>#{item}</a></li>"
+              block[:sherpas][n + 1][:id] = "#{link_id}"
+            end
+          end
+          @html += Mustache.render(@stache_section, raw: raw, markup: markup, title: title, filepath: filepath, sherpas: sherpas, id: id)
         end
       end
     end

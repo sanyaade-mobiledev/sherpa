@@ -1,20 +1,25 @@
 
-{{#blocks}}
-  <section class="sherpa-section sherpa-clearfix">
+<section class="sherpa-section sherpa-clearfix" id="{{{id}}}">
 
-    {{#markup}}
-      <div class="sherpa-description sherpa-clearfix">
-        {{{markup}}}
-      </div>
-    {{/markup}}
+  {{#filepath}}
+    <div class="sherpa-filepath sherpa-clearfix">
+      <p>{{{filepath}}}</p>
+    </div>
+  {{/filepath}}
 
+  {{#markup}}
+    <div class="sherpa-description sherpa-clearfix">
+      {{{markup}}}
+    </div>
+  {{/markup}}
+
+  {{#sherpas}}
     {{#usage_showcase}}
       <div class="sherpa-showcase sherpa-clearfix">
         {{{usage_showcase}}}
       </div>
     {{/usage_showcase}}
+  {{/sherpas}}
 
-  </section>
-
-{{/blocks}}
+</section>
 

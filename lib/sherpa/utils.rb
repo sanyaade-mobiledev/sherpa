@@ -33,6 +33,10 @@ module Sherpa
       !!(line =~ /^\s{4,}/)
     end
 
+    def self.markdown_header?(line)
+      !!(line =~ /^\s*#/)
+    end
+
     def self.sherpa_section?(line)
       !!(line =~ /:\z/)
     end
@@ -56,11 +60,15 @@ module Sherpa
     end
 
     def self.trim_for_title(line)
-      line.gsub(/#+/, '').gsub(/:/, '').strip
+      line.gsub(/#+/, '').gsub(/:/, '').gsub(/`/, '').strip
     end
 
     def self.trim_colon(line)
       line.gsub(/:/, '').strip
+    end
+
+    def self.uid(file)
+      file.gsub(/^\./, '').gsub(/^\//, '').gsub(/\//, '_').split('.')[0]
     end
 
     def self.add_markdown_header(line)

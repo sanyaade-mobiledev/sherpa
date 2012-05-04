@@ -59,6 +59,10 @@
   color: #333;
   cursor: default;
 }
+.sherpa-nav-list .sherpa-subnav {
+  text-indent: 1em;
+}
+
 .sherpa-dox-nav > li > a:active,
 .sherpa-dox-nav .active > a,
 .sherpa-dox-nav .active > a:hover {
@@ -98,7 +102,8 @@
 .sherpa-section {
   padding: 0.5em 0;
   margin: 0.5em 0;
-  padding-left: 2%;
+  margin-left: 2%;
+  border-bottom: 1px solid #aaa;
 }
 .sherpa-filepath {
   float: right;

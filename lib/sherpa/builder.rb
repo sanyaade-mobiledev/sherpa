@@ -25,7 +25,7 @@ module Sherpa
         output = {}
         file_blocks = @parser.parse(file)
         file_blocks = @renderer.render_blocks(file_blocks)
-        output[:sherpas] = file_blocks
+        output[Utils.uid(file)] = file_blocks
         outputs.push output
       end
       outputs

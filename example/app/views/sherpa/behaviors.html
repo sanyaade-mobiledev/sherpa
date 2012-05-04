@@ -26,21 +26,21 @@
           </ul>
 
         <ul class="sherpa-anchor-nav sherpa-nav-list">
-          <li class='sherpa-nav-header'>Coffee</li><li><a href='#coffee-coffee'>Coffee</a></li><li class='sherpa-nav-header'>Js</li><li><a href='#js-test'>Test</a></li>
+          <li class='sherpa-nav-header'>Coffee</li><li><a href='#coffee-coffee'>DimensionViewer</a></li><li class='sherpa-subnav'><a href='#coffee-coffee-initialize'>initialize</a></li><li class='sherpa-subnav'><a href='#coffee-coffee-dispose'>dispose</a></li><li class='sherpa-nav-header'>Js</li><li><a href='#js-test'>JavaScript Functions</a></li><li class='sherpa-subnav'><a href='#js-test-bathe'>bathe</a></li>
         </ul>
       </nav>
     </aside>
 
     <section class="sherpa-container sherpa-clearfix">
       
-  <section class="sherpa-section sherpa-clearfix" id="coffee-coffee">
+<section class="sherpa-section sherpa-clearfix" id="coffee-coffee">
 
-      <div class="sherpa-filepath sherpa-clearfix">
-        <p>coffee/coffee.coffee</p>
-      </div>
+    <div class="sherpa-filepath sherpa-clearfix">
+      <p>coffee/coffee.coffee</p>
+    </div>
 
-      <div class="sherpa-summary sherpa-clearfix">
-        <h2>DimensionViewer:</h2>
+      <div class="sherpa-summary sherpa-clearfix" id="coffee-coffee">
+        <h2>DimensionViewer</h2>
 <br /><p>Debugging tool for printing the <code>innerWidth</code> of the browser.</p>
 
       </div>
@@ -49,29 +49,21 @@
 
 
       <div class="sherpa-description sherpa-clearfix">
-        <h3>Examples:</h3>
+        <h4>Examples:</h4>
 <br /><pre><code>@dimension_viewer = new DimensionViewer
 </code></pre>
 
       </div>
 
       <div class="sherpa-description sherpa-notes sherpa-clearfix">
-        <h3>Notes:</h3>
+        <h4>Notes:</h4>
 <br /><ul>
 <li><strong>Note!</strong> Useful when creating styles associated with media queries.</li>
 </ul>
 
       </div>
-
-  </section>
-
-
-
-  <section class="sherpa-section sherpa-clearfix" id="coffee-coffee_1">
-
-
-      <div class="sherpa-summary sherpa-clearfix">
-        <h4><code>#initialize</code></h4>
+      <div class="sherpa-summary sherpa-clearfix" id="coffee-coffee-initialize">
+        <h3><code>#initialize</code></h3>
 <br /><p>Get this party started by instantiateing a bunch of stuff</p>
 <br /><pre><code>@dimension_viewer.initialize
 </code></pre>
@@ -82,26 +74,36 @@
 
 
 
+      <div class="sherpa-summary sherpa-clearfix" id="coffee-coffee-dispose">
+        <h3><code>#dispose</code></h3>
+<br /><p>End this party</p>
+<br /><pre><code>@dimension_viewer.dispose
+</code></pre>
 
-  </section>
-
-
-
-  <section class="sherpa-section sherpa-clearfix" id="js-test">
-
-      <div class="sherpa-filepath sherpa-clearfix">
-        <p>js/test.js</p>
       </div>
 
-      <div class="sherpa-summary sherpa-clearfix">
-        <h2>Test</h2>
-<br /><h2>JavaScript Functions</h2>
+
+
+
+
+
+</section>
+
+
+<section class="sherpa-section sherpa-clearfix" id="js-test">
+
+    <div class="sherpa-filepath sherpa-clearfix">
+      <p>js/test.js</p>
+    </div>
+
+      <div class="sherpa-summary sherpa-clearfix" id="js-test">
+        <h2>JavaScript Functions</h2>
 <br /><p>Change the box model for Mozilla, Webkit, IE8 and the future</p>
 
       </div>
 
       <div class="sherpa-description sherpa-clearfix">
-        <h3>Arguments:</h3>
+        <h4>Arguments:</h4>
 <br /><ul>
 <li><code>$type</code>  - content-box | border-box |inherit</li>
 </ul>
@@ -111,7 +113,7 @@
 
 
       <div class="sherpa-description sherpa-clearfix">
-        <h3>Examples:</h3>
+        <h4>Examples:</h4>
 <br /><pre><code>.base-column
   +box-sizing(border-box)
 </code></pre>
@@ -119,22 +121,15 @@
       </div>
 
       <div class="sherpa-description sherpa-notes sherpa-clearfix">
-        <h3>Notes:</h3>
+        <h4>Notes:</h4>
 <br /><ul>
 <li><strong>Heads Up!</strong> This is important!</li>
 </ul>
 
       </div>
-
-  </section>
-
-
-
-  <section class="sherpa-section sherpa-clearfix" id="js-test_1">
-
-
-      <div class="sherpa-summary sherpa-clearfix">
-        <p><code>#bathe</code> wash the dog</p>
+      <div class="sherpa-summary sherpa-clearfix" id="js-test-bathe">
+        <h3><code>#bathe</code></h3>
+<br /><p>Wash the dog</p>
 <br /><pre><code>dog.bathe()
 </code></pre>
 
@@ -145,14 +140,13 @@
 
 
 
-  </section>
-
+</section>
 
 
     </section>
 
       <footer class="sherpa-footer sherpa-container sherpa-clearfix">
-        <p>Published: 05/01/2012 05:11am MDT by Matthew Kitt</p>
+        <p>Published: 05/04/2012 11:13am MDT by Matthew Kitt</p>
       </footer>
   </body>
 </html>

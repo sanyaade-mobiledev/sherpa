@@ -25,13 +25,14 @@ module Sherpa
 
     # Render all blocks passed within a file
     def render_blocks(blocks)
-      blocks.each do |block|
+      blocks[:markup] = render(blocks[:raw])
+      subblocks = blocks[:sherpas]
+      subblocks.each do |block|
         block.each do |key, value|
-          if key.to_s != 'raw' && key.to_s != 'usage_showcase' && key.to_s != 'filepath' && key.to_s != 'title'
+          if key.to_s != 'usage_showcase' && key.to_s != 'title'
             block[key] = render(value)
           end
         end
-        block[:markup] = render block[:raw]
       end
       blocks
     end

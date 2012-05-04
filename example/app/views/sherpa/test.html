@@ -26,20 +26,20 @@
           </ul>
 
         <ul class="sherpa-anchor-nav sherpa-nav-list">
-          <li class='sherpa-nav-header'>Sass</li><li><a href='#sass-wells'>Wells</a></li><li class='sherpa-nav-header'>Coffee</li><li><a href='#coffee-coffee'>DimensionViewer</a></li>
+          <li class='sherpa-nav-header'>Sass</li><li><a href='#sass-components-wells'>Wells</a></li><li class='sherpa-subnav'><a href='#sass-components-wells-well.dark'>well.dark</a></li><li class='sherpa-nav-header'>Coffee</li><li><a href='#coffee-coffee'>DimensionViewer</a></li><li class='sherpa-subnav'><a href='#coffee-coffee-initialize'>initialize</a></li><li class='sherpa-subnav'><a href='#coffee-coffee-dispose'>dispose</a></li>
         </ul>
       </nav>
     </aside>
 
     <section class="sherpa-container sherpa-clearfix">
       
-  <section class="sherpa-section sherpa-clearfix" id="sass-wells">
+<section class="sherpa-section sherpa-clearfix" id="sass-components-wells">
 
-      <div class="sherpa-filepath sherpa-clearfix">
-        <p>sass/components/wells.sass</p>
-      </div>
+    <div class="sherpa-filepath sherpa-clearfix">
+      <p>sass/components/wells.sass</p>
+    </div>
 
-      <div class="sherpa-summary sherpa-clearfix">
+      <div class="sherpa-summary sherpa-clearfix" id="sass-components-wells">
         <h2>Wells</h2>
 <br /><p>Wells are simple containers for popping elements off the page.
 They come in a few different flavors.</p>
@@ -49,27 +49,21 @@ They come in a few different flavors.</p>
 
       <div class="sherpa-showcase sherpa-clearfix">
         <div class="well">well</div>
+<div class="well primary">well</div>
       </div>
 
       <div class="sherpa-description sherpa-clearfix">
         <h4>Usage:</h4>
 <br /><pre><code>&lt;div class=&quot;well&quot;&gt;well&lt;/div&gt;
+&lt;div class=&quot;well primary&quot;&gt;well&lt;/div&gt;
 </code></pre>
 
       </div>
 
 
-
-  </section>
-
-
-
-  <section class="sherpa-section sherpa-clearfix" id="sass-wells_1">
-
-
-      <div class="sherpa-summary sherpa-clearfix">
-        <p>well.dark
-They also come in a <code>dark</code> version</p>
+      <div class="sherpa-summary sherpa-clearfix" id="sass-components-wells-well.dark">
+        <h3><code>well.dark</code></h3>
+<br /><p>They also come in a <code>dark</code> version</p>
 
       </div>
 
@@ -87,17 +81,16 @@ They also come in a <code>dark</code> version</p>
 
 
 
-  </section>
+</section>
 
 
+<section class="sherpa-section sherpa-clearfix" id="coffee-coffee">
 
-  <section class="sherpa-section sherpa-clearfix" id="coffee-coffee">
+    <div class="sherpa-filepath sherpa-clearfix">
+      <p>coffee/coffee.coffee</p>
+    </div>
 
-      <div class="sherpa-filepath sherpa-clearfix">
-        <p>coffee/coffee.coffee</p>
-      </div>
-
-      <div class="sherpa-summary sherpa-clearfix">
+      <div class="sherpa-summary sherpa-clearfix" id="coffee-coffee">
         <h2>DimensionViewer</h2>
 <br /><p>Debugging tool for printing the <code>innerWidth</code> of the browser.</p>
 
@@ -120,16 +113,8 @@ They also come in a <code>dark</code> version</p>
 </ul>
 
       </div>
-
-  </section>
-
-
-
-  <section class="sherpa-section sherpa-clearfix" id="coffee-coffee_1">
-
-
-      <div class="sherpa-summary sherpa-clearfix">
-        <h4><code>#initialize</code></h4>
+      <div class="sherpa-summary sherpa-clearfix" id="coffee-coffee-initialize">
+        <h3><code>#initialize</code></h3>
 <br /><p>Get this party started by instantiateing a bunch of stuff</p>
 <br /><pre><code>@dimension_viewer.initialize
 </code></pre>
@@ -140,15 +125,26 @@ They also come in a <code>dark</code> version</p>
 
 
 
+      <div class="sherpa-summary sherpa-clearfix" id="coffee-coffee-dispose">
+        <h3><code>#dispose</code></h3>
+<br /><p>End this party</p>
+<br /><pre><code>@dimension_viewer.dispose
+</code></pre>
 
-  </section>
+      </div>
 
+
+
+
+
+
+</section>
 
 
     </section>
 
       <footer class="sherpa-footer sherpa-container sherpa-clearfix">
-        <p>Published: 05/02/2012 09:22pm MDT by Matthew Kitt</p>
+        <p>Published: 05/04/2012 11:18am MDT by Matthew Kitt</p>
       </footer>
   </body>
 </html>
