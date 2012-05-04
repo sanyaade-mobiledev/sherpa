@@ -45,7 +45,6 @@ end
 if blocks
   json = JSON.pretty_generate(blocks)
   puts json
-  # puts "-----------------\n\n"
   # puts YAML::dump(blocks)
   layout = Sherpa::Layout.new(config, blocks)
   layout.render_and_save

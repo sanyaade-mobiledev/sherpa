@@ -107,11 +107,20 @@
 }
 .sherpa-filepath {
   float: right;
-  color: #aaa;
+  margin-top: 1.6em;
   font-size: 85%;
   font-weight: bold;
-  margin-top: 1.6em;
 }
+.sherpa-filepath a,
+.sherpa-filepath a:visited {
+  color: #aaa;
+}
+.sherpa-filepath a:hover,
+.sherpa-filepath a:active {
+  color: #999;
+  text-decoration: none;
+}
+
 .sherpa-summary > h2 {
   margin-bottom: 0;
   line-height: 1.2;

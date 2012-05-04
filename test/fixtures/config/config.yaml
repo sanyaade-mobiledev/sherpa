@@ -1,10 +1,13 @@
-
-test:
-  base_dir: ./test/fixtures/
+settings:
+  title: sherpa.
+  repo: https://github.com/modeset/sherpa/
   output_dir: ./example/app/views/sherpa/
   layout_dir: ./lib/layouts/
   layout_template: layout.mustache
+  section_template: raw.mustache
+test:
   section_template: section.mustache
+  base_dir: ./test/fixtures/
   manifest:
     - sass/components/wells.sass
     - coffee/coffee.coffee

@@ -12,7 +12,7 @@ module Sherpa
     def build
       @output = {}
       @config.each do |key, value|
-        @output[key] = build_section value
+        @output[key] = build_section value unless key == "settings"
       end
       @output[:deets] = publish_deets
       @output

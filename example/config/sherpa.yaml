@@ -1,10 +1,14 @@
 
-styles:
-  base_dir: ./test/fixtures/sass/
+settings:
+  title: sherpa.
+  repo: https://github.com/modeset/sherpa/
   output_dir: ./example/app/views/sherpa/
   layout_dir: ./lib/layouts/
   layout_template: layout.mustache
   section_template: section.mustache
+
+styles:
+  base_dir: ./test/fixtures/sass/
   manifest:
     - base/visibility.sass
     - components/breadcrumbs.sass
@@ -16,20 +20,12 @@ styles:
 
 behaviors:
   base_dir: ./test/fixtures/
-  output_dir: ./example/app/views/sherpa/
-  layout_dir: ./lib/layouts/
-  layout_template: layout.mustache
-  section_template: section.mustache
   manifest:
     - coffee/coffee.coffee
     - js/test.js
 
 ruby:
   base_dir: ./lib/
-  output_dir: ./example/app/views/sherpa/
-  layout_dir: ./lib/layouts/
-  layout_template: layout.mustache
-  section_template: section.mustache
   manifest:
     - sherpa/utils.rb
 
