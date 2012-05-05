@@ -65,20 +65,16 @@ module Sherpa
     def render_and_save
       render_primary_nav
       @blocks.each do |key, value|
-        if key.to_s != "deets"
-          @base_dir = @config[key]["base_dir"]
-          render key, value
-          save_markup key
-        end
+        @base_dir = @config[key]["base_dir"]
+        render key, value
+        save_markup key
       end
     end
 
     def render_primary_nav
       @main_nav = ""
       @blocks.each do |key, value|
-        if key.to_s != "deets"
-          @main_nav += "<li><a href='/#{key}.html'>#{key.capitalize}</a></li>"
-        end
+        @main_nav += "<li><a href='/#{key}.html'>#{key.capitalize}</a></li>"
       end
     end
 
@@ -120,7 +116,8 @@ module Sherpa
 
     def save_markup(key)
       title = @config["settings"]["title"]
-      layout = Mustache.render(@stache_layout, title: title, nav: @main_nav, aside: @aside_nav, layout: @html, deets: @blocks[:deets])
+      repo = @config["settings"]["repo"]
+      layout = Mustache.render(@stache_layout, title: title, nav: @main_nav, aside: @aside_nav, layout: @html, repo: repo)
       File.open("#{@output_dir}#{key}.html", "w") do |file|
         file.write(layout)
       end

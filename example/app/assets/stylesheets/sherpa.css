@@ -1,4 +1,33 @@
 
+/* Mini Reset */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, nav, section, summary {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+audio, canvas, video {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+
+html, body, div, span, hr, img, iframe,
+h1, h2, h3, h4, h5, h6, p, a, small, strong, em,
+address, abbr, dfn, sub, sup, del, ins,
+blockquote, q, cite, pre, code, kbd, samp,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, button, input, select, textarea,
+table, caption, tbody, tfoot, thead, tr, th, td,
+time, mark {
+  margin: 0;
+  padding: 0;
+}
+
+/* Helpers */
 .sherpa-clearfix {
   *zoom: 1;
 }
@@ -60,9 +89,8 @@
   cursor: default;
 }
 .sherpa-nav-list .sherpa-subnav {
-  text-indent: 1em;
+  text-indent: 0.5em;
 }
-
 .sherpa-dox-nav > li > a:active,
 .sherpa-dox-nav .active > a,
 .sherpa-dox-nav .active > a:hover {
@@ -143,6 +171,9 @@
 .sherpa-description > table tbody tr:nth-child(even) {
   background-color: #eee;
 }
+.sherpa-notes + .sherpa-notes {
+  margin-top: -3.5em;
+}
 .sherpa-notes > h4 {
   display: none;
 }
@@ -159,6 +190,16 @@
   margin: 1em 0;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.75);
 }
+.sherpa-notes.sherpa-warnings li {
+  background-color: #ffe9a6;
+  border-color: #ffd040;
+  color: #c09100;
+}
+.sherpa-notes.sherpa-alerts li {
+  background-color: #f0b0b0;
+  border-color: #e05a5a;
+  color: #b22222;
+}
 .sherpa-showcase {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -171,6 +212,44 @@
 }
 .sherpa-footer {
   font-size: 85%;
-  padding: 2em 0 2em 2%;
+  padding: 2em 2%;
+}
+
+/* Break down sizing for mobile */
+@media (max-width: 480px) {
+  .sherpa-sidebar {
+    background-color: #e5e5e5;
+    border-bottom: 1px solid #ccc;
+    border-right: none;
+    position: static;
+    width: 100%;
+  }
+  .sherpa-nav-header,
+  .sherpa-anchor-nav {
+    display: none;
+  }
+  .sherpa-dox-nav {
+    margin: 1em 2%;
+  }
+  .sherpa-dox-nav > li {
+    float: left;
+  }
+  .sherpa-brand,
+  .sherpa-dox-nav > li > a {
+    padding: 0.3em 0.5em;
+  }
+  .sherpa-brand {
+    float: right;
+    color: #999 !important;
+  }
+  .sherpa-dox-nav > li > a {
+    border-radius: 0.25em 0.25em 0 0;
+    font-weight: bold;
+    border: 0;
+  }
+  .sherpa-container {
+    margin-left: 2%;
+    margin-right: 2%;
+  }
 }
 

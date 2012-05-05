@@ -6,6 +6,12 @@
 # Notes:
 # - **Note!** Useful when creating styles associated with media queries.
 #
+# Warnings:
+# - **Warning!** Useful when creating styles associated with media queries.
+#
+# Alerts:
+# - **Alert!** Useful when creating styles associated with media queries.
+#
 # Examples:
 #    @dimension_viewer = new DimensionViewer
 

@@ -14,7 +14,6 @@ module Sherpa
       @config.each do |key, value|
         @output[key] = build_section value unless key == "settings"
       end
-      @output[:deets] = publish_deets
       @output
     end
 
@@ -29,13 +28,6 @@ module Sherpa
         outputs.push output
       end
       outputs
-    end
-
-    def publish_deets
-      published = {}
-      published[:published_at] = Time.now.strftime("%m/%d/%Y %I:%M%P %Z")
-      published[:published_by] = `git config user.name`.gsub(/\n/, "")
-      published
     end
 
     def get_manifest(manifest, base_dir)

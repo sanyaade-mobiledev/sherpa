@@ -11,11 +11,9 @@ styles:
   base_dir: ./test/fixtures/sass/
   manifest:
     - file: base/visibility.sass
-      template: raw.mustache
     - file: components/breadcrumbs.sass
     - file: components/wells.sass
     - file: mixins/box-sizing.sass
-      template: raw.mustache
     - file: mixins/font-size.sass
     - file: ocd.sass
     - file: test.sass
