@@ -4,6 +4,8 @@ require 'mustache'
 module Sherpa
   class Layout
 
+    attr_accessor :config, :output_dir, :layout_dir, :stache_layout, :templates
+
     def initialize(config, blocks)
       @config = config
       @blocks = blocks
@@ -76,6 +78,7 @@ module Sherpa
       @blocks.each do |key, value|
         @main_nav += "<li><a href='/#{key}.html'>#{key.capitalize}</a></li>"
       end
+      @main_nav
     end
 
     def render(name, blocks)

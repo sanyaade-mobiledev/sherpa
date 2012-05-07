@@ -10,10 +10,6 @@ module Sherpa
 
     def default_test
     end
-
-    # def fixture(name)
-      # @fixtures ||= {}
-      # @fixtures[name] ||= File.read("test/fixtures/#{name}")
-    # end
   end
 end
+

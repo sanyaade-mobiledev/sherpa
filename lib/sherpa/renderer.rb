@@ -19,8 +19,8 @@ module Sherpa
 
 
     # Render given block and replace starting new lines with an html line break
-    def render(block)
-      @markdown.render(block).gsub(/^\n/, "<br />")
+    def render(section)
+      @markdown.render(section).gsub(/^\n/, "<br />")
     end
 
     # Render all blocks passed within a file

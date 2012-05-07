@@ -54,7 +54,7 @@ module Sherpa
             # Generate the title and trim up the colon for the very first block in the set
             if first_line
               if Utils.sherpa_section?(current_line) || !current_line.empty?
-                current_line = "## #{current_line}\n" unless !!(current_line =~ /^#/)
+                current_line = "## #{current_line}\n" unless Utils.markdown_header?(current_line)
               else current_line.empty?
                 current_line = "## #{File.basename(file_path, File.extname(file_path)).capitalize}"
               end

@@ -41,7 +41,6 @@
 
     <div class="sherpa-description sherpa-clearfix">
       <h2>Utils</h2>
-<br /><h2>Utils</h2>
 <br /><p>Static class of utility methods for the parser and layout classes</p>
 <br /><table><thead>
 <tr>
@@ -71,6 +70,16 @@
 <td>Tests to see if the line ends in <code>:</code></td>
 </tr>
 <tr>
+<td><code>markdown_header?</code></td>
+<td><code>line</code></td>
+<td>Tests to see if the line ends starts with a markdown header</td>
+</tr>
+<tr>
+<td><code>is_markdown_file?</code></td>
+<td><code>line</code></td>
+<td>Tests to see if the file is markdown</td>
+</tr>
+<tr>
 <td><code>trim_comment_markers</code></td>
 <td><code>line</code></td>
 <td>Remove comment markers, sherpa identifier, and EOL whitespace</td>
@@ -81,25 +90,36 @@
 <td>Clean the left side of the comment block if the line ends with a line break</td>
 </tr>
 <tr>
+<td><code>trim_for_title</code></td>
+<td><code>line</code></td>
+<td>Trim out markdown headers for a plain text title</td>
+</tr>
+<tr>
+<td><code>trim_colon</code></td>
+<td><code>line</code></td>
+<td>Trim out the trailing colon <code>:</code></td>
+</tr>
+<tr>
+<td><code>trim_sherpa_section_for_key</code></td>
+<td><code>line</code></td>
+<td>Turn a sherpa section into a readable key</td>
+</tr>
+<tr>
+<td><code>uid</code></td>
+<td><code>file</code></td>
+<td>Generate a unique ID for use in keys and anchor tags from a filepath</td>
+</tr>
+<tr>
 <td><code>add_markdown_header</code></td>
 <td><code>line</code></td>
-<td>Return an <code>h3</code> markdown header unless it already starts in markdown format</td>
+<td>Turns a sherpa section into a markdown <code>h4</code> unless the line is already a markdown header</td>
 </tr>
 <tr>
 <td><code>pretty_path</code></td>
 <td><code>base_path</code>, <code>filename</code></td>
 <td>Return the current filename and it&#39;s parent directory</td>
 </tr>
-<tr>
-<td><code>filetype?</code></td>
-<td><code>filename</code></td>
-<td>Retrieves the extension name from file less the dot</td>
-</tr>
 </tbody></table>
-<br /><h4>Notes:</h4>
-<br /><ul>
-<li><strong>Note!</strong> Headers should also be able to be denoted as just markdown</li>
-</ul>
 
     </div>
 
