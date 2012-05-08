@@ -1,0 +1,235 @@
+{
+  "styles": [
+    {
+      "test_fixtures_sass_base_visibility": {
+        "raw": "## Visibility mixins\n\nMixin            |Params|Usage\n-----------------|------|----------------------------------------------\n`+hidden`        |none  |Totally hidden from screen readers and browsers\n`+shown`         |none  |Reverse the effects of hidden\n`+visuallyhidden`|none  |Only visually hidden, still available to screen readers\n`+visuallyshown` |none  |Reverse the settings applied by `.visuallyhidden`\n`+invisible`     |none  |Hide visually and from screenreaders, but maintain layout\n",
+        "markup": "<h2>Visibility mixins</h2>\n<br /><table><thead>\n<tr>\n<th>Mixin</th>\n<th>Params</th>\n<th>Usage</th>\n</tr>\n</thead><tbody>\n<tr>\n<td><code>+hidden</code></td>\n<td>none</td>\n<td>Totally hidden from screen readers and browsers</td>\n</tr>\n<tr>\n<td><code>+shown</code></td>\n<td>none</td>\n<td>Reverse the effects of hidden</td>\n</tr>\n<tr>\n<td><code>+visuallyhidden</code></td>\n<td>none</td>\n<td>Only visually hidden, still available to screen readers</td>\n</tr>\n<tr>\n<td><code>+visuallyshown</code></td>\n<td>none</td>\n<td>Reverse the settings applied by <code>.visuallyhidden</code></td>\n</tr>\n<tr>\n<td><code>+invisible</code></td>\n<td>none</td>\n<td>Hide visually and from screenreaders, but maintain layout</td>\n</tr>\n</tbody></table>\n",
+        "title": "Visibility mixins",
+        "subnav": [
+
+        ],
+        "filepath": "./test/fixtures/sass/base/visibility.sass",
+        "sherpas": [
+          {
+            "summary": "<h2>Visibility mixins</h2>\n<br /><table><thead>\n<tr>\n<th>Mixin</th>\n<th>Params</th>\n<th>Usage</th>\n</tr>\n</thead><tbody>\n<tr>\n<td><code>+hidden</code></td>\n<td>none</td>\n<td>Totally hidden from screen readers and browsers</td>\n</tr>\n<tr>\n<td><code>+shown</code></td>\n<td>none</td>\n<td>Reverse the effects of hidden</td>\n</tr>\n<tr>\n<td><code>+visuallyhidden</code></td>\n<td>none</td>\n<td>Only visually hidden, still available to screen readers</td>\n</tr>\n<tr>\n<td><code>+visuallyshown</code></td>\n<td>none</td>\n<td>Reverse the settings applied by <code>.visuallyhidden</code></td>\n</tr>\n<tr>\n<td><code>+invisible</code></td>\n<td>none</td>\n<td>Hide visually and from screenreaders, but maintain layout</td>\n</tr>\n</tbody></table>\n",
+            "title": "Visibility mixins"
+          }
+        ]
+      }
+    },
+    {
+      "test_fixtures_sass_components_breadcrumbs": {
+        "raw": "## Breadcrumbs\nApply the `.breadcrumb` class to the `ol` or `ul` element to provide\nlinkable references to nested sections within the application.\n\n#### Usage:\n\n    <nav>\n      <ol class=\"nav breadcrumb\">\n        <li><a href=\"#\">Level 1</a></li>\n        <li><a href=\"#\">Level 2</a></li>\n        <li><a href=\"#\">Level 3</a></li>\n        <li class=\"active\"><a href=\"#\">Active</a></li>\n      </ol>\n    </nav>\n",
+        "markup": "<h2>Breadcrumbs</h2>\n<br /><p>Apply the <code>.breadcrumb</code> class to the <code>ol</code> or <code>ul</code> element to provide\nlinkable references to nested sections within the application.</p>\n<br /><h4>Usage:</h4>\n<br /><pre><code>&lt;nav&gt;\n  &lt;ol class=&quot;nav breadcrumb&quot;&gt;\n    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Level 1&lt;/a&gt;&lt;/li&gt;\n    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Level 2&lt;/a&gt;&lt;/li&gt;\n    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Level 3&lt;/a&gt;&lt;/li&gt;\n    &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#&quot;&gt;Active&lt;/a&gt;&lt;/li&gt;\n  &lt;/ol&gt;\n&lt;/nav&gt;\n</code></pre>\n",
+        "title": "Breadcrumbs",
+        "subnav": [
+
+        ],
+        "filepath": "./test/fixtures/sass/components/breadcrumbs.sass",
+        "sherpas": [
+          {
+            "summary": "<h2>Breadcrumbs</h2>\n<br /><p>Apply the <code>.breadcrumb</code> class to the <code>ol</code> or <code>ul</code> element to provide\nlinkable references to nested sections within the application.</p>\n",
+            "title": "Breadcrumbs",
+            "usage": "<h4>Usage:</h4>\n<br /><pre><code>&lt;nav&gt;\n  &lt;ol class=&quot;nav breadcrumb&quot;&gt;\n    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Level 1&lt;/a&gt;&lt;/li&gt;\n    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Level 2&lt;/a&gt;&lt;/li&gt;\n    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Level 3&lt;/a&gt;&lt;/li&gt;\n    &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#&quot;&gt;Active&lt;/a&gt;&lt;/li&gt;\n  &lt;/ol&gt;\n&lt;/nav&gt;\n</code></pre>\n",
+            "usage_showcase": "<nav>\n  <ol class=\"nav breadcrumb\">\n    <li><a href=\"#\">Level 1</a></li>\n    <li><a href=\"#\">Level 2</a></li>\n    <li><a href=\"#\">Level 3</a></li>\n    <li class=\"active\"><a href=\"#\">Active</a></li>\n  </ol>\n</nav>"
+          }
+        ]
+      }
+    },
+    {
+      "test_fixtures_sass_components_wells": {
+        "raw": "## Wells\nWells are simple containers for popping elements off the page.\nThey come in a few different flavors.\n\n#### Usage:\n\n    <div class=\"well\">well</div>\n    <div class=\"well primary\">well</div>\n\n### `well.dark`\nThey also come in a `dark` version\n\n#### Usage:\n\n    <div class=\"well dark\">well</div>\n",
+        "markup": "<h2>Wells</h2>\n<br /><p>Wells are simple containers for popping elements off the page.\nThey come in a few different flavors.</p>\n<br /><h4>Usage:</h4>\n<br /><pre><code>&lt;div class=&quot;well&quot;&gt;well&lt;/div&gt;\n&lt;div class=&quot;well primary&quot;&gt;well&lt;/div&gt;\n</code></pre>\n<br /><h3><code>well.dark</code></h3>\n<br /><p>They also come in a <code>dark</code> version</p>\n<br /><h4>Usage:</h4>\n<br /><pre><code>&lt;div class=&quot;well dark&quot;&gt;well&lt;/div&gt;\n</code></pre>\n",
+        "title": "Wells",
+        "subnav": [
+          "well.dark"
+        ],
+        "filepath": "./test/fixtures/sass/components/wells.sass",
+        "sherpas": [
+          {
+            "summary": "<h2>Wells</h2>\n<br /><p>Wells are simple containers for popping elements off the page.\nThey come in a few different flavors.</p>\n",
+            "title": "Wells",
+            "usage": "<h4>Usage:</h4>\n<br /><pre><code>&lt;div class=&quot;well&quot;&gt;well&lt;/div&gt;\n&lt;div class=&quot;well primary&quot;&gt;well&lt;/div&gt;\n</code></pre>\n",
+            "usage_showcase": "<div class=\"well\">well</div>\n<div class=\"well primary\">well</div>"
+          },
+          {
+            "summary": "<h3><code>well.dark</code></h3>\n<br /><p>They also come in a <code>dark</code> version</p>\n",
+            "title": "well.dark",
+            "usage": "<h4>Usage:</h4>\n<br /><pre><code>&lt;div class=&quot;well dark&quot;&gt;well&lt;/div&gt;\n</code></pre>\n",
+            "usage_showcase": "<div class=\"well dark\">well</div>"
+          }
+        ]
+      }
+    },
+    {
+      "test_fixtures_sass_mixins_box-sizing": {
+        "raw": "## Box-sizing\nChange the box model for Mozilla, Webkit, IE8 and the future\n\n#### Arguments:\n\n- `$type`  - content-box | border-box |inherit\n\n#### Notes:\n\n- **Heads Up!** This is important!\n\n#### Examples:\n\n    .base-column\n      +box-sizing(border-box)\n",
+        "markup": "<h2>Box-sizing</h2>\n<br /><p>Change the box model for Mozilla, Webkit, IE8 and the future</p>\n<br /><h4>Arguments:</h4>\n<br /><ul>\n<li><code>$type</code>  - content-box | border-box |inherit</li>\n</ul>\n<br /><h4>Notes:</h4>\n<br /><ul>\n<li><strong>Heads Up!</strong> This is important!</li>\n</ul>\n<br /><h4>Examples:</h4>\n<br /><pre><code>.base-column\n  +box-sizing(border-box)\n</code></pre>\n",
+        "title": "Box-sizing",
+        "subnav": [
+
+        ],
+        "filepath": "./test/fixtures/sass/mixins/box-sizing.sass",
+        "sherpas": [
+          {
+            "summary": "<h2>Box-sizing</h2>\n<br /><p>Change the box model for Mozilla, Webkit, IE8 and the future</p>\n",
+            "title": "Box-sizing",
+            "arguments": "<h4>Arguments:</h4>\n<br /><ul>\n<li><code>$type</code>  - content-box | border-box |inherit</li>\n</ul>\n",
+            "notes": "<h4>Notes:</h4>\n<br /><ul>\n<li><strong>Heads Up!</strong> This is important!</li>\n</ul>\n",
+            "examples": "<h4>Examples:</h4>\n<br /><pre><code>.base-column\n  +box-sizing(border-box)\n</code></pre>\n"
+          }
+        ]
+      }
+    },
+    {
+      "test_fixtures_sass_mixins_font-size": {
+        "raw": "## Font-size\nUse `rems` to insert a font size\n\n#### Arguments:\n\n- `$target_px`     - The target\n- `$context_px`    - The context\n\n#### Examples:\n\n    h1\n      +font-size(48)\n\n#### Usage:\n\n    <h1>Heading</h1>\n    <h2>Heading</h2>\n\nAnother simple summary in same file\n\n#### Usage:\n\n    <h3>Heading</h3>\n    <h4>Heading</h4>\n",
+        "markup": "<h2>Font-size</h2>\n<br /><p>Use <code>rems</code> to insert a font size</p>\n<br /><h4>Arguments:</h4>\n<br /><ul>\n<li><code>$target_px</code>     - The target</li>\n<li><code>$context_px</code>    - The context</li>\n</ul>\n<br /><h4>Examples:</h4>\n<br /><pre><code>h1\n  +font-size(48)\n</code></pre>\n<br /><h4>Usage:</h4>\n<br /><pre><code>&lt;h1&gt;Heading&lt;/h1&gt;\n&lt;h2&gt;Heading&lt;/h2&gt;\n</code></pre>\n<br /><p>Another simple summary in same file</p>\n<br /><h4>Usage:</h4>\n<br /><pre><code>&lt;h3&gt;Heading&lt;/h3&gt;\n&lt;h4&gt;Heading&lt;/h4&gt;\n</code></pre>\n",
+        "title": "Font-size",
+        "subnav": [
+
+        ],
+        "filepath": "./test/fixtures/sass/mixins/font-size.sass",
+        "sherpas": [
+          {
+            "summary": "<h2>Font-size</h2>\n<br /><p>Use <code>rems</code> to insert a font size</p>\n",
+            "title": "Font-size",
+            "arguments": "<h4>Arguments:</h4>\n<br /><ul>\n<li><code>$target_px</code>     - The target</li>\n<li><code>$context_px</code>    - The context</li>\n</ul>\n",
+            "examples": "<h4>Examples:</h4>\n<br /><pre><code>h1\n  +font-size(48)\n</code></pre>\n",
+            "usage": "<h4>Usage:</h4>\n<br /><pre><code>&lt;h1&gt;Heading&lt;/h1&gt;\n&lt;h2&gt;Heading&lt;/h2&gt;\n</code></pre>\n",
+            "usage_showcase": "<h1>Heading</h1>\n<h2>Heading</h2>"
+          },
+          {
+            "summary": "<p>Another simple summary in same file</p>\n",
+            "usage": "<h4>Usage:</h4>\n<br /><pre><code>&lt;h3&gt;Heading&lt;/h3&gt;\n&lt;h4&gt;Heading&lt;/h4&gt;\n</code></pre>\n",
+            "usage_showcase": "<h3>Heading</h3>\n<h4>Heading</h4>"
+          }
+        ]
+      }
+    },
+    {
+      "test_fixtures_sass_ocd": {
+        "raw": "## Ocd\nPagination navigation is used as a way to show users where they are within\nan app or a site, but not for primary navigation. Keep their use sparse and\nsuccinct to be most effective.\n\n#### Notes:\n\n- Add `.pagination-center` or `.pagination-right` on the container to change the alignment\n\n#### Arguments:\n\n- `$target_px`     - The target\n- `$context_px`    - The context\n\n#### Examples:\n\n    .pagination\n\n#### Usage:\n\n    <nav>\n      <ol class=\"nav pagination\">\n        <li class=\"disabled\"><a href=\"#\">&laquo;</a></li>\n        <li><a href=\"#\">1</a></li>\n        <li class=\"active\"><a href=\"#\">2</a></li>\n        <li><a href=\"#\" rel=\"next\">3</a></li>\n        <li class=\"disabled\"><a href=\"#\">&hellip;</a></li>\n        <li><a href=\"#\">11</a></li>\n        <li><a href=\"#\">12</a></li>\n        <li><a href=\"#\">&raquo;</a></li>\n      </ol>\n    </nav>\n",
+        "markup": "<h2>Ocd</h2>\n<br /><p>Pagination navigation is used as a way to show users where they are within\nan app or a site, but not for primary navigation. Keep their use sparse and\nsuccinct to be most effective.</p>\n<br /><h4>Notes:</h4>\n<br /><ul>\n<li>Add <code>.pagination-center</code> or <code>.pagination-right</code> on the container to change the alignment</li>\n</ul>\n<br /><h4>Arguments:</h4>\n<br /><ul>\n<li><code>$target_px</code>     - The target</li>\n<li><code>$context_px</code>    - The context</li>\n</ul>\n<br /><h4>Examples:</h4>\n<br /><pre><code>.pagination\n</code></pre>\n<br /><h4>Usage:</h4>\n<br /><pre><code>&lt;nav&gt;\n  &lt;ol class=&quot;nav pagination&quot;&gt;\n    &lt;li class=&quot;disabled&quot;&gt;&lt;a href=&quot;#&quot;&gt;&amp;laquo;&lt;/a&gt;&lt;/li&gt;\n    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;1&lt;/a&gt;&lt;/li&gt;\n    &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#&quot;&gt;2&lt;/a&gt;&lt;/li&gt;\n    &lt;li&gt;&lt;a href=&quot;#&quot; rel=&quot;next&quot;&gt;3&lt;/a&gt;&lt;/li&gt;\n    &lt;li class=&quot;disabled&quot;&gt;&lt;a href=&quot;#&quot;&gt;&amp;hellip;&lt;/a&gt;&lt;/li&gt;\n    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;11&lt;/a&gt;&lt;/li&gt;\n    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;12&lt;/a&gt;&lt;/li&gt;\n    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&amp;raquo;&lt;/a&gt;&lt;/li&gt;\n  &lt;/ol&gt;\n&lt;/nav&gt;\n</code></pre>\n",
+        "title": "Ocd",
+        "subnav": [
+
+        ],
+        "filepath": "./test/fixtures/sass/ocd.sass",
+        "sherpas": [
+          {
+            "summary": "<h2>Ocd</h2>\n<br /><p>Pagination navigation is used as a way to show users where they are within\nan app or a site, but not for primary navigation. Keep their use sparse and\nsuccinct to be most effective.</p>\n",
+            "title": "Ocd",
+            "notes": "<h4>Notes:</h4>\n<br /><ul>\n<li>Add <code>.pagination-center</code> or <code>.pagination-right</code> on the container to change the alignment</li>\n</ul>\n",
+            "arguments": "<h4>Arguments:</h4>\n<br /><ul>\n<li><code>$target_px</code>     - The target</li>\n<li><code>$context_px</code>    - The context</li>\n</ul>\n",
+            "examples": "<h4>Examples:</h4>\n<br /><pre><code>.pagination\n</code></pre>\n",
+            "usage": "<h4>Usage:</h4>\n<br /><pre><code>&lt;nav&gt;\n  &lt;ol class=&quot;nav pagination&quot;&gt;\n    &lt;li class=&quot;disabled&quot;&gt;&lt;a href=&quot;#&quot;&gt;&amp;laquo;&lt;/a&gt;&lt;/li&gt;\n    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;1&lt;/a&gt;&lt;/li&gt;\n    &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#&quot;&gt;2&lt;/a&gt;&lt;/li&gt;\n    &lt;li&gt;&lt;a href=&quot;#&quot; rel=&quot;next&quot;&gt;3&lt;/a&gt;&lt;/li&gt;\n    &lt;li class=&quot;disabled&quot;&gt;&lt;a href=&quot;#&quot;&gt;&amp;hellip;&lt;/a&gt;&lt;/li&gt;\n    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;11&lt;/a&gt;&lt;/li&gt;\n    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;12&lt;/a&gt;&lt;/li&gt;\n    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&amp;raquo;&lt;/a&gt;&lt;/li&gt;\n  &lt;/ol&gt;\n&lt;/nav&gt;\n</code></pre>\n",
+            "usage_showcase": "<nav>\n  <ol class=\"nav pagination\">\n    <li class=\"disabled\"><a href=\"#\">&laquo;</a></li>\n    <li><a href=\"#\">1</a></li>\n    <li class=\"active\"><a href=\"#\">2</a></li>\n    <li><a href=\"#\" rel=\"next\">3</a></li>\n    <li class=\"disabled\"><a href=\"#\">&hellip;</a></li>\n    <li><a href=\"#\">11</a></li>\n    <li><a href=\"#\">12</a></li>\n    <li><a href=\"#\">&raquo;</a></li>\n  </ol>\n</nav>"
+          }
+        ]
+      }
+    },
+    {
+      "test_fixtures_sass_test": {
+        "raw": "## Test\nThe first `line` starts with equals and is the summary.\n\nThe next line (and subsequent lines) are used as a description,\nthese can span many lines including empty lines.\n\nDescription continued after an empty line (requires a comment delimeter before).\n\n- :hover   The hover state.\n- .small   A smaller button.\n\n#### Usage:\n\n    <button class=\"btn primary\">Button</button>\n    <button class=\"btn small\">Button</button>\n\n    <button class=\"btn danger\">Button</button>\n\nThis is the start of another block.\n\n#### Usage:\n\n    <h2>Heading 2</h2>\n\nTable test\n\nTable Header 1|Table Header 2\n--------------|--------------\nContent       |Content\nContent       |Content\n",
+        "markup": "<h2>Test</h2>\n<br /><p>The first <code>line</code> starts with equals and is the summary.</p>\n<br /><p>The next line (and subsequent lines) are used as a description,\nthese can span many lines including empty lines.</p>\n<br /><p>Description continued after an empty line (requires a comment delimeter before).</p>\n<br /><ul>\n<li>:hover   The hover state.</li>\n<li>.small   A smaller button.</li>\n</ul>\n<br /><h4>Usage:</h4>\n<br /><pre><code>&lt;button class=&quot;btn primary&quot;&gt;Button&lt;/button&gt;\n&lt;button class=&quot;btn small&quot;&gt;Button&lt;/button&gt;\n<br />&lt;button class=&quot;btn danger&quot;&gt;Button&lt;/button&gt;\n</code></pre>\n<br /><p>This is the start of another block.</p>\n<br /><h4>Usage:</h4>\n<br /><pre><code>&lt;h2&gt;Heading 2&lt;/h2&gt;\n</code></pre>\n<br /><p>Table test</p>\n<br /><table><thead>\n<tr>\n<th>Table Header 1</th>\n<th>Table Header 2</th>\n</tr>\n</thead><tbody>\n<tr>\n<td>Content</td>\n<td>Content</td>\n</tr>\n<tr>\n<td>Content</td>\n<td>Content</td>\n</tr>\n</tbody></table>\n",
+        "title": "Test",
+        "subnav": [
+
+        ],
+        "filepath": "./test/fixtures/sass/test.sass",
+        "sherpas": [
+          {
+            "summary": "<h2>Test</h2>\n<br /><p>The first <code>line</code> starts with equals and is the summary.</p>\n<br /><p>The next line (and subsequent lines) are used as a description,\nthese can span many lines including empty lines.</p>\n<br /><p>Description continued after an empty line (requires a comment delimeter before).</p>\n<br /><ul>\n<li>:hover   The hover state.</li>\n<li>.small   A smaller button.</li>\n</ul>\n",
+            "title": "Test",
+            "usage": "<h4>Usage:</h4>\n<br /><pre><code>&lt;button class=&quot;btn primary&quot;&gt;Button&lt;/button&gt;\n&lt;button class=&quot;btn small&quot;&gt;Button&lt;/button&gt;\n<br />&lt;button class=&quot;btn danger&quot;&gt;Button&lt;/button&gt;\n</code></pre>\n",
+            "usage_showcase": "<button class=\"btn primary\">Button</button>\n<button class=\"btn small\">Button</button>\n<button class=\"btn danger\">Button</button>"
+          },
+          {
+            "summary": "<p>This is the start of another block.</p>\n",
+            "usage": "<h4>Usage:</h4>\n<br /><pre><code>&lt;h2&gt;Heading 2&lt;/h2&gt;\n</code></pre>\n",
+            "usage_showcase": "<h2>Heading 2</h2>"
+          },
+          {
+            "summary": "<p>Table test</p>\n<br /><table><thead>\n<tr>\n<th>Table Header 1</th>\n<th>Table Header 2</th>\n</tr>\n</thead><tbody>\n<tr>\n<td>Content</td>\n<td>Content</td>\n</tr>\n<tr>\n<td>Content</td>\n<td>Content</td>\n</tr>\n</tbody></table>\n"
+          }
+        ]
+      }
+    }
+  ],
+  "behaviors": [
+    {
+      "test_fixtures_coffee_coffee": {
+        "raw": "## DimensionViewer\n\nDebugging tool for printing the `innerWidth` of the browser.\n\n#### Notes:\n\n- **Note!** Useful when creating styles associated with media queries.\n\n#### Warnings:\n\n- **Warning!** Useful when creating styles associated with media queries.\n\n#### Alerts:\n\n- **Alert!** Useful when creating styles associated with media queries.\n\n#### Examples:\n\n    @dimension_viewer = new DimensionViewer\n\n### `#initialize`\nGet this party started by instantiateing a bunch of stuff\n\n    @dimension_viewer.initialize\n\n### `#dispose`\nEnd this party\n\n    @dimension_viewer.dispose\n",
+        "markup": "<h2>DimensionViewer</h2>\n<br /><p>Debugging tool for printing the <code>innerWidth</code> of the browser.</p>\n<br /><h4>Notes:</h4>\n<br /><ul>\n<li><strong>Note!</strong> Useful when creating styles associated with media queries.</li>\n</ul>\n<br /><h4>Warnings:</h4>\n<br /><ul>\n<li><strong>Warning!</strong> Useful when creating styles associated with media queries.</li>\n</ul>\n<br /><h4>Alerts:</h4>\n<br /><ul>\n<li><strong>Alert!</strong> Useful when creating styles associated with media queries.</li>\n</ul>\n<br /><h4>Examples:</h4>\n<br /><pre><code>@dimension_viewer = new DimensionViewer\n</code></pre>\n<br /><h3><code>#initialize</code></h3>\n<br /><p>Get this party started by instantiateing a bunch of stuff</p>\n<br /><pre><code>@dimension_viewer.initialize\n</code></pre>\n<br /><h3><code>#dispose</code></h3>\n<br /><p>End this party</p>\n<br /><pre><code>@dimension_viewer.dispose\n</code></pre>\n",
+        "title": "DimensionViewer",
+        "subnav": [
+          "initialize",
+          "dispose"
+        ],
+        "filepath": "./test/fixtures/coffee/coffee.coffee",
+        "sherpas": [
+          {
+            "summary": "<h2>DimensionViewer</h2>\n<br /><p>Debugging tool for printing the <code>innerWidth</code> of the browser.</p>\n",
+            "title": "DimensionViewer",
+            "notes": "<h4>Notes:</h4>\n<br /><ul>\n<li><strong>Note!</strong> Useful when creating styles associated with media queries.</li>\n</ul>\n",
+            "warnings": "<h4>Warnings:</h4>\n<br /><ul>\n<li><strong>Warning!</strong> Useful when creating styles associated with media queries.</li>\n</ul>\n",
+            "alerts": "<h4>Alerts:</h4>\n<br /><ul>\n<li><strong>Alert!</strong> Useful when creating styles associated with media queries.</li>\n</ul>\n",
+            "examples": "<h4>Examples:</h4>\n<br /><pre><code>@dimension_viewer = new DimensionViewer\n</code></pre>\n"
+          },
+          {
+            "summary": "<h3><code>#initialize</code></h3>\n<br /><p>Get this party started by instantiateing a bunch of stuff</p>\n<br /><pre><code>@dimension_viewer.initialize\n</code></pre>\n",
+            "title": "initialize"
+          },
+          {
+            "summary": "<h3><code>#dispose</code></h3>\n<br /><p>End this party</p>\n<br /><pre><code>@dimension_viewer.dispose\n</code></pre>\n",
+            "title": "dispose"
+          }
+        ]
+      }
+    },
+    {
+      "test_fixtures_js_test": {
+        "raw": "## JavaScript Functions\n\nChange the box model for Mozilla, Webkit, IE8 and the future\n\n#### Arguments:\n\n- `$type`  - content-box | border-box |inherit\n\n#### Notes:\n\n- **Heads Up!** This is important!\n\n#### Examples:\n\n    .base-column\n      +box-sizing(border-box)\n\n### `#bathe`\nWash the dog\n\n    dog.bathe()\n",
+        "markup": "<h2>JavaScript Functions</h2>\n<br /><p>Change the box model for Mozilla, Webkit, IE8 and the future</p>\n<br /><h4>Arguments:</h4>\n<br /><ul>\n<li><code>$type</code>  - content-box | border-box |inherit</li>\n</ul>\n<br /><h4>Notes:</h4>\n<br /><ul>\n<li><strong>Heads Up!</strong> This is important!</li>\n</ul>\n<br /><h4>Examples:</h4>\n<br /><pre><code>.base-column\n  +box-sizing(border-box)\n</code></pre>\n<br /><h3><code>#bathe</code></h3>\n<br /><p>Wash the dog</p>\n<br /><pre><code>dog.bathe()\n</code></pre>\n",
+        "title": "JavaScript Functions",
+        "subnav": [
+          "bathe"
+        ],
+        "filepath": "./test/fixtures/js/test.js",
+        "sherpas": [
+          {
+            "summary": "<h2>JavaScript Functions</h2>\n<br /><p>Change the box model for Mozilla, Webkit, IE8 and the future</p>\n",
+            "title": "JavaScript Functions",
+            "arguments": "<h4>Arguments:</h4>\n<br /><ul>\n<li><code>$type</code>  - content-box | border-box |inherit</li>\n</ul>\n",
+            "notes": "<h4>Notes:</h4>\n<br /><ul>\n<li><strong>Heads Up!</strong> This is important!</li>\n</ul>\n",
+            "examples": "<h4>Examples:</h4>\n<br /><pre><code>.base-column\n  +box-sizing(border-box)\n</code></pre>\n"
+          },
+          {
+            "summary": "<h3><code>#bathe</code></h3>\n<br /><p>Wash the dog</p>\n<br /><pre><code>dog.bathe()\n</code></pre>\n",
+            "title": "bathe"
+          }
+        ]
+      }
+    }
+  ],
+  "ruby": [
+    {
+      "lib_sherpa_utils": {
+        "raw": "## Utils\nStatic class of utility methods for the parser and layout classes\n\nMethod                          |Params                  |Description\n--------------------------------|------------------------|----------------------------------------------------------------------------\n`sherpa_block?`                 |`line`                  |Determines if a comment block has a sherpa marker `#~`\n`line_comment?`                 |`line`                  |Determines if a line is a continuation of a sherpa block\n`pre_line?`                     |`line`                  |Determines if a line is a `pre` block\n`sherpa_section?`               |`line`                  |Tests to see if the line ends in `:`\n`markdown_header?`              |`line`                  |Tests to see if the line ends starts with a markdown header\n`is_markdown_file?`             |`line`                  |Tests to see if the file is markdown\n`trim_comment_markers`          |`line`                  |Remove comment markers, sherpa identifier, and EOL whitespace\n`trim_left`                     |`line`, `content`       |Clean the left side of the comment block if the line ends with a line break\n`trim_for_title`                |`line`                  |Trim out markdown headers for a plain text title\n`trim_colon`                    |`line`                  |Trim out the trailing colon `:`\n`trim_sherpa_section_for_key`   |`line`                  |Turn a sherpa section into a readable key\n`uid`                           |`file`                  |Generate a unique ID for use in keys and anchor tags from a filepath\n`add_markdown_header`           |`line`                  |Turns a sherpa section into a markdown `h4` unless the line is already a markdown header\n`pretty_path`                   |`base_path`, `filename` |Return the current filename and it's parent directory\n\n",
+        "markup": "<h2>Utils</h2>\n<br /><p>Static class of utility methods for the parser and layout classes</p>\n<br /><table><thead>\n<tr>\n<th>Method</th>\n<th>Params</th>\n<th>Description</th>\n</tr>\n</thead><tbody>\n<tr>\n<td><code>sherpa_block?</code></td>\n<td><code>line</code></td>\n<td>Determines if a comment block has a sherpa marker <code>#~</code></td>\n</tr>\n<tr>\n<td><code>line_comment?</code></td>\n<td><code>line</code></td>\n<td>Determines if a line is a continuation of a sherpa block</td>\n</tr>\n<tr>\n<td><code>pre_line?</code></td>\n<td><code>line</code></td>\n<td>Determines if a line is a <code>pre</code> block</td>\n</tr>\n<tr>\n<td><code>sherpa_section?</code></td>\n<td><code>line</code></td>\n<td>Tests to see if the line ends in <code>:</code></td>\n</tr>\n<tr>\n<td><code>markdown_header?</code></td>\n<td><code>line</code></td>\n<td>Tests to see if the line ends starts with a markdown header</td>\n</tr>\n<tr>\n<td><code>is_markdown_file?</code></td>\n<td><code>line</code></td>\n<td>Tests to see if the file is markdown</td>\n</tr>\n<tr>\n<td><code>trim_comment_markers</code></td>\n<td><code>line</code></td>\n<td>Remove comment markers, sherpa identifier, and EOL whitespace</td>\n</tr>\n<tr>\n<td><code>trim_left</code></td>\n<td><code>line</code>, <code>content</code></td>\n<td>Clean the left side of the comment block if the line ends with a line break</td>\n</tr>\n<tr>\n<td><code>trim_for_title</code></td>\n<td><code>line</code></td>\n<td>Trim out markdown headers for a plain text title</td>\n</tr>\n<tr>\n<td><code>trim_colon</code></td>\n<td><code>line</code></td>\n<td>Trim out the trailing colon <code>:</code></td>\n</tr>\n<tr>\n<td><code>trim_sherpa_section_for_key</code></td>\n<td><code>line</code></td>\n<td>Turn a sherpa section into a readable key</td>\n</tr>\n<tr>\n<td><code>uid</code></td>\n<td><code>file</code></td>\n<td>Generate a unique ID for use in keys and anchor tags from a filepath</td>\n</tr>\n<tr>\n<td><code>add_markdown_header</code></td>\n<td><code>line</code></td>\n<td>Turns a sherpa section into a markdown <code>h4</code> unless the line is already a markdown header</td>\n</tr>\n<tr>\n<td><code>pretty_path</code></td>\n<td><code>base_path</code>, <code>filename</code></td>\n<td>Return the current filename and it&#39;s parent directory</td>\n</tr>\n</tbody></table>\n",
+        "title": "Utils",
+        "subnav": [
+
+        ],
+        "filepath": "./lib/sherpa/utils.rb",
+        "sherpas": [
+          {
+            "summary": "<h2>Utils</h2>\n<br /><p>Static class of utility methods for the parser and layout classes</p>\n<br /><table><thead>\n<tr>\n<th>Method</th>\n<th>Params</th>\n<th>Description</th>\n</tr>\n</thead><tbody>\n<tr>\n<td><code>sherpa_block?</code></td>\n<td><code>line</code></td>\n<td>Determines if a comment block has a sherpa marker <code>#~</code></td>\n</tr>\n<tr>\n<td><code>line_comment?</code></td>\n<td><code>line</code></td>\n<td>Determines if a line is a continuation of a sherpa block</td>\n</tr>\n<tr>\n<td><code>pre_line?</code></td>\n<td><code>line</code></td>\n<td>Determines if a line is a <code>pre</code> block</td>\n</tr>\n<tr>\n<td><code>sherpa_section?</code></td>\n<td><code>line</code></td>\n<td>Tests to see if the line ends in <code>:</code></td>\n</tr>\n<tr>\n<td><code>markdown_header?</code></td>\n<td><code>line</code></td>\n<td>Tests to see if the line ends starts with a markdown header</td>\n</tr>\n<tr>\n<td><code>is_markdown_file?</code></td>\n<td><code>line</code></td>\n<td>Tests to see if the file is markdown</td>\n</tr>\n<tr>\n<td><code>trim_comment_markers</code></td>\n<td><code>line</code></td>\n<td>Remove comment markers, sherpa identifier, and EOL whitespace</td>\n</tr>\n<tr>\n<td><code>trim_left</code></td>\n<td><code>line</code>, <code>content</code></td>\n<td>Clean the left side of the comment block if the line ends with a line break</td>\n</tr>\n<tr>\n<td><code>trim_for_title</code></td>\n<td><code>line</code></td>\n<td>Trim out markdown headers for a plain text title</td>\n</tr>\n<tr>\n<td><code>trim_colon</code></td>\n<td><code>line</code></td>\n<td>Trim out the trailing colon <code>:</code></td>\n</tr>\n<tr>\n<td><code>trim_sherpa_section_for_key</code></td>\n<td><code>line</code></td>\n<td>Turn a sherpa section into a readable key</td>\n</tr>\n<tr>\n<td><code>uid</code></td>\n<td><code>file</code></td>\n<td>Generate a unique ID for use in keys and anchor tags from a filepath</td>\n</tr>\n<tr>\n<td><code>add_markdown_header</code></td>\n<td><code>line</code></td>\n<td>Turns a sherpa section into a markdown <code>h4</code> unless the line is already a markdown header</td>\n</tr>\n<tr>\n<td><code>pretty_path</code></td>\n<td><code>base_path</code>, <code>filename</code></td>\n<td>Return the current filename and it&#39;s parent directory</td>\n</tr>\n</tbody></table>\n",
+            "title": "Utils"
+          }
+        ]
+      }
+    }
+  ]
+}
