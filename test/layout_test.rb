@@ -5,7 +5,8 @@ class LayoutTest < Sherpa::Test
 
   def setup
     @config = YAML.load(File.read('./test/fixtures/config/config.yaml'))
-    @layout = Sherpa::Layout.new(@config, nil)
+    @blocks = JSON.pretty_generate(Sherpa::Builder.new(@config).build)
+    @layout = Sherpa::Layout.new(@config, @blocks)
   end
 
   test "Sets default global settings based on the config file" do
@@ -34,6 +35,40 @@ class LayoutTest < Sherpa::Test
     @layout.add_template('new.mustache')
     assert_equal @layout.templates.size, 3
     assert @layout.templates["new_mustache"]
+  end
+
+  test "Gets a section template based on a key and index" do
+    assert_equal @layout.get_section_template("overview", 0), 'raw_mustache'
+    assert_equal @layout.get_section_template("test", 0), 'section_mustache'
+    assert_equal @layout.get_section_template("test", 1), 'raw_mustache'
+  end
+
+  test "Concatenates a list of primary nav elements based off sections from sherpa documents" do
+    assert_includes @layout.render_primary_nav, "Overview"
+    assert_includes @layout.render_primary_nav, "Test"
+    assert_includes @layout.render_primary_nav, "<a href"
+  end
+
+  test "Renders an aside navigation for a given sherpa block" do
+    key = "test"
+    blocks = JSON.parse(@blocks)
+    value = blocks[key]
+    result = @layout.render_page key, value
+
+    assert_includes result[:aside], "<li class='sherpa-nav-header'>"
+    assert_includes result[:aside], "<li><a href="
+    assert_includes result[:aside], "<li class='sherpa-subnav"
+  end
+
+  test "Renders an html string for a given sherpa block" do
+    key = "test"
+    blocks = JSON.parse(@blocks)
+    value = blocks[key]
+    result = @layout.render_page key, value
+
+    assert_includes result[:html], "blob"
+    assert_includes result[:html], "wells.sass"
+    assert_includes result[:html], "<section"
   end
 
 end

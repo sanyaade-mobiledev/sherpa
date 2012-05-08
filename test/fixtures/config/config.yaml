@@ -17,4 +17,5 @@ test:
   manifest:
     - file: sass/components/wells.sass
     - file: coffee/coffee.coffee
+      template: raw.mustache
 
