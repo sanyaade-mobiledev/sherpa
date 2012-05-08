@@ -4,13 +4,13 @@ require './test/helper'
 class LayoutTest < Sherpa::Test
 
   def setup
-    @config = YAML.load(File.read('./test/fixtures/config/config.yaml'))
+    @config = YAML.load(File.read('./test/config/config.yaml'))
     @blocks = JSON.pretty_generate(Sherpa::Builder.new(@config).build)
     @layout = Sherpa::Layout.new(@config, @blocks)
   end
 
   test "Sets default global settings based on the config file" do
-    assert_equal @layout.output_dir, "./example/app/views/sherpa/"
+    assert_equal @layout.output_dir, "./test/views/"
     assert_equal @layout.layout_dir, "./lib/layouts/"
     assert_equal @layout.stache_layout, File.read(File.join(@layout.layout_dir, @config["settings"]["layout_template"]))
   end

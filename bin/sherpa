@@ -44,7 +44,7 @@ end
 # Render outputs
 if blocks
   json = JSON.pretty_generate(blocks)
-  # puts json
+  puts json
   layout = Sherpa::Layout.new(config, json)
   layout.render_and_save
 else

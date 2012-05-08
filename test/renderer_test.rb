@@ -1,5 +1,4 @@
 
-
 require './test/helper'
 
 class RendererTest < Sherpa::Test

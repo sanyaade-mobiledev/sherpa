@@ -2,7 +2,7 @@
 settings:
   title: sherpa.
   repo: https://github.com/modeset/sherpa/
-  output_dir: ./example/app/views/sherpa/
+  output_dir: ./test/views/
   layout_dir: ./lib/layouts/
   layout_template: layout.mustache
   default_section_template: section.mustache

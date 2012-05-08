@@ -10,20 +10,20 @@ Rake::TestTask.new(:test) do |t|
   t.verbose = false
 end
 
-desc 'Run a simple test on a single file'
-task :simple do
-  system "./bin/sherpa -i ./test/fixtures/config/config.yaml"
+desc 'Mock config file used for testing and debugging'
+task :probe do
+  system "./bin/sherpa -i ./test/config/config.yaml"
 end
 
-namespace :examples do
-  desc 'Output examples from a yaml file'
+namespace :preview do
+  desc 'Preview examples from a yaml file'
   task :yaml do
-  system "./bin/sherpa -i ./example/config/sherpa.yaml"
+    system "./bin/sherpa -i ./test/config/preview.yaml"
   end
 
-  desc 'Output examples from a json file'
+  desc 'Preview examples from a json file'
   task :json do
-    system "./bin/sherpa -i ./example/config/sherpa.json"
+    system "./bin/sherpa -i ./test/config/preview.json"
   end
 end
 

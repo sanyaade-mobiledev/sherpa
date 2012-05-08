@@ -4,7 +4,7 @@ require './test/helper'
 class BuilderTest < Sherpa::Test
 
   def setup
-    @config = YAML.load(File.read('./test/fixtures/config/config.yaml'))
+    @config = YAML.load(File.read('./test/config/config.yaml'))
     @builder = Sherpa::Builder.new @config
   end
 
