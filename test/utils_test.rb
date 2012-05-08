@@ -61,6 +61,39 @@ class UtilsTest < Sherpa::Test
     refute @utils.is_markdown_file?("./views/README.html")
   end
 
+  test "Check to see if the current line contains an `~lorem` tag" do
+    assert @utils.lorem?("Show me a ~lorem string")
+    assert @utils.lorem?("Show me a ~lorem_medium string")
+    assert @utils.lorem?("Show me a ~lorem_small string")
+    assert @utils.lorem?("Show me a ~lorem_xsmall string")
+    assert @utils.lorem?("Show me a ~lorem_alt string")
+  end
+
+  test "Finds the tag type used by an `~lorem` generator" do
+    assert_equal @utils.lorem_type("Show me a ~lorem_xsmall string"), "~lorem_xsmall"
+    assert_equal @utils.lorem_type("Show me a ~lorem_small string"), "~lorem_small"
+    assert_equal @utils.lorem_type("Show me a ~lorem_medium string"), "~lorem_medium"
+    assert_equal @utils.lorem_type("Show me a ~lorem_alt string"), "~lorem_alt"
+    assert_equal @utils.lorem_type("Show me a ~lorem string"), "~lorem"
+    assert_equal @utils.lorem_type("~lorem"), "~lorem"
+    refute_equal @utils.lorem_type("Show me a ~lorem_medium string"), "~lorem"
+    refute_equal @utils.lorem_type("Show me a ~lorem string"), "~lorem_small"
+  end
+
+  test "Generates a lorem ipsum string from a `~lorem` tag" do
+    xsmall = @utils.generate_lorem("xsmall: ~lorem_xsmall")
+    small = @utils.generate_lorem("small: ~lorem_small")
+    medium = @utils.generate_lorem("medium: ~lorem_medium")
+    alt = @utils.generate_lorem("alt: ~lorem_alt")
+    normal = @utils.generate_lorem("normal: ~lorem")
+
+    assert_equal xsmall, "xsmall: Lorem ipsum dolor sit amet."
+    assert_equal small, "small: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt."
+    assert_equal medium, "medium: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation."
+    assert_equal alt, "alt: Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt."
+    assert_equal normal, "normal: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  end
+
   test "Trim off any comment markers for supported languages without trimming whitespace" do
     sherpa = "//~ "
     slash = "// comment"

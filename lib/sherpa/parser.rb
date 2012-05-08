@@ -88,6 +88,11 @@ module Sherpa
               end
             end
 
+            # If the line contains an `~lorem` tag, generate the lorem ipsum copy
+            if Utils.lorem?(current_line)
+              current_line = Utils.generate_lorem(current_line)
+            end
+
             # Push the current line into the raw object and the current key block
             @blocks[:raw] += "#{current_line}\n"
             current_block[current_key] += "#{current_line}\n"

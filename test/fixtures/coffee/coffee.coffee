@@ -21,7 +21,9 @@ class DimensionViewer
 
   #~
   # ### `#initialize`
-  # Get this party started by instantiateing a bunch of stuff
+  # Get this party started by instantiating a bunch of stuff
+  #
+  # Start me some ~lorem_xsmall
   #
   #    @dimension_viewer.initialize
   initialize: ->
