@@ -40,7 +40,7 @@ class LayoutTest < Sherpa::Test
   test "Gets a section template based on a key and index" do
     assert_equal @layout.get_section_template("overview", 0), 'raw_mustache'
     assert_equal @layout.get_section_template("test", 0), 'section_mustache'
-    assert_equal @layout.get_section_template("test", 1), 'raw_mustache'
+    assert_equal @layout.get_section_template("test", 7), 'raw_mustache'
   end
 
   test "Concatenates a list of primary nav elements based off sections from sherpa documents" do
@@ -67,7 +67,7 @@ class LayoutTest < Sherpa::Test
     result = @layout.render_page key, value
 
     assert_includes result[:html], "blob"
-    assert_includes result[:html], "wells.sass"
+    assert_includes result[:html], "headings.sass"
     assert_includes result[:html], "<section"
   end
 

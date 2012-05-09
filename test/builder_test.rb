@@ -13,9 +13,9 @@ class BuilderTest < Sherpa::Test
     assert_includes output["overview"][0], "README"
     assert_includes output["overview"][0]["README"], :raw
     assert_includes output["overview"][0]["README"], :markup
-    assert_includes output["test"][0], "test_fixtures_sass_components_wells"
-    assert_includes output["test"][0]["test_fixtures_sass_components_wells"], :raw
-    assert_includes output["test"][0]["test_fixtures_sass_components_wells"], :markup
+    assert_includes output["test"][0], "test_fixtures_sass_base_headings"
+    assert_includes output["test"][0]["test_fixtures_sass_base_headings"], :raw
+    assert_includes output["test"][0]["test_fixtures_sass_base_headings"], :markup
   end
 
   test "Builds a section from a test file" do
@@ -32,7 +32,7 @@ class BuilderTest < Sherpa::Test
 
   test "Gets a manifest of files in a nested object" do
     files = @builder.get_manifest(@config["test"]["manifest"], "./")
-    assert_equal files, ["./sass/components/wells.sass", "./coffee/coffee.coffee"]
+    assert_includes files, "./coffee/coffee.coffee"
   end
 
 end

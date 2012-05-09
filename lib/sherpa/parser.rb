@@ -17,6 +17,7 @@ module Sherpa
 
       File.open file_path do |file|
         in_block = false
+        in_multi = false
         block_num = 0
         first_line = true
         current_block = nil
@@ -33,6 +34,7 @@ module Sherpa
           # Entering a block
           if Utils.sherpa_block?(line)
             in_block = true
+            in_multi = Utils.multi_comment_start?(line)
             current_block = {}
             current_key = 'summary'
             current_block[current_key] = ''
@@ -40,7 +42,11 @@ module Sherpa
             @blocks[:sherpas].push(current_block)
           end
 
-          if in_block && Utils.line_comment?(line)
+          if in_multi && Utils.multi_comment_end?(line)
+            in_multi = false
+          end
+
+          if in_block && Utils.line_comment?(line) || in_multi
 
             # Trim up the lines from comment markers and right spacing
             current_line = Utils.trim_comment_markers(line)
@@ -79,6 +85,11 @@ module Sherpa
               current_block[current_key] = ''
             end
 
+            # If the line contains an `~lorem` tag, generate the lorem ipsum copy
+            if Utils.lorem?(current_line)
+              current_line = Utils.generate_lorem(current_line)
+            end
+
             # If in a usage block create a showcase block that gets rendered as straight markup (style guides)
             if current_key == 'usage'
               if current_block[:usage_showcase]
@@ -86,11 +97,6 @@ module Sherpa
               else
                 current_block[:usage_showcase] = ''
               end
-            end
-
-            # If the line contains an `~lorem` tag, generate the lorem ipsum copy
-            if Utils.lorem?(current_line)
-              current_line = Utils.generate_lorem(current_line)
             end
 
             # Push the current line into the raw object and the current key block

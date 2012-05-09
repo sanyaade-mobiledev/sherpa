@@ -11,31 +11,54 @@ class UtilsTest < Sherpa::Test
     slash = "//~"
     pound = "#~"
     comment = "// a comment"
+    multi = "/*~"
+    javadoc = "  /**~"
+    multi_none = "/**"
     normal = "This is a normal line"
     assert @utils.sherpa_block?(slash)
     assert @utils.sherpa_block?(pound)
+    assert @utils.sherpa_block?(multi)
+    assert @utils.sherpa_block?(javadoc)
     refute @utils.sherpa_block?(comment)
     refute @utils.sherpa_block?(normal)
+    refute @utils.sherpa_block?(multi_none)
   end
 
   test "If the current line is a comment marker for supported languages" do
     sherpa = "//~ "
     slash = "// comment"
     pound = "# comment"
+    multi = "* comment"
     normal = "This is a normal line"
     assert @utils.line_comment?(sherpa)
     assert @utils.line_comment?(slash)
     assert @utils.line_comment?(pound)
+    assert @utils.line_comment?(multi)
     refute @utils.line_comment?(normal)
+  end
+
+  test "If the current line is a multi comment start" do
+    assert @utils.multi_comment_start?("/*~ Some text */")
+    assert @utils.multi_comment_start?("/**~")
+  end
+
+  test "If the current line is the end of a multi comment marker" do
+    assert @utils.multi_comment_end?("/*~ Some text */")
+    assert @utils.multi_comment_end?("*/")
+    assert @utils.multi_comment_end?("  */")
+    refute @utils.multi_comment_end?("*")
+    refute @utils.multi_comment_end?("/")
   end
 
   test "If the current line is a pre tag" do
     pre = "    pre line"
     sub_pre = "      pre line"
     normal = "  pre line"
+    really = "    <p class='decal'>Default</p>"
     assert @utils.pre_line?(pre)
     assert @utils.pre_line?(sub_pre)
     refute @utils.pre_line?(normal)
+    assert @utils.pre_line?(really)
   end
 
   test "If the current line is a sherpa section" do
@@ -98,12 +121,22 @@ class UtilsTest < Sherpa::Test
     sherpa = "//~ "
     slash = "// comment"
     pound = "# comment"
-    indented = "    # comment"
+    multi = "* comment"
+    multi_top = "/**~ comment"
+    indented1 = "    # comment"
+    indented2 = "  // comment"
+    indented3 = "  /* comment"
+    indented4 = "  * comment"
     expected = " comment"
     assert_equal @utils.trim_comment_markers(sherpa), ""
     assert_equal @utils.trim_comment_markers(slash), expected
     assert_equal @utils.trim_comment_markers(pound), expected
-    assert_equal @utils.trim_comment_markers(indented), expected
+    assert_equal @utils.trim_comment_markers(multi), expected
+    assert_equal @utils.trim_comment_markers(multi_top), expected
+    assert_equal @utils.trim_comment_markers(indented1), expected
+    assert_equal @utils.trim_comment_markers(indented2), expected
+    assert_equal @utils.trim_comment_markers(indented3), expected
+    assert_equal @utils.trim_comment_markers(indented4), expected
   end
 
   test "Trim the left side of a comment block only if the line ends with a trailing lf" do

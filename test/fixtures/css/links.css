@@ -1,0 +1,22 @@
+
+/*~
+As a convention, buttons should only be used for actions while hyperlinks are
+to be used for objects. For instance, "Download" should be a button while
+"recent activity" should be a link.
+
+This is a lorem ipsum test: ~lorem_medium
+
+States:
+- **:hover**    - When the mouse is located over the link.
+- **:visited**  - When a link has already been visited.
+- **:focus**    - When the element has keyboard focus.
+- **:active**   - When the mouse is pressed over the link.
+
+Usage:
+    <p>The anchor element defines a <a href="http://www.modeset.com/">hyperlink</a>!</p>
+*/
+
+a, a:hover {
+  color: blue;
+}
+

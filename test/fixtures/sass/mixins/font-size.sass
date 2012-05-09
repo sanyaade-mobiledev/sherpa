@@ -1,27 +1,20 @@
 
 //~
-// Use `rems` to insert a font size
+// Use `rems` to insert a font size with a pixel fallback.
+// This showcases how you might create a mixin block.
 //
 // Arguments:
-// - `$target_px`     - The target
-// - `$context_px`    - The context
+// - `$target_px`              - The target font size in pixels
+// - `$context:$context_px`    - [_Optional_] The context constraints of the user's base font size
+//
+// Notes:
+// - **Heads Up!** Make sure not to include the `px`
 //
 // Examples:
 //    h1
 //      +font-size(48)
-//
-// Usage:
-//    <h1>Heading</h1>
-//    <h2>Heading</h2>
 
 @mixin font-size($target_px, $context:$context_px)
   font-size: $target_px * 1px
   font-size: to_rem($target_px, $context)
-
-//~
-// Another simple summary in same file
-//
-// Usage:
-//    <h3>Heading</h3>
-//    <h4>Heading</h4>
 

@@ -6,6 +6,8 @@
 # --------------------------------|------------------------|----------------------------------------------------------------------------
 # `sherpa_block?`                 |`line`                  |Determines if a comment block has a sherpa marker `#~`
 # `line_comment?`                 |`line`                  |Determines if a line is a continuation of a sherpa block
+# `multi_comment_start?`          |`line`                  |Determines if a line is the beginning of a multi line comment block: `/*`
+# `multi_comment_end?`            |`line`                  |Determines if a line is the end of a multi line comment block: `*/`
 # `pre_line?`                     |`line`                  |Determines if a line is a `pre` block
 # `sherpa_section?`               |`line`                  |Tests to see if the line ends in `:`
 # `markdown_header?`              |`line`                  |Tests to see if the line ends starts with a markdown header
@@ -33,11 +35,19 @@ module Sherpa
     @lorem_xsmall = "Lorem ipsum dolor sit amet."
 
     def self.sherpa_block?(line)
-      !!(line =~ /^\s*\/\/~|^\s*#~/)
+      !!(line =~ /^\s*\/\/~|^\s*#~|^\s*\/\**~/)
     end
 
     def self.line_comment?(line)
-      !!(line =~ /^\s*\/\/|^\s*#/)
+      !!(line =~ /^\s*\/\/|^\s*#|^\s*\*/)
+    end
+
+    def self.multi_comment_start?(line)
+      !!(line =~ /^\s*\/\*/)
+    end
+
+    def self.multi_comment_end?(line)
+      !!(line =~ /.*\*\//)
     end
 
     def self.pre_line?(line)
@@ -81,8 +91,14 @@ module Sherpa
       line
     end
 
+    # Trim indentation, then comment markers, then sherpa marker
     def self.trim_comment_markers(line)
-      cleaned = line.gsub(/^\s*/, '').gsub(/\s*\/\/|\s*^#/, '').gsub(/\s*~\s/, '')
+      # cleaned = line.sub(/^\s*/, '')
+      cleaned = line.sub(/^\s*\/+/, '')
+      cleaned = cleaned.sub(/^\s*#/, '')
+      cleaned = cleaned.sub(/^\s*\*+/, '')
+      cleaned = cleaned.sub(/^\s*\/+/, '')
+      cleaned = cleaned.sub(/^\s*~/, '')
       cleaned.rstrip
     end
 
