@@ -14,10 +14,12 @@ def abort_with_note(message=nil)
 end
 
 input = "./"
+debug = false
 options = {}
 ARGV.options { |o|
   o.on("-i", "--input=FILE") { |file| input += file }
-  o.on_tail("-h", "--help") { usage }
+  o.on("-d", "--debug")      { |value| debug = true }
+  o.on_tail("-h", "--help")  { usage }
   o.parse!
 } or abort_with_note
 
@@ -43,7 +45,7 @@ end
 if blocks
   output_dir = config["settings"]["output_dir"]
   json = JSON.pretty_generate(blocks)
-  puts json
+  puts json unless debug == false
 
   File.open("#{output_dir}sherpa.json", "w") do |file|
     file.write(json)
