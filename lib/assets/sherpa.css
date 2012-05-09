@@ -1,32 +1,4 @@
 
-/* Mini Reset */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, nav, section, summary {
-  display: block;
-  margin: 0;
-  padding: 0;
-}
-
-audio, canvas, video {
-  margin: 0;
-  padding: 0;
-  display: inline-block;
-  *display: inline;
-  *zoom: 1;
-}
-
-html, body, div, span, hr, img, iframe,
-h1, h2, h3, h4, h5, h6, p, a, small, strong, em,
-address, abbr, dfn, sub, sup, del, ins,
-blockquote, q, cite, pre, code, kbd, samp,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend, button, input, select, textarea,
-table, caption, tbody, tfoot, thead, tr, th, td,
-time, mark {
-  margin: 0;
-  padding: 0;
-}
-
 /* Helpers */
 .sherpa-clearfix {
   *zoom: 1;
@@ -44,6 +16,10 @@ time, mark {
 .sherpa-sidebar {
   background-color: #fafafa;
   border-right: 1px solid #ccc;
+  font-family: "HelveticaNeue", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-size: 14px;
+  font-size: 0.875rem;
+  line-height: 1.2;
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -56,7 +32,7 @@ time, mark {
 
 .sherpa-sidebar a,
 .sherpa-sidebar a:hover {
-  text-decoration: none !important;
+  text-decoration: none;
 }
 
 .sherpa-brand {
@@ -138,24 +114,27 @@ time, mark {
 
 .sherpa-filepath {
   float: right;
-  margin-top: 1.6em;
+  font-family: "HelveticaNeue", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   font-size: 85%;
   font-weight: bold;
+  margin-top: 1.6em;
 }
 .sherpa-filepath a,
-.sherpa-filepath a:visited {
+.sherpa-filepath a:visited,
+.sherpa-filepath a:hover,
+.sherpa-filepath a:active {
   color: #aaa;
+  text-decoration: none;
 }
 .sherpa-filepath a:hover,
 .sherpa-filepath a:active {
   color: #999;
-  text-decoration: none;
 }
 
 .sherpa-summary > h2 {
-  margin-bottom: 0;
-  line-height: 1.2;
   border-bottom: 1px solid #aaa;
+  line-height: 1.2;
+  margin-bottom: 0;
 }
 .sherpa-description > h4 {
   margin-bottom: 0;
@@ -168,9 +147,7 @@ time, mark {
 .sherpa-description {
   margin-bottom: 2em;
 }
-.sherpa-description > table tbody tr:nth-child(even) {
-  background-color: #eee;
-}
+
 .sherpa-notes + .sherpa-notes {
   margin-top: -3.5em;
 }

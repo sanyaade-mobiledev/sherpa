@@ -1,0 +1,421 @@
+/*
+Normalization based on:
+- [normalize.css](http://necolas.github.com/normalize.css/)
+- [HTML5 Boilerplate](http://html5boilerplate.com/)
+
+Resets based on:
+- [Eric Meyer's reset](http://meyerweb.com/eric/tools/css/reset/)
+*/
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, nav, section, summary {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+audio, canvas, video {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+[hidden] {
+  display: none;
+}
+
+html, body, div, span, hr, img, iframe,
+h1, h2, h3, h4, h5, h6, p, a, small, strong, em,
+address, abbr, dfn, sub, sup, del, ins,
+blockquote, q, cite, pre, code, kbd, samp,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, button, input, select, textarea,
+table, caption, tbody, tfoot, thead, tr, th, td,
+time, mark {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  border: 0;
+  max-width: 100%;
+  -ms-interpolation-mode: bicubic;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+button, input, select, textarea, label {
+  font-size: 100%;
+  vertical-align: baseline;
+  *vertical-align: middle;
+}
+
+legend {
+  white-space: normal;
+  *margin-left: -7px;
+}
+
+button, input {
+  line-height: normal;
+}
+
+textarea {
+  overflow: auto;
+  vertical-align: top;
+  resize: vertical;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  cursor: pointer;
+  line-height: normal;
+  -webkit-appearance: button;
+  *overflow: visible;
+}
+
+button[disabled] {
+  cursor: default;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+input[type="search"] {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-appearance: textfield;
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+html {
+  font-size: 100%;
+  overflow-y: scroll;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+html, button, input, select, textarea {
+  color: #333333;
+  font-family: "HelveticaNeue", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+body {
+  font-size: 14px;
+  font-size: 0.875rem;
+  background: white;
+  line-height: 1.2;
+}
+
+::-moz-selection {
+  background: #268bd2;
+  color: white;
+  text-shadow: none;
+}
+
+::selection {
+  background: #268bd2;
+  color: white;
+  text-shadow: none;
+}
+
+a, a:visited {
+  color: #268bd2;
+  text-decoration: none;
+}
+
+a:focus {
+  outline: thin dotted;
+}
+
+a:hover, a:active {
+  outline: 0;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #16527c;
+}
+
+a:active, a.active, .active > a {
+  color: #16527c;
+}
+
+a:link {
+  -webkit-tap-highlight-color: #268bd2;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #333333;
+  line-height: 1;
+  margin-bottom: 0.1em;
+}
+
+h1 {
+  font-size: 36px;
+  font-size: 2.25rem;
+}
+
+h2 {
+  font-size: 30px;
+  font-size: 1.875rem;
+}
+
+h3 {
+  font-size: 24px;
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 20px;
+  font-size: 1.25rem;
+}
+
+h5 {
+  font-size: 18px;
+  font-size: 1.125rem;
+}
+
+h6 {
+  font-size: 18px;
+  font-size: 1.125rem;
+  font-style: italic;
+}
+
+p {
+  font-style: normal;
+}
+
+p a:hover {
+  text-decoration: underline;
+}
+
+small {
+  font-size: 85%;
+}
+
+b, strong {
+  font-style: bold;
+}
+
+sub, sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+address {
+  font-style: normal;
+}
+
+abbr, dfn {
+  border-bottom: 1px dotted;
+  cursor: help;
+  font-size: 90%;
+  font-style: normal;
+  text-transform: uppercase;
+}
+
+pre, code, kbd, samp {
+  font-family: "Bitstream Vera Sans Mono", "Menslo LG M", "Menlo", "Monaco", monospace;
+  _font-family: "courier new", monospace;
+}
+
+code, kbd, samp {
+  background: #fafafa;
+  border: 1px solid #e6e6e6;
+  font-size: 85%;
+  padding: 0 0.3em;
+}
+
+code {
+  color: #b22222;
+}
+
+pre {
+  background: #fafafa;
+  border: 1px solid #cccccc;
+  margin: 1em 0;
+  padding: 0.75em;
+  font-size: 85%;
+  text-shadow: 0 1px 0 white;
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow: hidden;
+}
+
+pre code {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-size: 100%;
+}
+
+blockquote {
+  font-family: "Georgia", "Times", "Times New Roman", serif;
+  margin: 1em;
+  padding: 0 10%;
+}
+
+blockquote p {
+  font-size: 16px;
+  font-size: 1rem;
+  font-style: italic;
+}
+
+blockquote small {
+  display: block;
+  margin-top: 0.75em;
+}
+blockquote small:before {
+  content: "\2014 \00A0";
+}
+
+blockquote cite {
+  border-bottom: 1px dotted;
+  cursor: help;
+  font-style: normal;
+}
+
+q:before, q:after,
+blockquote:before,
+blockquote:after {
+  content: "";
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #666666;
+  margin: 1em 0;
+}
+
+mark {
+  background: #ffc40d;
+  padding: 0 0.3em;
+}
+
+ul {
+  list-style: square inside;
+}
+
+ol {
+  list-style: decimal inside;
+}
+
+ul li, ol li {
+  margin-left: 0.25em;
+}
+
+ul ul li, ul ol li,
+ol ul li, ol ol li {
+  margin-left: 1.5em;
+}
+
+nav ul, nav ol {
+  list-style: none;
+  list-style-image: none;
+}
+nav ul ul li, nav ul ol li, nav ul li, nav ol ul li, nav ol ol li, nav ol li {
+  margin-left: 0;
+  padding: 0;
+}
+
+dl dt {
+  font-weight: bold;
+  margin-top: 0.5em;
+}
+dl dt:after {
+  content: ":";
+}
+
+dl dd {
+  font-weight: normal;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  max-width: 100%;
+  margin: 0.5em 0;
+  width: 100%;
+}
+
+table caption {
+  font-size: 0.85em;
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: 0.5em;
+}
+
+table th, table td {
+  border-top: 1px solid #cccccc;
+  line-height: 1;
+  text-align: left;
+  padding: 0.6em;
+}
+
+table th {
+  font-weight: bold;
+  vertical-align: bottom;
+}
+
+table thead:first-child tr th,
+table thead:first-child tr td {
+  border-top: 0;
+}
+table tbody td > a:hover {
+  text-decoration: underline;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: #eee;
+}
+
+table tfoot {
+  font-size: 0.85em;
+}
+
+table tbody + tbody {
+  border-top: 2px solid #cccccc;
+}
+
