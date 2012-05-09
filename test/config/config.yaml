@@ -15,13 +15,18 @@ test:
   section_template: section.mustache
   base_dir: ./test/fixtures/
   manifest:
-    - file: sass/base/headings.sass
     - file: sass/mixins/font-size.sass
     - file: sass/visibility.sass
+    - file: sass/base/headings.sass
     - file: css/links.css
     - file: coffee/coffee.coffee
     - file: javascript/javascript.js
     - file: ruby/ruby.rb
     - file: markdown/markdown.md
       template: raw.mustache
+
+globs:
+  section_template: section.mustache
+  base_dir: ./test/fixtures/sass/
+  manifest: ".*"
 

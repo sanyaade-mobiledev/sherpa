@@ -17,30 +17,6 @@
   ],
   "test": [
     {
-      "test_fixtures_sass_base_headings": {
-        "raw": "## Headings\nDefault heading elements. Showcases how to document a normal style.\n\n#### Usage:\n\n    <h1>Google hearts h1 headings, but only use one per page.</h1>\n    <h2>Got sections? Try using h2 headings.</h2>\n    <h3>Good things come in threes, like tacos and h3 headings.</h3>\n\n### `h3.alt`\nSecond sherpa block within the `headings.sass` file describing an alternate heading.\n\n#### Examples:\n\n    <h3 class=\"alt\">alternate</h3>\n",
-        "markup": "<h2>Headings</h2>\n<br /><p>Default heading elements. Showcases how to document a normal style.</p>\n<br /><h4>Usage:</h4>\n<br /><pre><code>&lt;h1&gt;Google hearts h1 headings, but only use one per page.&lt;/h1&gt;\n&lt;h2&gt;Got sections? Try using h2 headings.&lt;/h2&gt;\n&lt;h3&gt;Good things come in threes, like tacos and h3 headings.&lt;/h3&gt;\n</code></pre>\n<br /><h3><code>h3.alt</code></h3>\n<br /><p>Second sherpa block within the <code>headings.sass</code> file describing an alternate heading.</p>\n<br /><h4>Examples:</h4>\n<br /><pre><code>&lt;h3 class=&quot;alt&quot;&gt;alternate&lt;/h3&gt;\n</code></pre>\n",
-        "title": "Headings",
-        "subnav": [
-          "h3.alt"
-        ],
-        "filepath": "./test/fixtures/sass/base/headings.sass",
-        "sherpas": [
-          {
-            "summary": "<h2>Headings</h2>\n<br /><p>Default heading elements. Showcases how to document a normal style.</p>\n",
-            "title": "Headings",
-            "usage": "<h4>Usage:</h4>\n<br /><pre><code>&lt;h1&gt;Google hearts h1 headings, but only use one per page.&lt;/h1&gt;\n&lt;h2&gt;Got sections? Try using h2 headings.&lt;/h2&gt;\n&lt;h3&gt;Good things come in threes, like tacos and h3 headings.&lt;/h3&gt;\n</code></pre>\n",
-            "usage_showcase": "<h1>Google hearts h1 headings, but only use one per page.</h1>\n<h2>Got sections? Try using h2 headings.</h2>\n<h3>Good things come in threes, like tacos and h3 headings.</h3>"
-          },
-          {
-            "summary": "<h3><code>h3.alt</code></h3>\n<br /><p>Second sherpa block within the <code>headings.sass</code> file describing an alternate heading.</p>\n",
-            "title": "h3.alt",
-            "examples": "<h4>Examples:</h4>\n<br /><pre><code>&lt;h3 class=&quot;alt&quot;&gt;alternate&lt;/h3&gt;\n</code></pre>\n"
-          }
-        ]
-      }
-    },
-    {
       "test_fixtures_sass_mixins_font-size": {
         "raw": "## Font-size\nUse `rems` to insert a font size with a pixel fallback.\nThis showcases how you might create a mixin block.\n\n#### Arguments:\n\n- `$target_px`              - The target font size in pixels\n- `$context:$context_px`    - [_Optional_] The context constraints of the user's base font size\n\n#### Notes:\n\n- **Heads Up!** Make sure not to include the `px`\n\n#### Examples:\n\n    h1\n      +font-size(48)\n",
         "markup": "<h2>Font-size</h2>\n<br /><p>Use <code>rems</code> to insert a font size with a pixel fallback.\nThis showcases how you might create a mixin block.</p>\n<br /><h4>Arguments:</h4>\n<br /><ul>\n<li><code>$target_px</code>              - The target font size in pixels</li>\n<li><code>$context:$context_px</code>    - [<em>Optional</em>] The context constraints of the user&#39;s base font size</li>\n</ul>\n<br /><h4>Notes:</h4>\n<br /><ul>\n<li><strong>Heads Up!</strong> Make sure not to include the <code>px</code></li>\n</ul>\n<br /><h4>Examples:</h4>\n<br /><pre><code>h1\n  +font-size(48)\n</code></pre>\n",
@@ -73,6 +49,30 @@
           {
             "summary": "<h2>Visibility mixins</h2>\n<br /><table><thead>\n<tr>\n<th>Mixin</th>\n<th>Params</th>\n<th>Usage</th>\n</tr>\n</thead><tbody>\n<tr>\n<td><code>+hidden</code></td>\n<td>none</td>\n<td>Totally hidden from screen readers and browsers</td>\n</tr>\n<tr>\n<td><code>+shown</code></td>\n<td>none</td>\n<td>Reverse the effects of hidden</td>\n</tr>\n<tr>\n<td><code>+visuallyhidden</code></td>\n<td>none</td>\n<td>Only visually hidden, still available to screen readers</td>\n</tr>\n<tr>\n<td><code>+visuallyshown</code></td>\n<td>none</td>\n<td>Reverse the settings applied by <code>.visuallyhidden</code></td>\n</tr>\n<tr>\n<td><code>+invisible</code></td>\n<td>none</td>\n<td>Hide visually and from screenreaders, but maintain layout</td>\n</tr>\n</tbody></table>\n",
             "title": "Visibility mixins"
+          }
+        ]
+      }
+    },
+    {
+      "test_fixtures_sass_base_headings": {
+        "raw": "## Headings\nDefault heading elements. Showcases how to document a normal style.\n\n#### Usage:\n\n    <h1>Google hearts h1 headings, but only use one per page.</h1>\n    <h2>Got sections? Try using h2 headings.</h2>\n    <h3>Good things come in threes, like tacos and h3 headings.</h3>\n\n### `h3.alt`\nSecond sherpa block within the `headings.sass` file describing an alternate heading.\n\n#### Examples:\n\n    <h3 class=\"alt\">alternate</h3>\n",
+        "markup": "<h2>Headings</h2>\n<br /><p>Default heading elements. Showcases how to document a normal style.</p>\n<br /><h4>Usage:</h4>\n<br /><pre><code>&lt;h1&gt;Google hearts h1 headings, but only use one per page.&lt;/h1&gt;\n&lt;h2&gt;Got sections? Try using h2 headings.&lt;/h2&gt;\n&lt;h3&gt;Good things come in threes, like tacos and h3 headings.&lt;/h3&gt;\n</code></pre>\n<br /><h3><code>h3.alt</code></h3>\n<br /><p>Second sherpa block within the <code>headings.sass</code> file describing an alternate heading.</p>\n<br /><h4>Examples:</h4>\n<br /><pre><code>&lt;h3 class=&quot;alt&quot;&gt;alternate&lt;/h3&gt;\n</code></pre>\n",
+        "title": "Headings",
+        "subnav": [
+          "h3.alt"
+        ],
+        "filepath": "./test/fixtures/sass/base/headings.sass",
+        "sherpas": [
+          {
+            "summary": "<h2>Headings</h2>\n<br /><p>Default heading elements. Showcases how to document a normal style.</p>\n",
+            "title": "Headings",
+            "usage": "<h4>Usage:</h4>\n<br /><pre><code>&lt;h1&gt;Google hearts h1 headings, but only use one per page.&lt;/h1&gt;\n&lt;h2&gt;Got sections? Try using h2 headings.&lt;/h2&gt;\n&lt;h3&gt;Good things come in threes, like tacos and h3 headings.&lt;/h3&gt;\n</code></pre>\n",
+            "usage_showcase": "<h1>Google hearts h1 headings, but only use one per page.</h1>\n<h2>Got sections? Try using h2 headings.</h2>\n<h3>Good things come in threes, like tacos and h3 headings.</h3>"
+          },
+          {
+            "summary": "<h3><code>h3.alt</code></h3>\n<br /><p>Second sherpa block within the <code>headings.sass</code> file describing an alternate heading.</p>\n",
+            "title": "h3.alt",
+            "examples": "<h4>Examples:</h4>\n<br /><pre><code>&lt;h3 class=&quot;alt&quot;&gt;alternate&lt;/h3&gt;\n</code></pre>\n"
           }
         ]
       }
@@ -185,6 +185,69 @@
         "filepath": "./test/fixtures/markdown/markdown.md",
         "sherpas": [
 
+        ]
+      }
+    }
+  ],
+  "globs": [
+    {
+      "test_fixtures_sass__base_headings": {
+        "raw": "## Headings\nDefault heading elements. Showcases how to document a normal style.\n\n#### Usage:\n\n    <h1>Google hearts h1 headings, but only use one per page.</h1>\n    <h2>Got sections? Try using h2 headings.</h2>\n    <h3>Good things come in threes, like tacos and h3 headings.</h3>\n\n### `h3.alt`\nSecond sherpa block within the `headings.sass` file describing an alternate heading.\n\n#### Examples:\n\n    <h3 class=\"alt\">alternate</h3>\n",
+        "markup": "<h2>Headings</h2>\n<br /><p>Default heading elements. Showcases how to document a normal style.</p>\n<br /><h4>Usage:</h4>\n<br /><pre><code>&lt;h1&gt;Google hearts h1 headings, but only use one per page.&lt;/h1&gt;\n&lt;h2&gt;Got sections? Try using h2 headings.&lt;/h2&gt;\n&lt;h3&gt;Good things come in threes, like tacos and h3 headings.&lt;/h3&gt;\n</code></pre>\n<br /><h3><code>h3.alt</code></h3>\n<br /><p>Second sherpa block within the <code>headings.sass</code> file describing an alternate heading.</p>\n<br /><h4>Examples:</h4>\n<br /><pre><code>&lt;h3 class=&quot;alt&quot;&gt;alternate&lt;/h3&gt;\n</code></pre>\n",
+        "title": "Headings",
+        "subnav": [
+          "h3.alt"
+        ],
+        "filepath": "./test/fixtures/sass//base/headings.sass",
+        "sherpas": [
+          {
+            "summary": "<h2>Headings</h2>\n<br /><p>Default heading elements. Showcases how to document a normal style.</p>\n",
+            "title": "Headings",
+            "usage": "<h4>Usage:</h4>\n<br /><pre><code>&lt;h1&gt;Google hearts h1 headings, but only use one per page.&lt;/h1&gt;\n&lt;h2&gt;Got sections? Try using h2 headings.&lt;/h2&gt;\n&lt;h3&gt;Good things come in threes, like tacos and h3 headings.&lt;/h3&gt;\n</code></pre>\n",
+            "usage_showcase": "<h1>Google hearts h1 headings, but only use one per page.</h1>\n<h2>Got sections? Try using h2 headings.</h2>\n<h3>Good things come in threes, like tacos and h3 headings.</h3>"
+          },
+          {
+            "summary": "<h3><code>h3.alt</code></h3>\n<br /><p>Second sherpa block within the <code>headings.sass</code> file describing an alternate heading.</p>\n",
+            "title": "h3.alt",
+            "examples": "<h4>Examples:</h4>\n<br /><pre><code>&lt;h3 class=&quot;alt&quot;&gt;alternate&lt;/h3&gt;\n</code></pre>\n"
+          }
+        ]
+      }
+    },
+    {
+      "test_fixtures_sass__mixins_font-size": {
+        "raw": "## Font-size\nUse `rems` to insert a font size with a pixel fallback.\nThis showcases how you might create a mixin block.\n\n#### Arguments:\n\n- `$target_px`              - The target font size in pixels\n- `$context:$context_px`    - [_Optional_] The context constraints of the user's base font size\n\n#### Notes:\n\n- **Heads Up!** Make sure not to include the `px`\n\n#### Examples:\n\n    h1\n      +font-size(48)\n",
+        "markup": "<h2>Font-size</h2>\n<br /><p>Use <code>rems</code> to insert a font size with a pixel fallback.\nThis showcases how you might create a mixin block.</p>\n<br /><h4>Arguments:</h4>\n<br /><ul>\n<li><code>$target_px</code>              - The target font size in pixels</li>\n<li><code>$context:$context_px</code>    - [<em>Optional</em>] The context constraints of the user&#39;s base font size</li>\n</ul>\n<br /><h4>Notes:</h4>\n<br /><ul>\n<li><strong>Heads Up!</strong> Make sure not to include the <code>px</code></li>\n</ul>\n<br /><h4>Examples:</h4>\n<br /><pre><code>h1\n  +font-size(48)\n</code></pre>\n",
+        "title": "Font-size",
+        "subnav": [
+
+        ],
+        "filepath": "./test/fixtures/sass//mixins/font-size.sass",
+        "sherpas": [
+          {
+            "summary": "<h2>Font-size</h2>\n<br /><p>Use <code>rems</code> to insert a font size with a pixel fallback.\nThis showcases how you might create a mixin block.</p>\n",
+            "title": "Font-size",
+            "arguments": "<h4>Arguments:</h4>\n<br /><ul>\n<li><code>$target_px</code>              - The target font size in pixels</li>\n<li><code>$context:$context_px</code>    - [<em>Optional</em>] The context constraints of the user&#39;s base font size</li>\n</ul>\n",
+            "notes": "<h4>Notes:</h4>\n<br /><ul>\n<li><strong>Heads Up!</strong> Make sure not to include the <code>px</code></li>\n</ul>\n",
+            "examples": "<h4>Examples:</h4>\n<br /><pre><code>h1\n  +font-size(48)\n</code></pre>\n"
+          }
+        ]
+      }
+    },
+    {
+      "test_fixtures_sass__visibility": {
+        "raw": "##  Visibility mixins\n\nMixin            |Params|Usage\n-----------------|------|----------------------------------------------\n`+hidden`        |none  |Totally hidden from screen readers and browsers\n`+shown`         |none  |Reverse the effects of hidden\n`+visuallyhidden`|none  |Only visually hidden, still available to screen readers\n`+visuallyshown` |none  |Reverse the settings applied by `.visuallyhidden`\n`+invisible`     |none  |Hide visually and from screenreaders, but maintain layout\n",
+        "markup": "<h2>Visibility mixins</h2>\n<br /><table><thead>\n<tr>\n<th>Mixin</th>\n<th>Params</th>\n<th>Usage</th>\n</tr>\n</thead><tbody>\n<tr>\n<td><code>+hidden</code></td>\n<td>none</td>\n<td>Totally hidden from screen readers and browsers</td>\n</tr>\n<tr>\n<td><code>+shown</code></td>\n<td>none</td>\n<td>Reverse the effects of hidden</td>\n</tr>\n<tr>\n<td><code>+visuallyhidden</code></td>\n<td>none</td>\n<td>Only visually hidden, still available to screen readers</td>\n</tr>\n<tr>\n<td><code>+visuallyshown</code></td>\n<td>none</td>\n<td>Reverse the settings applied by <code>.visuallyhidden</code></td>\n</tr>\n<tr>\n<td><code>+invisible</code></td>\n<td>none</td>\n<td>Hide visually and from screenreaders, but maintain layout</td>\n</tr>\n</tbody></table>\n",
+        "title": "Visibility mixins",
+        "subnav": [
+
+        ],
+        "filepath": "./test/fixtures/sass//visibility.sass",
+        "sherpas": [
+          {
+            "summary": "<h2>Visibility mixins</h2>\n<br /><table><thead>\n<tr>\n<th>Mixin</th>\n<th>Params</th>\n<th>Usage</th>\n</tr>\n</thead><tbody>\n<tr>\n<td><code>+hidden</code></td>\n<td>none</td>\n<td>Totally hidden from screen readers and browsers</td>\n</tr>\n<tr>\n<td><code>+shown</code></td>\n<td>none</td>\n<td>Reverse the effects of hidden</td>\n</tr>\n<tr>\n<td><code>+visuallyhidden</code></td>\n<td>none</td>\n<td>Only visually hidden, still available to screen readers</td>\n</tr>\n<tr>\n<td><code>+visuallyshown</code></td>\n<td>none</td>\n<td>Reverse the settings applied by <code>.visuallyhidden</code></td>\n</tr>\n<tr>\n<td><code>+invisible</code></td>\n<td>none</td>\n<td>Hide visually and from screenreaders, but maintain layout</td>\n</tr>\n</tbody></table>\n",
+            "title": "Visibility mixins"
+          }
         ]
       }
     }

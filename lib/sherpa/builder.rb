@@ -33,20 +33,26 @@ module Sherpa
     def get_manifest(manifest, base_dir)
       base = base_dir || ""
       files = []
-
-      # If the manifest is a listing of files..
-      if manifest[0].kind_of? String
-        manifest.each do |file|
-          files.push("#{base}#{file}")
-        end
-
-      # If the manifest is a listing of objects..
-      elsif manifest[0].kind_of? Hash
-        manifest.each do |file|
-          files.push("#{base}#{file['file']}")
+      if manifest.is_a? String
+        globbed = Dir["#{base}/**/*#{manifest}"]
+        globbed.each do |f|
+          files.push f
         end
       else
-        raise "Couldn't find the manifest of files."
+        # If the manifest is a listing of files..
+        if manifest[0].is_a? String
+          manifest.each do |file|
+            files.push("#{base}#{file}")
+          end
+
+        # If the manifest is a listing of objects..
+        elsif manifest[0].is_a? Hash
+          manifest.each do |file|
+            files.push("#{base}#{file['file']}")
+          end
+        else
+          raise "Couldn't find the manifest of files."
+        end
       end
       return files
     end

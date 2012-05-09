@@ -50,12 +50,25 @@ module Sherpa
           if key == "section_template"
             add_template(value)
           elsif key == "manifest"
+            if value.is_a? String
+              value = add_globs(value, item["base_dir"])
+              item["manifest"] = value
+            end
             value.each do |prop|
               add_template(prop["template"]) if prop["template"]
             end
           end
         end
       end
+    end
+
+    def add_globs(manifest, base)
+      files = []
+      globbed = Dir["#{base}/**/*#{manifest}"]
+      globbed.each do |f|
+        files.push f
+      end
+      files
     end
 
     # Add a template unless one already exists
