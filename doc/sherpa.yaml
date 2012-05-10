@@ -1,0 +1,32 @@
+
+settings:
+  title: sherpa.
+  repo: https://github.com/modeset/sherpa/
+  output_dir: ./doc/
+  layout_dir: ./doc/
+  layout_template: layout.mustache
+  default_section_template: section.mustache
+
+overview:
+  section_template: raw.mustache
+  base_dir: ./
+  manifest:
+    - README.md
+
+ruby:
+  base_dir: ./lib/
+  manifest:
+    - sherpa.rb
+    - sherpa/builder.rb
+    - sherpa/parser.rb
+    - sherpa/renderer.rb
+    - sherpa/utils.rb
+    - sherpa/layout.rb
+    - sherpa/version.rb
+
+styles:
+  base_dir: ./lib/assets/
+  manifest:
+    - sherpa-reset.css
+    - sherpa.css
+

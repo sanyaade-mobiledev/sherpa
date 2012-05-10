@@ -1,4 +1,8 @@
 
+#~
+# The builder is the hub for reading a configuration and looking for files
+# that need to be parsed into sherpa blocks.
+
 module Sherpa
   class Builder
 

@@ -12,9 +12,9 @@
 # `sherpa_section?`               |`line`                  |Tests to see if the line ends in `:`
 # `markdown_header?`              |`line`                  |Tests to see if the line ends starts with a markdown header
 # `is_markdown_file?`             |`line`                  |Tests to see if the file is markdown
-# `lorem?`                        |`line`                  |Tests to see if the current line contains a `~lorem|_|xsmall|small|medium|alt` tag
-# `lorem_type`                    |`line`                  |Returns the type of `~lorem` tag being used
-# `generate_lorem`                |`line`                  |Generates a lorem ipsum block based on the type of `~lorem` tag in use
+# `lorem?`                        |`line`                  |Tests to see if the current line contains a sherpa `lorem xsmall small medium alt` tag
+# `lorem_type`                    |`line`                  |Returns the type of sherpa `lorem` tag being used
+# `generate_lorem`                |`line`                  |Generates a lorem ipsum block based on the type of sherpa `lorem` tag in use
 # `trim_comment_markers`          |`line`                  |Remove comment markers, sherpa identifier, and EOL whitespace
 # `trim_left`                     |`line`, `content`       |Clean the left side of the comment block if the line ends with a line break
 # `trim_for_title`                |`line`                  |Trim out markdown headers for a plain text title

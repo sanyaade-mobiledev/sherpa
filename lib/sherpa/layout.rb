@@ -1,6 +1,8 @@
 
 require 'mustache'
 
+#~
+# Layout
 module Sherpa
   class Layout
 

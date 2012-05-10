@@ -25,3 +25,10 @@ task :debug do
   system "./bin/sherpa -i ./test/config/config.yaml -d"
 end
 
+desc 'Generate documentation for the sherpa repo'
+task :doc do
+  system "./bin/sherpa -i ./doc/sherpa.yaml"
+  FileUtils.cp "./lib/assets/sherpa-reset.css", "./doc/sherpa-reset.css"
+  FileUtils.cp "./lib/assets/sherpa.css", "./doc/sherpa.css"
+end
+

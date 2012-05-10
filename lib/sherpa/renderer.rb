@@ -1,5 +1,11 @@
 
 require 'redcarpet'
+
+#~
+# The renderer utilizes the [redcarpet gem](https://github.com/tanoku/redcarpet) 
+# for generating markdown. It renders each section within a sherpa block ignoring
+# the `usage_showcase` and `title` sections.
+
 module Sherpa
   class Renderer
 

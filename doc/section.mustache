@@ -1,0 +1,67 @@
+
+<section class="sherpa-section sherpa-clearfix" id="{{{id}}}">
+
+  {{#filepath}}
+    <div class="sherpa-filepath sherpa-clearfix">
+      <a href="{{{repo_url}}}" target="_blank">{{{filepath}}}</a>
+    </div>
+  {{/filepath}}
+
+  {{#block.sherpas}}
+    {{#summary}}
+      <div class="sherpa-summary sherpa-clearfix" id="{{{id}}}">
+        {{{summary}}}
+      </div>
+    {{/summary}}
+
+    {{#arguments}}
+      <div class="sherpa-description sherpa-clearfix">
+        {{{arguments}}}
+      </div>
+    {{/arguments}}
+
+    {{#states}}
+      <div class="sherpa-description sherpa-clearfix">
+        {{{states}}}
+      </div>
+    {{/states}}
+
+    {{#usage_showcase}}
+      <div class="sherpa-showcase sherpa-clearfix">
+        {{{usage_showcase}}}
+      </div>
+    {{/usage_showcase}}
+
+    {{#usage}}
+      <div class="sherpa-description sherpa-clearfix">
+        {{{usage}}}
+      </div>
+    {{/usage}}
+
+    {{#examples}}
+      <div class="sherpa-description sherpa-clearfix">
+        {{{examples}}}
+      </div>
+    {{/examples}}
+
+    {{#notes}}
+      <div class="sherpa-description sherpa-notes sherpa-clearfix">
+        {{{notes}}}
+      </div>
+    {{/notes}}
+
+    {{#warnings}}
+      <div class="sherpa-description sherpa-notes sherpa-warnings sherpa-clearfix">
+        {{{warnings}}}
+      </div>
+    {{/warnings}}
+
+    {{#alerts}}
+      <div class="sherpa-description sherpa-notes sherpa-alerts sherpa-clearfix">
+        {{{alerts}}}
+      </div>
+    {{/alerts}}
+  {{/block.sherpas}}
+
+</section>
+

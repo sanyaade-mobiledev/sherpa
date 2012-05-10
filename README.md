@@ -104,3 +104,10 @@ The configuration file is only applicable when generating layouts. Sherpa can ru
 - Abstract the Renderer so if someone wants to use Bluecloth, Discount or some other library they can
 - Possibly rewrite in C and use Ruby or Node bindings to make platform and framework agnostic
 
+## Globbing
+
+- .* = all files in directory
+- *.sass = only sass files
+- base/*.sass = only sass files within base
+- base/*.* all files within the base directory
+
