@@ -9,24 +9,34 @@ settings:
 overview:
   base_dir: ./
   manifest:
-    - README.md
+    files:
+      - README.md
 
 test:
   section_template: section.mustache
   base_dir: ./test/fixtures/
   manifest:
-    - file: sass/mixins/font-size.sass
-    - file: sass/visibility.sass
-    - file: sass/base/headings.sass
-    - file: css/links.css
-    - file: coffee/coffee.coffee
-    - file: javascript/javascript.js
-    - file: ruby/ruby.rb
-    - file: markdown/markdown.md
-      template: raw.mustache
+    files:
+      - sass/mixins/font-size.sass
+      - sass/visibility.sass
+      - sass/base/headings.sass
+      - css/links.css
+      - coffee/coffee.coffee
+      - javascript/javascript.js
+      - ruby/ruby.rb
+      - file: markdown/markdown.md
+        template: raw.mustache
 
 globs:
   section_template: section.mustache
-  base_dir: ./test/fixtures/sass/
-  manifest: ".*"
+  base_dir: ./test/fixtures/
+  manifest:
+    require_tree: sass/
+    require: "*.{js,coffee}"
+    files:
+      - file: markdown/markdown.md
+        template: raw.mustache
+      - css/links.css
+      - sass/base/headings.sass
+      - ruby/ruby.rb
 

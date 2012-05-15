@@ -18,26 +18,37 @@ class BuilderTest < Sherpa::Test
     assert_includes output["test"][0]["test_fixtures_sass_mixins_font-size"], :markup
   end
 
-  test "Builds a section from a test file" do
+  test "Builds a section from a test file from overview" do
     output = @builder.build_section @config["overview"]
     assert_includes output[0], "README"
     assert_includes output[0]["README"], :raw
     assert_includes output[0]["README"], :markup
+    assert_includes output[0]["README"], :base_dir
   end
 
-  test "Gets a manifest of files from a flat array" do
-    files = @builder.get_manifest(@config["overview"]["manifest"], "./")
-    assert_equal files, ["./README.md"]
+  test "Builds a section from a listing of files" do
+    output = @builder.build_section @config["test"]
+    item = output[0]["test_fixtures_sass_mixins_font-size"]
+    assert_includes output[0], "test_fixtures_sass_mixins_font-size"
+    assert_includes item, :raw
+    assert_equal item[:base_dir], "./test/fixtures/"
   end
 
-  test "Gets a manifest of files in a nested object" do
-    files = @builder.get_manifest(@config["test"]["manifest"], "./")
-    assert_includes files, "./coffee/coffee.coffee"
-  end
-
-  test "Gets a manifest of files from a glob" do
-    files = @builder.get_manifest(@config["globs"]["manifest"], "./test/fixtures/sass/")
-    assert_includes files, "./test/fixtures/sass//base/headings.sass"
+  test "Builds a section from a glob of files" do
+    output = @builder.build_section @config["globs"]
+    keys = []
+    output.each do |key|
+      key.each do |value|
+        keys.push value[0]
+      end
+    end
+    assert_includes keys, "test_fixtures_sass_mixins_font-size"
+    assert_includes keys, "test_fixtures_sass_visibility"
+    assert_includes keys, "test_fixtures_javascript_javascript"
+    assert_includes keys, "test_fixtures_coffee_coffee"
+    assert_includes keys, "test_fixtures_markdown_markdown"
+    assert_includes keys, "test_fixtures_css_links"
+    assert_includes keys, "test_fixtures_ruby_ruby"
   end
 
 end

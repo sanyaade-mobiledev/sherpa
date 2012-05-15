@@ -8,57 +8,39 @@ module Sherpa
 
     def initialize(config)
       @config = config
+      @base_dir = config["settings"]["base_dir"] || "./"
+      @base_template = config["settings"]["default_section_template"] || nil
       @output = nil
       @parser = Sherpa::Parser.new
       @renderer = Sherpa::Renderer.new
     end
 
     def build
-      @output = {}
+      @output = {settings: @config["settings"]}
       @config.each do |key, value|
-        @output[key] = build_section value unless key == "settings"
+        unless key == "settings"
+          @output[key] = build_section value
+        end
       end
       @output
     end
 
-    def build_section(config)
+    def build_section(section)
       outputs = []
-      files = get_manifest(config["manifest"], config["base_dir"] )
-      files.each do |file|
+      base_dir = section["base_dir"] || @base_dir
+      template = section["section_template"] || @base_template
+
+      manifest = Manifest.new(base_dir, template, section['manifest'])
+
+      manifest.files.each do |file|
         output = {}
         file_blocks = @parser.parse(file)
         file_blocks = @renderer.render_blocks(file_blocks)
-        output[Utils.uid(file)] = file_blocks
+        file_blocks[:base_dir] = base_dir
+        output[Utils.uid(file[:file])] = file_blocks
         outputs.push output
       end
       outputs
-    end
-
-    def get_manifest(manifest, base_dir)
-      base = base_dir || ""
-      files = []
-      if manifest.is_a? String
-        globbed = Dir["#{base}/**/*#{manifest}"]
-        globbed.each do |f|
-          files.push f
-        end
-      else
-        # If the manifest is a listing of files..
-        if manifest[0].is_a? String
-          manifest.each do |file|
-            files.push("#{base}#{file}")
-          end
-
-        # If the manifest is a listing of objects..
-        elsif manifest[0].is_a? Hash
-          manifest.each do |file|
-            files.push("#{base}#{file['file']}")
-          end
-        else
-          raise "Couldn't find the manifest of files."
-        end
-      end
-      return files
     end
 
   end

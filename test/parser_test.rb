@@ -5,7 +5,7 @@ class ParserTest < Sherpa::Test
 
   def setup
     @parser = Sherpa::Parser.new
-    @file_blocks = @parser.parse("./test/fixtures/sass/base/headings.sass")
+    @file_blocks = @parser.parse({file:"./test/fixtures/sass/base/headings.sass", template:"section.mustache"})
   end
 
   test "Parses a file with sherpa blocks and contains the root objects associated with a file" do
@@ -50,7 +50,7 @@ class ParserTest < Sherpa::Test
   end
 
   test "Handles a markdown file of handing it's contents to the raw tag" do
-    @mkd = @parser.parse("./test/fixtures/markdown/markdown.md")
+    @mkd = @parser.parse({file:"./test/fixtures/markdown/markdown.md", template:"raw.mustache"})
     assert_includes @mkd[:raw], "Markdown Test File"
     assert_equal @mkd[:title], "Markdown"
     assert_equal @mkd[:filepath], "./test/fixtures/markdown/markdown.md"

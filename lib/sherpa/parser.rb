@@ -7,11 +7,13 @@ module Sherpa
     def initialize()
     end
 
-    def parse(file_path)
+    def parse(list)
+      file_path = list[:file]
       @blocks = {}
       @blocks[:raw] = ''
       @blocks[:markup] = ''
       @blocks[:title] = ''
+      @blocks[:template] = list[:template]
       @blocks[:subnav] = []
       @blocks[:filepath] = file_path
       @blocks[:sherpas] = []

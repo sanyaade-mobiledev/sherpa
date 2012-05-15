@@ -6,18 +6,13 @@ class LayoutTest < Sherpa::Test
   def setup
     @config = YAML.load(File.read('./test/config/config.yaml'))
     @blocks = JSON.pretty_generate(Sherpa::Builder.new(@config).build)
-    @layout = Sherpa::Layout.new(@config, @blocks)
+    @layout = Sherpa::Layout.new("./test/views/sherpa.json")
   end
 
   test "Sets default global settings based on the config file" do
     assert_equal @layout.output_dir, "./test/views/"
     assert_equal @layout.layout_dir, "./lib/layouts/"
     assert_equal @layout.stache_layout, File.read(File.join(@layout.layout_dir, @config["settings"]["layout_template"]))
-  end
-
-  test "Sets section templates based on a default template unless one already exists" do
-    assert_equal @layout.config["overview"]["section_template"], 'raw.mustache'
-    assert_equal @layout.config["test"]["section_template"], 'section.mustache'
   end
 
   test "Preloads all templates found in a config file" do
@@ -35,12 +30,6 @@ class LayoutTest < Sherpa::Test
     @layout.add_template('new.mustache')
     assert_equal @layout.templates.size, 3
     assert @layout.templates["new_mustache"]
-  end
-
-  test "Gets a section template based on a key and index" do
-    assert_equal @layout.get_section_template("overview", 0), 'raw_mustache'
-    assert_equal @layout.get_section_template("test", 0), 'section_mustache'
-    assert_equal @layout.get_section_template("test", 7), 'raw_mustache'
   end
 
   test "Concatenates a list of primary nav elements based off sections from sherpa documents" do
