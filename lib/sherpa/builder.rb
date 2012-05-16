@@ -41,24 +41,6 @@ module Sherpa
       outputs
     end
 
-    # def intermediate_json
-      # json = d
-      # puts json unless debug == false
-
-      # File.open("#{output_dir}sherpa.json", "w") do |file|
-        # file.write(json)
-      # end
-    # end
-
-    # def render
-
-      # layout = Sherpa::Layout.new("#{output_dir}sherpa.json")
-      # layout.render_and_save
-    # end
-
-    # def output_dir
-      # config["settings"]["output_dir"] || './sherpa'
-    # end
   end
 end
 

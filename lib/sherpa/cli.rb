@@ -56,7 +56,8 @@ module Sherpa
         file.write(json)
       end
 
-      layout = Sherpa::Layout.new("#{output_dir}sherpa.json")
+      # layout = Sherpa::Layout.new("#{output_dir}sherpa.json")
+      layout = Sherpa::Layout.new(json)
       layout.render_and_save
     end
   end
