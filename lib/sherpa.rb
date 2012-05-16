@@ -1,13 +1,13 @@
 
 require 'json'
 require 'yaml'
-require './lib/sherpa/builder'
-require './lib/sherpa/manifest'
-require './lib/sherpa/parser'
-require './lib/sherpa/renderer'
-require './lib/sherpa/layout'
-require './lib/sherpa/utils'
-require './lib/sherpa/version'
+require 'sherpa/builder'
+require 'sherpa/manifest'
+require 'sherpa/parser'
+require 'sherpa/renderer'
+require 'sherpa/layout'
+require 'sherpa/utils'
+require 'sherpa/version'
 
 #~
 # Defines the module and `requires` needed files for sherpa as well as `json`, `yaml`

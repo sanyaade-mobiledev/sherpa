@@ -1,6 +1,5 @@
-
 require 'minitest/autorun'
-require './lib/sherpa'
+require 'sherpa'
 
 module Sherpa
   class Test < MiniTest::Unit::TestCase
