@@ -3,61 +3,7 @@ require 'rubygems'
 
 $LOAD_PATH.unshift(File.dirname(__FILE__) + '/../lib') unless $LOAD_PATH.include?(File.dirname(__FILE__) + '/../lib')
 
-require 'optparse'
 require 'sherpa'
-
-def usage
-  puts ARGV.options
-  abort
-end
-
-def abort_with_note(message=nil)
-  $stderr.puts message if message
-  abort "See `sherpa --help' for usage information."
-end
-
-input = "./"
-debug = false
-options = {}
-ARGV.options { |o|
-  o.on("-i", "--input=FILE") { |file| input += file }
-  o.on("-d", "--debug")      { |value| debug = true }
-  o.on_tail("-h", "--help")  { usage }
-  o.parse!
-} or abort_with_note
-
-blocks = nil
-
-# Load the configuration file
-filetype = File.extname(input).gsub(/\./, "")
-if filetype == 'json' || filetype == 'yaml'
-  config = (filetype == 'json') ? JSON.parse(File.read(input)) : YAML.load(File.read(input))
-else
-  abort_with_note("Sherpa requires a .json or .yaml config file")
-end
-
-# Send out for the build
-if config
-  builder = Sherpa::Builder.new(config)
-  blocks = builder.build
-else
-  abort_with_note "Sherpa requires an input file!"
-end
-
-# Render outputs
-if blocks
-  output_dir = config["settings"]["output_dir"]
-  json = JSON.pretty_generate(blocks)
-  puts json unless debug == false
-
-  File.open("#{output_dir}sherpa.json", "w") do |file|
-    file.write(json)
-  end
-
-  layout = Sherpa::Layout.new("#{output_dir}sherpa.json")
-  layout.render_and_save
-
-else
-  abort_with_note "No blocks found!"
-end
+require 'sherpa/cli'
+Sherpa::CLI.new()
 
