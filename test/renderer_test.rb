@@ -18,14 +18,20 @@ class RendererTest < Sherpa::Test
     title = "title not converted"
     raw = "# Title \nThe Summary"
     markup = "<h1>Title</h1>\n<br /><p>The Summary</p>"
-    block = {:raw=>raw, :markup=>"", :sherpas=>[{"summary"=>"", :title=>title, :usage_showcase=>usage_showcase}]}
+    definition = Sherpa::Definition.new
+    definition.raw = raw
 
-    result = @renderer.render_blocks block
+    block =  Sherpa::Block.new(title: title)
+    block['summary'] = ''
+    block[:usage_showcase] = usage_showcase
+    definition.blocks << block
+
+    result = @renderer.render_blocks definition.to_hash
     assert_equal result[:raw], raw
     assert_includes result[:markup], "<h1>Title</h1>"
     assert_includes result[:markup], "<br /><p>The Summary</p>"
-    assert_equal result[:sherpas][0][:title], title
-    assert_equal result[:sherpas][0][:usage_showcase], usage_showcase
+    assert_equal result[:blocks][0]['title'], title
+    assert_equal result[:blocks][0][:usage_showcase], usage_showcase
   end
 
 end

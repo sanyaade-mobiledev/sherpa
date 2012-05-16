@@ -30,17 +30,15 @@ module Sherpa
     end
 
     # Render all blocks passed within a file
-    def render_blocks(blocks)
-      blocks[:markup] = render(blocks[:raw])
-      subblocks = blocks[:sherpas]
+    def render_blocks(definition)
+      definition[:markup] = render(definition[:raw])
+      subblocks = definition[:blocks]
       subblocks.each do |block|
-        block.each do |key, value|
-          if key.to_s != 'usage_showcase' && key.to_s != 'title'
-            block[key] = render(value)
-          end
+        block.reject{|key, value| [:usage_showcase, 'title'].include?(key)}.each do |key, value|
+          block[key] = render(value) unless value.nil?
         end
       end
-      blocks
+      definition
     end
 
   end

@@ -9,14 +9,9 @@ module Sherpa
 
     def parse(list)
       file_path = list[:file]
-      @blocks = {}
-      @blocks[:raw] = ''
-      @blocks[:markup] = ''
-      @blocks[:title] = ''
-      @blocks[:template] = list[:template]
-      @blocks[:subnav] = []
-      @blocks[:filepath] = file_path
-      @blocks[:sherpas] = []
+      @definition = Definition.new
+      @definition.template = list[:template]
+      @definition.filepath = file_path
       is_mkd = Utils.is_markdown_file?(file_path)
 
       File.open file_path do |file|
@@ -30,8 +25,8 @@ module Sherpa
         file.each_line do |line|
 
           if is_mkd
-            @blocks[:raw] += line
-            @blocks[:title] = File.basename(file_path, File.extname(file_path)).capitalize
+            @definition.raw += line
+            @definition.title = File.basename(file_path, File.extname(file_path)).capitalize
             next
           end
 
@@ -39,11 +34,11 @@ module Sherpa
           if Utils.sherpa_block?(line)
             in_block = true
             in_multi = Utils.multi_comment_start?(line)
-            current_block = {}
+            current_block = Block.new
             current_key = 'summary'
             current_block[current_key] = ''
             block_num += 1
-            @blocks[:sherpas].push(current_block)
+            @definition.blocks.push(current_block)
           end
 
           if in_multi && Utils.multi_comment_end?(line)
@@ -58,7 +53,7 @@ module Sherpa
             # Trim left spacing unless this is a `pre` block, allows for breaks in comments, but not in output
             # Seems like there could be a more efficient way here...
             if !Utils.pre_line?(current_line)
-              current_line = Utils.trim_left(current_line, @blocks[:raw])
+              current_line = Utils.trim_left(current_line, @definition.raw)
             end
 
             # Generate the title and trim up the colon for the very first block in the set
@@ -69,8 +64,8 @@ module Sherpa
                 current_line = "## #{File.basename(file_path, File.extname(file_path)).capitalize}"
               end
               title = Utils.trim_for_title current_line
-              @blocks[:title] = title
-              current_block[:title] = title
+              @definition.title = title
+              current_block.title = title
               current_line = Utils.trim_colon(current_line)
               first_line = false
             end
@@ -78,8 +73,8 @@ module Sherpa
             # If not in the first sherpa block and in another one with a md heading, throw it in an array
             if block_num > 1 && Utils.markdown_header?(current_line)
               title = Utils.trim_for_title current_line
-              @blocks[:subnav].push title
-              current_block[:title] = title
+              @definition.subnav.push title
+              current_block.title = title
             end
 
             # If line ends with ":" turn it into an h4 and generate a new key for storage off it's name
@@ -104,7 +99,7 @@ module Sherpa
             end
 
             # Push the current line into the raw object and the current key block
-            @blocks[:raw] += "#{current_line}\n"
+            @definition.raw += "#{current_line}\n"
             current_block[current_key] += "#{current_line}\n"
 
           else
@@ -112,20 +107,8 @@ module Sherpa
           end
         end
       end
-      @blocks[:sherpas] = tidy_showcase(@blocks[:sherpas])
-      @blocks
+      @definition
     end
-
-    # Strip out the first blank line within the usage showcase block
-    def tidy_showcase(blocks)
-      blocks.each do |block|
-        if block[:usage_showcase] != nil
-          block[:usage_showcase] = block[:usage_showcase].gsub(/^\n/, "")
-        end
-      end
-      blocks
-    end
-
   end
 end
 

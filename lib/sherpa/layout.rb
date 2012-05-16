@@ -18,7 +18,7 @@ module Sherpa
     # Set default global properties from the settings item
     def set_defaults
       settings = @config["settings"]
-      @output_dir = settings["output_dir"] || "./"
+      @output_dir = settings["output_dir"] || "./sherpa"
       @layout_dir = settings["layout_dir"] || "./lib/layouts/"
       @stache_layout = File.read(File.join(@layout_dir, settings["layout_template"] || "layout.mustache"))
     end
@@ -33,14 +33,10 @@ module Sherpa
 
     # Find templates within sections and manifests
     def find_templates
-      @config.each do |name, item|
+      @config.each do |name, section|
         unless name == "settings"
-          item.each do |id|
-            id.each do |key, sets|
-              sets.each do |set, value|
-                add_template(value) if set == "template"
-              end
-            end
+          section.each do |file|
+            add_template file['template']
           end
         end
       end
@@ -54,9 +50,9 @@ module Sherpa
 
     def render_and_save
       primary = render_primary_nav
-      @config.each do |key, item|
+      @config.each do |key, section|
         unless key == "settings"
-          page = render_page key, item
+          page = render_page key, section
           save_page key, primary, page[:aside], page[:html]
         end
       end
@@ -67,46 +63,44 @@ module Sherpa
       main_nav = ""
       @config.each do |key, value|
         unless key == "settings"
-          main_nav += "<li><a href='/#{key}.html'>#{key.capitalize}</a></li>"
+          path = @output_dir.sub(/^\./,"")
+          main_nav += "<li><a href='#{path}#{key}.html'>#{key.capitalize}</a></li>"
         end
       end
       main_nav
     end
 
-    def render_page(key, item)
+    def render_page(key, file_definitions)
       html = ""
       aside = ""
       section = nil
       repo = @config["settings"]["repo"]
-      item.each do |blocks|
-        blocks.each do |name, block|
+      file_definitions.each do |file_def|
+        # Setup some shared values
+        subnav = file_def["subnav"]
+        repo_url = "#{repo}#{file_def["filepath"].gsub(/^\./, 'blob/master')}"
+        filepath = Utils.pretty_path(file_def["base_dir"], file_def["filepath"])
+        id = Utils.uid(filepath).gsub(/_/, '-')
+        template = file_def["template"].gsub(/\./,"_")
 
-          # Setup some shared values
-          subnav = block["subnav"]
-          repo_url = "#{repo}#{block["filepath"].gsub(/^\./, 'blob/master')}"
-          filepath = Utils.pretty_path(block["base_dir"], block["filepath"])
-          id = Utils.uid(filepath).gsub(/_/, '-')
-          template = block["template"].gsub(/\./,"_")
-
-          # Build the aside navigation and headers
-          cur_section = !!(filepath =~ /\//) ? filepath.split('/')[0] : "root"
-          if cur_section != section
-            section = cur_section
-            aside += "<li class='sherpa-nav-header'>#{section.capitalize}</li>"
-          end
-          aside += "<li><a href='##{id}'>#{block["title"]}</a></li>"
-
-          # If an aside navigation has a sub navigation add it
-          if !subnav.empty?
-            subnav.each_with_index do |item, n|
-              link_id = "#{id}-#{item}"
-              aside += "<li class='sherpa-subnav'><a href='##{link_id}'>#{item}</a></li>"
-              block["sherpas"][n + 1][:id] = "#{link_id}"
-            end
-          end
-
-          html += Mustache.render(@templates[template], block: block, repo_url: repo_url, filepath: filepath, id: id)
+        # Build the aside navigation and headers
+        cur_section = !!(filepath =~ /\//) ? filepath.split('/')[0] : "root"
+        if cur_section != section
+          section = cur_section
+          aside += "<li class='sherpa-nav-header'>#{section.capitalize}</li>"
         end
+        aside += "<li><a href='##{id}'>#{file_def["title"]}</a></li>"
+
+        # If an aside navigation has a sub navigation add it
+        if !subnav.empty?
+          subnav.each_with_index do |item, n|
+            link_id = "#{id}-#{item}"
+            aside += "<li class='sherpa-subnav'><a href='##{link_id}'>#{item}</a></li>"
+            file_def["blocks"][n + 1][:id] = "#{link_id}"
+          end
+        end
+
+        html += Mustache.render(@templates[template], file: file_def, repo_url: repo_url, filepath: filepath, id: id)
       end
       {aside: aside, html: html}
     end

@@ -10,23 +10,9 @@
   }
   ,"overview": {
      "base_dir": "./"
-    ,"manifest": [
-       "README.md"
-    ]
-  }
-  ,"test": {
-     "section_template": "section.mustache"
-    ,"base_dir": "./test/fixtures/"
-    ,"manifest": [
-       {"file":"markdown/markdown.md", "template":"raw.mustache"}
-      ,{"file":"ruby/ruby.rb"}
-      ,{"file":"javascript/javascript.js"}
-      ,{"file":"coffee/coffee.coffee"}
-      ,{"file":"css/links.css"}
-      ,{"file":"sass/visibility.sass"}
-      ,{"file":"sass/mixins/font-size.sass"}
-      ,{"file":"sass/base/headings.sass"}
-    ]
+    ,"manifest": {
+      "files": [ "README.md" ]
+    }
   }
 }
 

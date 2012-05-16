@@ -33,16 +33,32 @@ module Sherpa
       manifest = Manifest.new(base_dir, template, section['manifest'])
 
       manifest.files.each do |file|
-        output = {}
-        file_blocks = @parser.parse(file)
-        file_blocks = @renderer.render_blocks(file_blocks)
-        file_blocks[:base_dir] = base_dir
-        output[Utils.uid(file[:file])] = file_blocks
+        definition = @parser.parse(file)
+        definition.base_dir = base_dir
+        output = @renderer.render_blocks(definition.to_hash)
         outputs.push output
       end
       outputs
     end
 
+    # def intermediate_json
+      # json = d
+      # puts json unless debug == false
+
+      # File.open("#{output_dir}sherpa.json", "w") do |file|
+        # file.write(json)
+      # end
+    # end
+
+    # def render
+
+      # layout = Sherpa::Layout.new("#{output_dir}sherpa.json")
+      # layout.render_and_save
+    # end
+
+    # def output_dir
+      # config["settings"]["output_dir"] || './sherpa'
+    # end
   end
 end
 
