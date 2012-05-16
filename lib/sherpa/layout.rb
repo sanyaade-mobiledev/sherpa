@@ -96,6 +96,7 @@ module Sherpa
           subnav.each_with_index do |item, n|
             link_id = "#{id}-#{item}"
             aside += "<li class='sherpa-subnav'><a href='##{link_id}'>#{item}</a></li>"
+            # skip first block because it is a file summary so always add one to blocks to get the right block that matches the subnav
             file_def["blocks"][n + 1][:id] = "#{link_id}"
           end
         end

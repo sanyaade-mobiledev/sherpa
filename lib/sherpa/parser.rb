@@ -3,6 +3,7 @@
 # Parser
 module Sherpa
   class Parser
+    attr_accessor :current_block, :current_key, :block_num
 
     def initialize()
     end
@@ -12,102 +13,143 @@ module Sherpa
       @definition = Definition.new
       @definition.template = list[:template]
       @definition.filepath = file_path
-      is_mkd = Utils.is_markdown_file?(file_path)
 
       File.open file_path do |file|
-        in_block = false
-        in_multi = false
-        block_num = 0
-        first_line = true
-        current_block = nil
-        current_key = nil
-
-        file.each_line do |line|
-
-          if is_mkd
-            @definition.raw += line
-            @definition.title = File.basename(file_path, File.extname(file_path)).capitalize
-            next
-          end
-
-          # Entering a block
-          if Utils.sherpa_block?(line)
-            in_block = true
-            in_multi = Utils.multi_comment_start?(line)
-            current_block = Block.new
-            current_key = 'summary'
-            current_block[current_key] = ''
-            block_num += 1
-            @definition.blocks.push(current_block)
-          end
-
-          if in_multi && Utils.multi_comment_end?(line)
-            in_multi = false
-          end
-
-          if in_block && Utils.line_comment?(line) || in_multi
-
-            # Trim up the lines from comment markers and right spacing
-            current_line = Utils.trim_comment_markers(line)
-
-            # Trim left spacing unless this is a `pre` block, allows for breaks in comments, but not in output
-            # Seems like there could be a more efficient way here...
-            if !Utils.pre_line?(current_line)
-              current_line = Utils.trim_left(current_line, @definition.raw)
-            end
-
-            # Generate the title and trim up the colon for the very first block in the set
-            if first_line
-              if Utils.sherpa_section?(current_line) || !current_line.empty?
-                current_line = "## #{current_line}\n" unless Utils.markdown_header?(current_line)
-              else current_line.empty?
-                current_line = "## #{File.basename(file_path, File.extname(file_path)).capitalize}"
-              end
-              title = Utils.trim_for_title current_line
-              @definition.title = title
-              current_block.title = title
-              current_line = Utils.trim_colon(current_line)
-              first_line = false
-            end
-
-            # If not in the first sherpa block and in another one with a md heading, throw it in an array
-            if block_num > 1 && Utils.markdown_header?(current_line)
-              title = Utils.trim_for_title current_line
-              @definition.subnav.push title
-              current_block.title = title
-            end
-
-            # If line ends with ":" turn it into an h4 and generate a new key for storage off it's name
-            if Utils.sherpa_section?(current_line)
-              current_line = Utils.add_markdown_header(current_line)
-              current_key = Utils.trim_sherpa_section_for_key(current_line)
-              current_block[current_key] = ''
-            end
-
-            # If the line contains an `~lorem` tag, generate the lorem ipsum copy
-            if Utils.lorem?(current_line)
-              current_line = Utils.generate_lorem(current_line)
-            end
-
-            # If in a usage block create a showcase block that gets rendered as straight markup (style guides)
-            if current_key == 'usage'
-              if current_block[:usage_showcase]
-                current_block[:usage_showcase] += current_line.gsub(/^\s{4}/, "\n")
-              else
-                current_block[:usage_showcase] = ''
-              end
-            end
-
-            # Push the current line into the raw object and the current key block
-            @definition.raw += "#{current_line}\n"
-            current_block[current_key] += "#{current_line}\n"
-
-          else
-            in_block = false
-          end
+        if Utils.is_markdown_file?(file_path)
+          parse_markdown_file(file)
+        else
+          parse_code_file(file)
         end
       end
       @definition
+    end
+
+
+    def titleized_filepath
+      File.basename(@definition.filepath, File.extname(@definition.filepath)).capitalize
+    end
+
+    def parse_markdown_file(file)
+      @definition.title = titleized_filepath
+      file.each_line do |line|
+        @definition.raw += line
+      end
+    end
+
+    def parse_code_file(file)
+      self.block_num = 0
+      is_multi = false
+      file.each_line do |line|
+        if Utils.sherpa_block?(line)
+          is_multi = Utils.multi_comment_start?(line)
+          setup_new_block
+          parse_first_line line if block_num == 1
+        elsif in_block?(line, is_multi)
+          parse_line line
+        else
+          finalize_block
+          is_multi = false
+        end
+      end
+    end
+
+    def in_block?(line, is_multi)
+      return false if self.current_block.nil?
+      if is_multi
+        return !Utils.multi_comment_end?(line)
+      else
+        return Utils.line_comment?(line)
+      end
+    end
+
+    def finalize_block
+      self.current_block = nil
+      self.current_key = nil
+    end
+
+    def setup_new_block
+      self.current_block = Block.new
+      self.current_key = 'summary'
+      current_block[current_key] = ''
+      self.block_num += 1
+      @definition.blocks.push(current_block)
+    end
+
+    def parse_first_line(line)
+      current_line = Utils.trim_comment_markers(line)
+
+      if Utils.sherpa_section?(current_line) || !current_line.empty?
+        current_line = "## #{current_line}\n" unless Utils.markdown_header?(current_line)
+      else current_line.empty?
+        current_line = "## #{titleized_filepath}"
+      end
+      title = Utils.trim_for_title current_line
+      @definition.title = title
+      current_block.title = title
+
+      current_line = Utils.trim_colon(current_line)
+
+      add_line(current_line)
+    end
+
+    def parse_line(line)
+      current_line = normalize_line(line)
+      set_block_title(current_line)
+      current_line = generate_lorem(current_line)
+      current_line = block_section(current_line)
+      add_line(current_line)
+    end
+
+    def block_section(current_line)
+      # If line ends with ":" turn it into an h4 and generate a new key for storage off it's name
+      if Utils.sherpa_section?(current_line)
+        current_line = Utils.add_markdown_header(current_line)
+        self.current_key = Utils.trim_sherpa_section_for_key(current_line)
+        current_block[current_key] = ''
+      end
+
+      # If in a usage block create a showcase block that gets rendered as straight markup (style guides)
+      if current_key == 'usage'
+        if current_block[:usage_showcase]
+          current_block[:usage_showcase] += current_line.gsub(/^\s{4}/, "\n")
+        else
+          current_block[:usage_showcase] = ''
+        end
+      end
+      current_line
+    end
+
+    def normalize_line(line)
+      current_line = Utils.trim_comment_markers(line)
+      # Trim left spacing unless this is a `pre` block, allows for breaks in comments, but not in output
+      # Seems like there could be a more efficient way here...
+      if !Utils.pre_line?(current_line)
+        current_line = Utils.trim_left(current_line, @definition.raw)
+      end
+      current_line
+    end
+
+    def set_block_title(current_line)
+      # If not in the first sherpa block and in another one with a md heading, throw it in an array
+      if block_num > 1 && Utils.markdown_header?(current_line)
+        title = Utils.trim_for_title current_line
+        @definition.subnav.push title
+        current_block.title = title
+      end
+    end
+
+    def generate_lorem(current_line)
+      # If the line contains an `~lorem` tag, generate the lorem ipsum copy
+      if Utils.lorem?(current_line)
+        current_line = Utils.generate_lorem(current_line)
+      end
+      current_line
+    end
+
+    def add_line(line)
+      # Push the current line into the raw object and the current key block
+      @definition.raw += "#{line}\n"
+      current_block[current_key] += "#{line}\n"
     end
   end
 end

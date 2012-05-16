@@ -123,10 +123,6 @@ module Sherpa
       cleaned.strip.downcase
     end
 
-    def self.uid(file)
-      file.gsub(/^\./, '').gsub(/^\//, '').gsub(/\//, '_').split('.')[0]
-    end
-
     def self.add_markdown_header(line)
       line = "#### #{line}\n" unless !!(line =~ /^#/)
       line
@@ -135,6 +131,10 @@ module Sherpa
     def self.pretty_path(base_path, filename)
       expression = Regexp.new(Regexp.escape(base_path.gsub(/^\./, "")))
       filename.gsub(/^\./, "").gsub(expression,"")
+    end
+
+    def self.uid(file)
+      file.gsub(/^\./, '').gsub(/^\//, '').gsub(/\//, '_').split('.')[0]
     end
 
   end
