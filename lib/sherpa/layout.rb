@@ -114,7 +114,7 @@ module Sherpa
     def save_page(key, primary_nav, aside_nav, html)
       title = @config["settings"]["title"]
       repo = @config["settings"]["repo"]
-      layout = Mustache.render(@stache_layout, title: title, nav: primary_nav, aside: aside_nav, layout: html, repo: repo)
+      layout = Mustache.render(@stache_layout, title: title, nav: primary_nav, aside: aside_nav, layout: html, repo: repo, page: key)
       File.open("#{@output_dir}#{key}.html", "w") do |file|
         file.write(layout)
       end
