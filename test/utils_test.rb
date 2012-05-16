@@ -1,5 +1,5 @@
 
-require './test/helper'
+require 'helper'
 
 class UtilsTest < Sherpa::Test
 
