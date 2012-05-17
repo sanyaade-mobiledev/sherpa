@@ -49,20 +49,42 @@ module Sherpa
       blocks = builder.build
 
       abort_with_note "No blocks found!" unless blocks
-
-      # Render outputs
-      output_dir = blocks[:settings]["output_dir"]
       puts JSON.pretty_generate(blocks) unless debug == false
 
-      layout = Sherpa::Layout.new(blocks)
-      layout.render_and_save
-
-      # File.open("#{output_dir}sherpa.json", "w") do |file|
-        # file.write(json)
-      # end
-
+      # Render outputs
+      save_layouts blocks
+      # save_as_json blocks
+      # save_single_markdown blocks
       0
     end
+
+    def save_layouts(blocks)
+      layout = Sherpa::Layout.new blocks
+      layout.render_and_save
+    end
+
+    def save_as_json(blocks)
+      json = JSON.pretty_generate(blocks)
+
+      File.open("#{blocks[:settings]["output_dir"]}sherpa.json", "w") do |file|
+        file.write(json)
+      end
+    end
+
+    def save_single_markdown(blocks)
+      mkd = ""
+      blocks.each do |key, value|
+        if key.to_s != "settings"
+          value.each do |definition|
+            mkd += definition[:raw]
+          end
+        end
+      end
+      File.open("#{blocks[:settings]["output_dir"]}sherpa.md", "w") do |file|
+        file.write(mkd)
+      end
+    end
+
   end
 end
 
