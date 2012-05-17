@@ -26,6 +26,8 @@ test:
       - ruby/ruby.rb
       - file: markdown/markdown.md
         template: raw.mustache
+      - file: root.md
+        template: raw.mustache
 
 globs:
   section_template: section.mustache
