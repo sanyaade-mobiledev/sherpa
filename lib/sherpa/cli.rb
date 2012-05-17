@@ -1,14 +1,18 @@
+
 require 'optparse'
 
 module Sherpa
   class CLI
-    attr_accessor :input, :debug, :options
+    attr_accessor :input,
+                  :debug,
+                  :options
 
-    def initialize
-      self.input = "./"
+    def initialize(args)
+      # puts args
+      self.input = ""
       self.debug = false
       self.options = {}
-      ARGV.options { |o|
+      args.options { |o|
         o.on("-i", "--input=FILE") { |file| self.input += file }
         o.on("-d", "--debug")      { |value| self.debug = true }
         o.on_tail("-h", "--help")  { usage }
@@ -19,7 +23,7 @@ module Sherpa
     end
 
     def usage
-      puts ARGV.options
+      puts args.options
       abort
     end
 
@@ -59,6 +63,7 @@ module Sherpa
       layout = Sherpa::Layout.new("#{output_dir}sherpa.json")
       # layout = Sherpa::Layout.new(json)
       layout.render_and_save
+      0
     end
   end
 end
