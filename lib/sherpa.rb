@@ -8,7 +8,6 @@ require 'sherpa/block'
 require 'sherpa/parser'
 require 'sherpa/renderer'
 require 'sherpa/layout'
-require 'sherpa/utils'
 require 'sherpa/version'
 
 #~

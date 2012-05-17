@@ -1,4 +1,6 @@
 
+require 'sherpa/line_inspector'
+
 #~
 # Parser
 module Sherpa
@@ -6,6 +8,7 @@ module Sherpa
     attr_accessor :current_block, :current_key, :block_num
 
     def initialize()
+      @inspector = Sherpa::Parsing::LineInspector
     end
 
     def titleized_filepath
@@ -19,7 +22,7 @@ module Sherpa
       @definition.filepath = file_path
 
       File.open file_path do |file|
-        if Utils.is_markdown_file?(file_path)
+        if @inspector.is_markdown_file?(file_path)
           parse_markdown_file(file)
         else
           parse_code_file(file)
@@ -39,8 +42,8 @@ module Sherpa
       self.block_num = 0
       is_multi = false
       file.each_line do |line|
-        if Utils.sherpa_block?(line)
-          is_multi = Utils.multi_comment_start?(line)
+        if @inspector.sherpa_block?(line)
+          is_multi = @inspector.multi_comment_start?(line)
           setup_new_block
           parse_first_line line if block_num == 1
         elsif in_block?(line, is_multi)
@@ -61,27 +64,27 @@ module Sherpa
     end
 
     def parse_first_line(line)
-      current_line = Utils.trim_comment_markers(line)
+      current_line = @inspector.trim_comment_markers(line)
 
-      if Utils.sherpa_section?(current_line) || !current_line.empty?
-        current_line = "## #{current_line}\n" unless Utils.markdown_header?(current_line)
+      if @inspector.sherpa_section?(current_line) || !current_line.empty?
+        current_line = "## #{current_line}\n" unless @inspector.markdown_header?(current_line)
       else current_line.empty?
         current_line = "## #{titleized_filepath}"
       end
 
-      title = Utils.trim_for_title current_line
+      title = @inspector.trim_for_title current_line
       @definition.title = title
       current_block.title = title
-      current_line = Utils.trim_colon(current_line)
+      current_line = @inspector.trim_colon(current_line)
       add_line(current_line)
     end
 
     def in_block?(line, is_multi)
       return false if self.current_block.nil?
       if is_multi
-        return !Utils.multi_comment_end?(line)
+        return !@inspector.multi_comment_end?(line)
       else
-        return Utils.line_comment?(line)
+        return @inspector.line_comment?(line)
       end
     end
 
@@ -94,19 +97,19 @@ module Sherpa
     end
 
     def normalize_line(line)
-      current_line = Utils.trim_comment_markers(line)
+      current_line = @inspector.trim_comment_markers(line)
       # Trim left spacing unless this is a `pre` block, allows for breaks in comments, but not in output
       # Seems like there could be a more efficient way here...
-      if !Utils.pre_line?(current_line)
-        current_line = Utils.trim_left(current_line, @definition.raw)
+      if !@inspector.pre_line?(current_line)
+        current_line = @inspector.trim_left(current_line, @definition.raw)
       end
       current_line
     end
 
     def set_block_title(current_line)
       # If not in the first sherpa block and in another one with a md heading, throw it in an array
-      if block_num > 1 && Utils.markdown_header?(current_line)
-        title = Utils.trim_for_title current_line
+      if block_num > 1 && @inspector.markdown_header?(current_line)
+        title = @inspector.trim_for_title current_line
         @definition.subnav.push title
         current_block.title = title
       end
@@ -114,17 +117,17 @@ module Sherpa
 
     def generate_lorem(current_line)
       # If the line contains an `~lorem` tag, generate the lorem ipsum copy
-      if Utils.lorem?(current_line)
-        current_line = Utils.generate_lorem(current_line)
+      if @inspector.lorem?(current_line)
+        current_line = @inspector.generate_lorem(current_line)
       end
       current_line
     end
 
     def block_section(current_line)
       # If line ends with ":" turn it into an h4 and generate a new key for storage off it's name
-      if Utils.sherpa_section?(current_line)
-        current_line = Utils.add_markdown_header(current_line)
-        self.current_key = Utils.trim_sherpa_section_for_key(current_line)
+      if @inspector.sherpa_section?(current_line)
+        current_line = @inspector.add_markdown_header(current_line)
+        self.current_key = @inspector.trim_sherpa_section_for_key(current_line)
         current_block[current_key] = ''
       end
 
