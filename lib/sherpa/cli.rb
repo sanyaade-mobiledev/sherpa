@@ -18,7 +18,6 @@ module Sherpa
         o.on_tail("-h", "--help")  { usage }
         o.parse!
       } or abort_with_note
-
       run
     end
 

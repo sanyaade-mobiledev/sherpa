@@ -60,6 +60,23 @@ class LayoutTest < Sherpa::Test
     assert_includes result[:html], "<section"
   end
 
+  test "Generates a unique ID for use in identification and anchor tags from a filepath" do
+    path1 = "./app/assets/base.css"
+    path2 = "./README.md"
+    assert_equal @layout.uid(path1), "app_assets_base"
+    assert_equal @layout.uid(path2), "README"
+  end
+
+  test "Returns the filename and parent directories stripped from a base directory" do
+    base = "app/assets/stylesheets/"
+    root = "app/assets/stylesheets/base.sass"
+    components = "app/assets/stylesheets/components/base.sass"
+    nested = "app/assets/stylesheets/components/nested/base.sass"
+    assert_equal @layout.pretty_path(base,root), "base.sass"
+    assert_equal @layout.pretty_path(base,components), "components/base.sass"
+    assert_equal @layout.pretty_path(base,nested), "components/nested/base.sass"
+  end
+
   test "Gets a section path for a key and heading" do
     base_dir = "test/fixtures"
     section_path = "sass/mixins/font-size.sass"

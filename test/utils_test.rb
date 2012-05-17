@@ -166,26 +166,9 @@ class UtilsTest < Sherpa::Test
     assert_equal @utils.trim_sherpa_section_for_key("## Section Key: "), "section_key"
   end
 
-  test "Generates a unique ID for use in identification and anchor tags from a filepath" do
-    path1 = "./app/assets/base.css"
-    path2 = "./README.md"
-    assert_equal @utils.uid(path1), "app_assets_base"
-    assert_equal @utils.uid(path2), "README"
-  end
-
   test "Turns a sherpa section into a markdown h4 unless the line is already a markdown header" do
     assert_equal @utils.add_markdown_header("Heading:"), "#### Heading:\n"
     assert_equal @utils.add_markdown_header("## Heading:"), "## Heading:"
-  end
-
-  test "Returns the filename and parent directories stripped from a base directory" do
-    base = "app/assets/stylesheets/"
-    root = "app/assets/stylesheets/base.sass"
-    components = "app/assets/stylesheets/components/base.sass"
-    nested = "app/assets/stylesheets/components/nested/base.sass"
-    assert_equal @utils.pretty_path(base,root), "base.sass"
-    assert_equal @utils.pretty_path(base,components), "components/base.sass"
-    assert_equal @utils.pretty_path(base,nested), "components/nested/base.sass"
   end
 
 end

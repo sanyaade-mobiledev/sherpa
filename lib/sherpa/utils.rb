@@ -20,9 +20,7 @@
 # `trim_for_title`                |`line`                  |Trim out markdown headers for a plain text title
 # `trim_colon`                    |`line`                  |Trim out the trailing colon `:`
 # `trim_sherpa_section_for_key`   |`line`                  |Turn a sherpa section into a readable key
-# `uid`                           |`file`                  |Generate a unique ID for use in keys and anchor tags from a filepath
 # `add_markdown_header`           |`line`                  |Turns a sherpa section into a markdown `h4` unless the line is already a markdown header
-# `pretty_path`                   |`base_path`, `filename` |Return the current filename and it's parent directory
 #
 
 module Sherpa
@@ -126,15 +124,6 @@ module Sherpa
     def self.add_markdown_header(line)
       line = "#### #{line}\n" unless !!(line =~ /^#/)
       line
-    end
-
-    def self.pretty_path(base_path, filename)
-      expression = Regexp.new(Regexp.escape(base_path.gsub(/^\./, "")))
-      filename.gsub(/^\./, "").gsub(expression,"")
-    end
-
-    def self.uid(file)
-      file.gsub(/^\./, '').gsub(/^\//, '').gsub(/\//, '_').split('.')[0]
     end
 
   end

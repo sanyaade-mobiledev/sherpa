@@ -76,10 +76,6 @@ module Sherpa
       main_nav
     end
 
-    def get_section_path(filepath, basedir)
-      !!(filepath =~ /\//) ? filepath.split('/')[0] : basedir.split('/').last
-    end
-
     def render_page(key, file_definitions)
       html = ""
       aside = ""
@@ -90,8 +86,8 @@ module Sherpa
         # Setup some shared values
         subnav = file_def[:subnav]
         repo_url = "#{repo}#{file_def[:filepath].gsub(/^\./, 'blob/master')}"
-        filepath = Utils.pretty_path(file_def[:base_dir], file_def[:filepath])
-        id = Utils.uid(filepath).gsub(/_/, '-')
+        filepath = pretty_path(file_def[:base_dir], file_def[:filepath])
+        id = uid(filepath).gsub(/_/, '-')
         template = file_def[:template].gsub(/\./,"_")
 
         # Build the aside navigation and headers
@@ -115,6 +111,19 @@ module Sherpa
         html += Mustache.render(@templates[template], file: file_def, repo_url: repo_url, filepath: filepath, id: id)
       end
       {aside: aside, html: html}
+    end
+
+    def uid(file)
+      file.gsub(/^\./, '').gsub(/^\//, '').gsub(/\//, '_').split('.')[0]
+    end
+
+    def pretty_path(base_path, filename)
+      expression = Regexp.new(Regexp.escape(base_path.gsub(/^\./, "")))
+      filename.gsub(/^\./, "").gsub(expression,"")
+    end
+
+    def get_section_path(filepath, basedir)
+      !!(filepath =~ /\//) ? filepath.split('/')[0] : basedir.split('/').last
     end
 
     def save_page(key, primary_nav, aside_nav, html)
