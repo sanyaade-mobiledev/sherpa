@@ -25,3 +25,8 @@ task :debug do
   system "./bin/sherpa -i ./test/config/config.yaml -d"
 end
 
+desc 'Rock out some coffeescript'
+task :coffee do
+  system "coffee -cw lib/assets/sherpa.coffee"
+end
+
