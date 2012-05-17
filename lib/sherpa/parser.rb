@@ -8,6 +8,10 @@ module Sherpa
     def initialize()
     end
 
+    def titleized_filepath
+      File.basename(@definition.filepath, File.extname(@definition.filepath)).capitalize
+    end
+
     def parse(list)
       file_path = list[:file]
       @definition = Definition.new
@@ -22,11 +26,6 @@ module Sherpa
         end
       end
       @definition
-    end
-
-
-    def titleized_filepath
-      File.basename(@definition.filepath, File.extname(@definition.filepath)).capitalize
     end
 
     def parse_markdown_file(file)
@@ -53,20 +52,6 @@ module Sherpa
       end
     end
 
-    def in_block?(line, is_multi)
-      return false if self.current_block.nil?
-      if is_multi
-        return !Utils.multi_comment_end?(line)
-      else
-        return Utils.line_comment?(line)
-      end
-    end
-
-    def finalize_block
-      self.current_block = nil
-      self.current_key = nil
-    end
-
     def setup_new_block
       self.current_block = Block.new
       self.current_key = 'summary'
@@ -83,13 +68,21 @@ module Sherpa
       else current_line.empty?
         current_line = "## #{titleized_filepath}"
       end
+
       title = Utils.trim_for_title current_line
       @definition.title = title
       current_block.title = title
-
       current_line = Utils.trim_colon(current_line)
-
       add_line(current_line)
+    end
+
+    def in_block?(line, is_multi)
+      return false if self.current_block.nil?
+      if is_multi
+        return !Utils.multi_comment_end?(line)
+      else
+        return Utils.line_comment?(line)
+      end
     end
 
     def parse_line(line)
@@ -98,25 +91,6 @@ module Sherpa
       current_line = generate_lorem(current_line)
       current_line = block_section(current_line)
       add_line(current_line)
-    end
-
-    def block_section(current_line)
-      # If line ends with ":" turn it into an h4 and generate a new key for storage off it's name
-      if Utils.sherpa_section?(current_line)
-        current_line = Utils.add_markdown_header(current_line)
-        self.current_key = Utils.trim_sherpa_section_for_key(current_line)
-        current_block[current_key] = ''
-      end
-
-      # If in a usage block create a showcase block that gets rendered as straight markup (style guides)
-      if current_key == 'usage'
-        if current_block[:usage_showcase]
-          current_block[:usage_showcase] += current_line.gsub(/^\s{4}/, "\n")
-        else
-          current_block[:usage_showcase] = ''
-        end
-      end
-      current_line
     end
 
     def normalize_line(line)
@@ -146,11 +120,36 @@ module Sherpa
       current_line
     end
 
+    def block_section(current_line)
+      # If line ends with ":" turn it into an h4 and generate a new key for storage off it's name
+      if Utils.sherpa_section?(current_line)
+        current_line = Utils.add_markdown_header(current_line)
+        self.current_key = Utils.trim_sherpa_section_for_key(current_line)
+        current_block[current_key] = ''
+      end
+
+      # If in a usage block create a showcase block that gets rendered as straight markup (style guides)
+      if current_key == 'usage'
+        if current_block[:usage_showcase]
+          current_block[:usage_showcase] += current_line.gsub(/^\s{4}/, "\n")
+        else
+          current_block[:usage_showcase] = ''
+        end
+      end
+      current_line
+    end
+
     def add_line(line)
       # Push the current line into the raw object and the current key block
       @definition.raw += "#{line}\n"
       current_block[current_key] += "#{line}\n"
     end
+
+    def finalize_block
+      self.current_block = nil
+      self.current_key = nil
+    end
+
   end
 end
 
