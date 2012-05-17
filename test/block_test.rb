@@ -26,3 +26,4 @@ class BlockTest < Sherpa::Test
     assert_equal block.title, "\ntitle"
   end
 end
+

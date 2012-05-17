@@ -9,8 +9,8 @@ module Sherpa
     attr_accessor :config, :output_dir, :layout_dir, :stache_layout, :templates
 
     def initialize(config)
-      # @config = JSON.parse File.read(config)
-      @config = JSON.parse config
+      @config = JSON.parse File.read(config)
+      # @config = JSON.parse config
       @templates = {}
       set_defaults()
       cache_templates()

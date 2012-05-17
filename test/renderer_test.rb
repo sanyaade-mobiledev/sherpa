@@ -11,7 +11,6 @@ class RendererTest < Sherpa::Test
     assert_equal @renderer.render("## Hello World"), "<h2>Hello World</h2>\n"
   end
 
-
   test "Renders blocks into markdown" do
     summary = "The Summary"
     usage_showcase = "showcase not converted"

@@ -40,3 +40,4 @@ class DefinitionTest < Sherpa::Test
     assert_equal 'block title', hash[:blocks][0]['title']
   end
 end
+

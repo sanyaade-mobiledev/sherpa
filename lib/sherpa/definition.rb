@@ -1,3 +1,4 @@
+
 module Sherpa
   class Definition
     attr_accessor :raw,
@@ -21,15 +22,16 @@ module Sherpa
 
     def to_hash
       {
-        :raw => raw,
-        :markup => markup,
-        :title => title,
+        :raw      => raw,
+        :markup   => markup,
+        :title    => title,
         :template => template,
         :filepath => filepath,
         :base_dir => base_dir,
-        :subnav => subnav,
-        :blocks => blocks.map(&:to_hash)
+        :subnav   => subnav,
+        :blocks   => blocks.map(&:to_hash)
       }
     end
   end
 end
+

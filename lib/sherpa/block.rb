@@ -1,3 +1,4 @@
+
 module Sherpa
   class Block
     attr_accessor :title
@@ -32,3 +33,4 @@ module Sherpa
     end
   end
 end
+
