@@ -39,7 +39,7 @@ module Sherpa
       if filetype == 'json' || filetype == 'yaml'
         @config = (filetype == 'json') ? JSON.parse(File.read(input)) : YAML.load(File.read(input))
       else
-        abort_with_note("Sherpa requires a .json or .yaml config file")
+        abort_with_note "Sherpa requires a .json or .yaml config file"
       end
       @config
     end
@@ -53,16 +53,15 @@ module Sherpa
 
       # Render outputs
       output_dir = blocks[:settings]["output_dir"]
-      json = JSON.pretty_generate(blocks)
-      puts json unless debug == false
+      puts JSON.pretty_generate(blocks) unless debug == false
 
-      File.open("#{output_dir}sherpa.json", "w") do |file|
-        file.write(json)
-      end
-
-      # layout = Sherpa::Layout.new("#{output_dir}sherpa.json")
       layout = Sherpa::Layout.new(blocks)
       layout.render_and_save
+
+      # File.open("#{output_dir}sherpa.json", "w") do |file|
+        # file.write(json)
+      # end
+
       0
     end
   end
