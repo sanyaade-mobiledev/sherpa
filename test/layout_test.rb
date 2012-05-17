@@ -5,8 +5,8 @@ class LayoutTest < Sherpa::Test
 
   def setup
     @config = YAML.load(File.read('./test/config/config.yaml'))
-    @blocks = JSON.pretty_generate(Sherpa::Builder.new(@config).build)
-    @layout = Sherpa::Layout.new("./test/views/sherpa.json")
+    @blocks = Sherpa::Builder.new(@config).build
+    @layout = Sherpa::Layout.new(@blocks)
   end
 
   test "Sets default global settings based on the config file" do
@@ -35,29 +35,37 @@ class LayoutTest < Sherpa::Test
   test "Concatenates a list of primary nav elements based off sections from sherpa documents" do
     assert_includes @layout.render_primary_nav, "Overview"
     assert_includes @layout.render_primary_nav, "Test"
+    assert_includes @layout.render_primary_nav, "Globs"
     assert_includes @layout.render_primary_nav, "<a href"
   end
 
   test "Renders an aside navigation for a given sherpa block" do
     key = "test"
-    blocks = JSON.parse(@blocks)
-    value = blocks[key]
+    value = @blocks[key]
     result = @layout.render_page key, value
 
     assert_includes result[:aside], "<li class='sherpa-nav-header'>"
     assert_includes result[:aside], "<li><a href="
     assert_includes result[:aside], "<li class='sherpa-subnav"
+    assert_includes result[:aside], "Headings"
   end
 
   test "Renders an html string for a given sherpa block" do
     key = "test"
-    blocks = JSON.parse(@blocks)
-    value = blocks[key]
+    value = @blocks[key]
     result = @layout.render_page key, value
 
     assert_includes result[:html], "blob"
     assert_includes result[:html], "headings.sass"
     assert_includes result[:html], "<section"
+  end
+
+  test "Gets a section path for a key and heading" do
+    base_dir = "test/fixtures"
+    section_path = "sass/mixins/font-size.sass"
+    for_base = ""
+    assert_equal @layout.get_section_path(section_path, base_dir), "sass"
+    assert_equal @layout.get_section_path(for_base, base_dir), "fixtures"
   end
 
 end

@@ -195,6 +195,20 @@
       "blocks": [
 
       ]
+    },
+    {
+      "raw": "\n# Root File\n\nThis is a simple markdown file for root path testing\n\n",
+      "markup": "<h1>Root File</h1>\n<br /><p>This is a simple markdown file for root path testing</p>\n",
+      "title": "Root",
+      "template": "raw.mustache",
+      "filepath": "./test/fixtures/root.md",
+      "base_dir": "./test/fixtures/",
+      "subnav": [
+
+      ],
+      "blocks": [
+
+      ]
     }
   ],
   "globs": [

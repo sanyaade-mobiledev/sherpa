@@ -52,7 +52,7 @@ module Sherpa
       abort_with_note "No blocks found!" unless blocks
 
       # Render outputs
-      output_dir = config["settings"]["output_dir"]
+      output_dir = blocks[:settings]["output_dir"]
       json = JSON.pretty_generate(blocks)
       puts json unless debug == false
 
@@ -60,8 +60,8 @@ module Sherpa
         file.write(json)
       end
 
-      layout = Sherpa::Layout.new("#{output_dir}sherpa.json")
-      # layout = Sherpa::Layout.new(json)
+      # layout = Sherpa::Layout.new("#{output_dir}sherpa.json")
+      layout = Sherpa::Layout.new(blocks)
       layout.render_and_save
       0
     end
