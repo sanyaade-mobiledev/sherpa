@@ -15,7 +15,7 @@ module Sherpa
       args.options { |o|
         o.on("-i", "--input=FILE") { |file| self.input += file }
         o.on("-d", "--debug")      { |value| self.debug = true }
-        o.on_tail("-h", "--help")  { usage }
+        o.on_tail("-h", "--help")  { usage(args) }
         o.parse!
       } or abort_with_note
       run
@@ -35,7 +35,7 @@ module Sherpa
       return @config if @config
       # Load the configuration file
       filetype = File.extname(input).gsub(/\./, "")
-      if filetype == 'json' || filetype == 'yaml'
+      if %w(json yml yaml).include?(filetype)
         @config = (filetype == 'json') ? JSON.parse(File.read(input)) : YAML.load(File.read(input))
       else
         abort_with_note "Sherpa requires a .json or .yaml config file"

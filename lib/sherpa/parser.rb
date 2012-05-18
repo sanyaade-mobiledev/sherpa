@@ -12,7 +12,7 @@ module Sherpa
     end
 
     def titleized_filepath
-      File.basename(@definition.filepath, File.extname(@definition.filepath)).capitalize
+      File.basename(@definition.filepath, File.extname(@definition.filepath)).gsub(/^_/, '').capitalize
     end
 
     def parse(list)

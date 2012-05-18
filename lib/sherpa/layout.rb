@@ -23,7 +23,7 @@ module Sherpa
     def set_defaults
       settings = @config[:settings]
       @output_dir = settings["output_dir"] || "./sherpa"
-      @layout_dir = settings["layout_dir"] || "./lib/layouts/"
+      @layout_dir = settings["layout_dir"] || File.expand_path('../../layouts/', __FILE__)
       @stache_layout = File.read(File.join(@layout_dir, settings["layout_template"] || "layout.mustache"))
     end
 
@@ -70,7 +70,7 @@ module Sherpa
       @config.each do |key, value|
         unless key.to_s == "settings"
           path = @output_dir.sub(/^\./,"")
-          main_nav += "<li><a href='#{path}#{key}.html'>#{key.capitalize}</a></li>"
+          main_nav += "<li><a href='#{key}.html'>#{key.capitalize}</a></li>"
         end
       end
       main_nav
