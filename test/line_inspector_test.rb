@@ -94,8 +94,9 @@ class LineInspectorTest < Sherpa::Test
     assert @inspector.is_image_file?("test.tif")
     assert @inspector.is_image_file?("test.pict")
     assert @inspector.is_image_file?("test.pic")
-    assert @inspector.is_image_file?("test.pdf")
-    assert @inspector.is_image_file?("test.swf")
+    refute @inspector.is_image_file?("test.pdf")
+    refute @inspector.is_image_file?("test.swf")
+    refute @inspector.is_image_file?("test.rb")
   end
 
   test "Check to see if the current line contains an `~lorem` tag" do
