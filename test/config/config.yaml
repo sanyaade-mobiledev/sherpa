@@ -49,3 +49,8 @@ images:
   manifest:
     - require: "*.{png,jpeg,jpg,gif,ico}"
 
+unsupported:
+  base_dir: ./test/fixtures/
+  manifest:
+    - require: "*.{psd,pdf,swf}"
+

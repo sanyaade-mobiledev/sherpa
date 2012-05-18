@@ -68,7 +68,12 @@ module Sherpa
 
       def self.is_image_file?(filename)
         file = File.extname(filename).gsub(/\./, "")
-        !!(file =~ /png|gif|ico|jpg|jpeg|tiff|tif|pict|pic|pct/)
+        !!(file =~ /png|gif|ico|jpg|jpeg|tiff|tif|pict|pic|pct|bmp/)
+      end
+
+      def self.is_unsupported_asset?(filename)
+        file = File.extname(filename).gsub(/\./, "")
+        !!(file =~ /pdf|swf|psd|doc|docx|rtf|txt|tar|zip|rar|csv|aif|mp4|mp3|wav|mov|qt|mpg|wmv|ai|eps|svg|xls|xlsx/)
       end
 
       def self.lorem?(line)

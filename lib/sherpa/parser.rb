@@ -26,6 +26,8 @@ module Sherpa
           parse_markdown_file(file)
         elsif @inspector.is_image_file?(file_path)
           parse_image_file(file_path)
+        elsif @inspector.is_unsupported_asset?(file_path)
+          parse_unsupported_file(file_path)
         else
           parse_code_file(file)
         end
@@ -44,6 +46,13 @@ module Sherpa
       path = file.gsub(/^\./, "")
       title = titleized_filepath.downcase.gsub(/_|-/, " ")
       @definition.raw = "![#{title}](#{path} '#{title}')"
+      @definition.title = title
+    end
+
+    def parse_unsupported_file(file)
+      path = file.gsub(/^\./, "")
+      title = File.basename(@definition.filepath)
+      @definition.raw = "### [view #{title}](#{path} file)"
       @definition.title = title
     end
 

@@ -99,6 +99,12 @@ class LineInspectorTest < Sherpa::Test
     refute @inspector.is_image_file?("test.rb")
   end
 
+  test "Check to see if the filetype is an unsupported asset" do
+    assert @inspector.is_unsupported_asset?("test.pdf")
+    assert @inspector.is_unsupported_asset?("test.swf")
+    assert @inspector.is_unsupported_asset?("test.psd")
+  end
+
   test "Check to see if the current line contains an `~lorem` tag" do
     assert @inspector.lorem?("Show me a ~lorem string")
     assert @inspector.lorem?("Show me a ~lorem_medium string")

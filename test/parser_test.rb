@@ -30,6 +30,15 @@ class ParserTest < Sherpa::Test
     assert_empty definition.blocks
   end
 
+  test "Handles an unsupported asset file" do
+    definition = @parser.parse({file:"./test/fixtures/unsupported/photoshop.psd", template:"raw.mustache"})
+    assert definition.raw
+    assert_equal definition.filepath, "./test/fixtures/unsupported/photoshop.psd"
+    assert_equal definition.template, "raw.mustache"
+    assert_empty definition.subnav
+    assert_empty definition.blocks
+  end
+
   test "Parses a file and contains the filepath" do
     filepath = @definition.filepath
     assert_equal filepath, "./test/fixtures/sass/base/headings.sass"
