@@ -33,6 +33,20 @@ class ManifestTest < Sherpa::Test
     assert_includes files, "#{@base_dir}javascript/javascript.js"
   end
 
+  test "Generates a manifest from a require directive for images" do
+    items = {"require"=>"*.{png,jpeg,jpg,gif,ico}"}
+    manifest = Sherpa::Manifest.new(@base_dir, @template, items)
+    files = []
+
+    manifest.files.each do |file|
+      files.push file[:file]
+      assert_includes file, :template
+    end
+
+    assert_includes files, "#{@base_dir}images/apple-touch-icon-114x114-precomposed.png"
+    assert_includes files, "#{@base_dir}images/favicon.ico"
+  end
+
   test "Generates a manifest from a listing of files" do
     items = {"files" => ["css/links.css", "ruby/ruby.rb"]}
     manifest = Sherpa::Manifest.new(@base_dir, @template, items)

@@ -21,6 +21,15 @@ class ParserTest < Sherpa::Test
     assert_empty definition.blocks
   end
 
+  test "Handles an image file" do
+    definition = @parser.parse({file:"./test/fixtures/images/favicon.ico", template:"raw.mustache"})
+    assert_equal definition.raw, "![favicon](/test/fixtures/images/favicon.ico 'favicon')"
+    assert_equal definition.filepath, "./test/fixtures/images/favicon.ico"
+    assert_equal definition.template, "raw.mustache"
+    assert_empty definition.subnav
+    assert_empty definition.blocks
+  end
+
   test "Parses a file and contains the filepath" do
     filepath = @definition.filepath
     assert_equal filepath, "./test/fixtures/sass/base/headings.sass"

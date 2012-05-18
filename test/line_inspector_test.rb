@@ -84,6 +84,20 @@ class LineInspectorTest < Sherpa::Test
     refute @inspector.is_markdown_file?("./views/README.html")
   end
 
+  test "Check to see if the filetype is an image" do
+    assert @inspector.is_image_file?("test.png")
+    assert @inspector.is_image_file?("test.gif")
+    assert @inspector.is_image_file?("test.ico")
+    assert @inspector.is_image_file?("test.jpg")
+    assert @inspector.is_image_file?("test.jpeg")
+    assert @inspector.is_image_file?("test.tiff")
+    assert @inspector.is_image_file?("test.tif")
+    assert @inspector.is_image_file?("test.pict")
+    assert @inspector.is_image_file?("test.pic")
+    assert @inspector.is_image_file?("test.pdf")
+    assert @inspector.is_image_file?("test.swf")
+  end
+
   test "Check to see if the current line contains an `~lorem` tag" do
     assert @inspector.lorem?("Show me a ~lorem string")
     assert @inspector.lorem?("Show me a ~lorem_medium string")

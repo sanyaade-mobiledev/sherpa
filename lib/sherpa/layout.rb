@@ -118,12 +118,19 @@ module Sherpa
     end
 
     def pretty_path(base_path, filename)
-      expression = Regexp.new(Regexp.escape(base_path.gsub(/^\./, "")))
-      filename.gsub(/^\./, "").gsub(expression,"")
+      line = ""
+      if base_path == "./"
+        line = filename.gsub(/^\.\//, "")
+      else
+        expression = Regexp.new(Regexp.escape(base_path.gsub(/^\./, "")))
+        line = filename.gsub(/^\./, "").gsub(expression,"")
+      end
+      line
     end
 
     def get_section_path(filepath, basedir)
-      !!(filepath =~ /\//) ? filepath.split('/')[0] : basedir.split('/').last
+      line = !!(filepath =~ /\//) ? filepath.split('/')[0] : basedir.split('/').last
+      line
     end
 
     def save_page(key, primary_nav, aside_nav, html)

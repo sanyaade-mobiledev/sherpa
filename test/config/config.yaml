@@ -42,3 +42,8 @@ globs:
       - sass/base/headings.sass
       - ruby/ruby.rb
 
+images:
+  base_dir: ./test/fixtures/
+  manifest:
+    require: "*.{png,jpeg,jpg,gif,ico}"
+

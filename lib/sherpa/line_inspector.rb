@@ -66,6 +66,11 @@ module Sherpa
         !!(file =~ /md|mkdn?|mdown|markdown/)
       end
 
+      def self.is_image_file?(filename)
+        file = File.extname(filename).gsub(/\./, "")
+        !!(file =~ /png|gif|ico|jpg|jpeg|tiff|tif|pict|pic|pdf|swf/)
+      end
+
       def self.lorem?(line)
         !!(line =~ /~lorem/)
       end

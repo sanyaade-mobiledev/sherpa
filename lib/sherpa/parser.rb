@@ -24,6 +24,8 @@ module Sherpa
       File.open file_path do |file|
         if @inspector.is_markdown_file?(file_path)
           parse_markdown_file(file)
+        elsif @inspector.is_image_file?(file_path)
+          parse_image_file(file_path)
         else
           parse_code_file(file)
         end
@@ -36,6 +38,13 @@ module Sherpa
       file.each_line do |line|
         @definition.raw += line
       end
+    end
+
+    def parse_image_file(file)
+      path = file.gsub(/^\./, "")
+      title = titleized_filepath.downcase.gsub(/_|-/, " ")
+      @definition.raw = "![#{title}](#{path} '#{title}')"
+      @definition.title = title
     end
 
     def parse_code_file(file)
