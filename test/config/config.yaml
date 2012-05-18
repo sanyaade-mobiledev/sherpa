@@ -35,6 +35,8 @@ globs:
   manifest:
     - require_tree: sass/
     - require: "*.{js,coffee}"
+    - require: "*.{png}"
+      template: raw.mustache
     - files:
       - file: markdown/markdown.md
         template: raw.mustache

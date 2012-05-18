@@ -21,6 +21,19 @@ class ManifestTest < Sherpa::Test
     assert_includes files, "#{@base_dir}sass/mixins/font-size.sass"
   end
 
+  test "Generates a manifest from a require_tree directive while overiding the template" do
+    items = [{"require_tree"=>"sass/", "template"=>"section.mustache"}]
+    manifest = Sherpa::Manifest.new(@base_dir, @template, items)
+    files = []
+    manifest.files.each do |file|
+      files.push file[:file]
+      assert_equal file[:template], "section.mustache"
+    end
+    assert_includes files, "#{@base_dir}sass/visibility.sass"
+    assert_includes files, "#{@base_dir}sass/base/headings.sass"
+    assert_includes files, "#{@base_dir}sass/mixins/font-size.sass"
+  end
+
   test "Generates a manifest from a require directive" do
     items = [{"require"=>"*.{js,coffee}"}]
     manifest = Sherpa::Manifest.new(@base_dir, @template, items)
@@ -28,6 +41,18 @@ class ManifestTest < Sherpa::Test
     manifest.files.each do |file|
       files.push file[:file]
       assert_includes file, :template
+    end
+    assert_includes files, "#{@base_dir}coffee/coffee.coffee"
+    assert_includes files, "#{@base_dir}javascript/javascript.js"
+  end
+
+  test "Generates a manifest from a require directive overriden the default template" do
+    items = [{"require"=>"*.{js,coffee}", "template"=>"section.mustache"}]
+    manifest = Sherpa::Manifest.new(@base_dir, @template, items)
+    files = []
+    manifest.files.each do |file|
+      files.push file[:file]
+      assert_equal file[:template], "section.mustache"
     end
     assert_includes files, "#{@base_dir}coffee/coffee.coffee"
     assert_includes files, "#{@base_dir}javascript/javascript.js"

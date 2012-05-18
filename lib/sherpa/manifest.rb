@@ -16,7 +16,8 @@ module Sherpa
             path = File.join base, directory
             files = Dir[path]
             files.each do |f|
-              @files.push({file: f, template: template})
+              tmpl = item["template"] ? item["template"] : template
+              @files.push({file: f, template: tmpl})
             end
           end
 
@@ -24,7 +25,8 @@ module Sherpa
             target_files = item["require"]
             files = Dir["#{base}**/#{target_files}"]
             files.each do |f|
-              @files.push({file: f, template: template})
+              tmpl = item["template"] ? item["template"] : template
+              @files.push({file: f, template: tmpl})
             end
           end
 
