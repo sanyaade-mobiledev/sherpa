@@ -10,14 +10,14 @@ Rake::TestTask.new(:test) do |t|
   t.verbose = false
 end
 
+desc 'Run a single test file'
+task :ftest, :file do |t, arg|
+  system "ruby -I.:lib:test test/#{arg[:file]}"
+end
+
 desc 'Mock config.yaml file used for testing and debugging'
 task :probe do
   system "./bin/sherpa -i ./test/config/config.yaml"
-end
-
-desc 'Mock config.json file used for testing and debugging'
-task :probe_json do
-  system "./bin/sherpa -i ./test/config/config.json"
 end
 
 desc 'Mock config.yaml file and output results to the cli'
@@ -28,10 +28,5 @@ end
 desc 'Rock out some coffeescript'
 task :coffee do
   system "coffee -cw lib/assets/sherpa.coffee"
-end
-
-desc 'Run a single test file'
-task :ftest, :file do |t, arg|
-  system "ruby -I.:lib:test test/#{arg[:file]}"
 end
 
