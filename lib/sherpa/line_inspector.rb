@@ -68,7 +68,7 @@ module Sherpa
 
       def self.is_image_file?(filename)
         file = File.extname(filename).gsub(/\./, "")
-        !!(file =~ /png|gif|ico|jpg|jpeg|tiff|tif|pict|pic|pdf|swf/)
+        !!(file =~ /png|gif|ico|jpg|jpeg|tiff|tif|pict|pic|pct/)
       end
 
       def self.lorem?(line)
