@@ -54,3 +54,9 @@ unsupported:
   manifest:
     - require: "*.{psd,pdf,swf}"
 
+marked:
+  base_dir: ./test/fixtures/markdown/
+  manifest:
+    - files:
+      - code.md
+

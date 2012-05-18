@@ -75,6 +75,23 @@ class LineInspectorTest < Sherpa::Test
     refute @inspector.markdown_header?("")
   end
 
+  test "If the current line is the start of a usage block within a markdown file" do
+    assert @inspector.markdown_usage_start?("Usage:")
+    assert @inspector.markdown_usage_start?("## Usage:")
+  end
+
+  test "If the current line is the end of a usage block within a markdown file" do
+    refute @inspector.markdown_usage_end?("    this is code")
+    refute @inspector.markdown_usage_end?("")
+    assert @inspector.markdown_usage_end?("normal line")
+    assert @inspector.markdown_usage_end?("## Header")
+  end
+
+  test "If the current line is a fenced markdown block" do
+    assert @inspector.is_fenced_markdown?("```")
+    assert @inspector.is_fenced_markdown?("~~~")
+  end
+
   test "Check to see if the filetype is markdown" do
     assert @inspector.is_markdown_file?("README.md")
     assert @inspector.is_markdown_file?("./views/README.mkd")

@@ -61,6 +61,18 @@ module Sherpa
         !!(line =~ /^\s*#/)
       end
 
+      def self.markdown_usage_start?(line)
+        !!(line =~ /^Usage:|^#*\sUsage:/)
+      end
+
+      def self.markdown_usage_end?(line)
+        !!(line =~ /^\S/)
+      end
+
+      def self.is_fenced_markdown?(line)
+        !!(line =~ /^`|^~/)
+      end
+
       def self.is_markdown_file?(filename)
         file = File.extname(filename).gsub(/\./, "")
         !!(file =~ /md|mkdn?|mdown|markdown/)

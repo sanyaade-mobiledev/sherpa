@@ -21,6 +21,11 @@ class ParserTest < Sherpa::Test
     assert_empty definition.blocks
   end
 
+  test "Handles a markdown file with the Usage term embedded" do
+    definition = @parser.parse({file:"./test/fixtures/markdown/code.md", template:"raw.mustache"})
+    refute_empty definition.blocks
+  end
+
   test "Handles an image file" do
     definition = @parser.parse({file:"./test/fixtures/images/favicon.ico", template:"raw.mustache"})
     assert_equal definition.raw, "![favicon](/test/fixtures/images/favicon.ico 'favicon')"

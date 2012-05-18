@@ -37,9 +37,23 @@ module Sherpa
 
     def parse_markdown_file(file)
       @definition.title = titleized_filepath
+      usage_showcase = nil
+      in_usage = false
+
       file.each_line do |line|
+
+        if @inspector.markdown_usage_end?(line) && in_usage
+          in_usage = false
+        elsif @inspector.markdown_usage_start?(line)
+          in_usage = true
+          usage_showcase = "" unless usage_showcase
+        elsif in_usage
+          usage_showcase += line
+        end
+
         @definition.raw += line
       end
+      @definition.blocks.push(usage_showcase: usage_showcase) if usage_showcase
     end
 
     def parse_image_file(file)
