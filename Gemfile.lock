@@ -1,3 +1,10 @@
+PATH
+  remote: .
+  specs:
+    sherpa (0.1.0)
+      mustache (~> 0.99.4)
+      redcarpet (~> 2.1.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -15,6 +22,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  mustache
   pry
-  redcarpet
+  sherpa!
