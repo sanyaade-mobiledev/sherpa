@@ -30,3 +30,8 @@ task :coffee do
   system "coffee -cw lib/assets/sherpa.coffee"
 end
 
+desc 'Run a single test file'
+task :ftest, :file do |t, arg|
+  system "ruby -I.:lib:test test/#{arg[:file]}"
+end
+
