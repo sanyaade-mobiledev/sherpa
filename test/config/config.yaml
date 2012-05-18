@@ -9,14 +9,14 @@ settings:
 overview:
   base_dir: ./
   manifest:
-    files:
+    - files:
       - README.md
 
 test:
   section_template: section.mustache
   base_dir: ./test/fixtures/
   manifest:
-    files:
+    - files:
       - sass/mixins/font-size.sass
       - sass/visibility.sass
       - sass/base/headings.sass
@@ -33,9 +33,9 @@ globs:
   section_template: section.mustache
   base_dir: ./test/fixtures/
   manifest:
-    require_tree: sass/
-    require: "*.{js,coffee}"
-    files:
+    - require_tree: sass/
+    - require: "*.{js,coffee}"
+    - files:
       - file: markdown/markdown.md
         template: raw.mustache
       - css/links.css
@@ -45,5 +45,5 @@ globs:
 images:
   base_dir: ./test/fixtures/
   manifest:
-    require: "*.{png,jpeg,jpg,gif,ico}"
+    - require: "*.{png,jpeg,jpg,gif,ico}"
 

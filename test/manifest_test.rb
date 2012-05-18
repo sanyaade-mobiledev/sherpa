@@ -9,7 +9,7 @@ class ManifestTest < Sherpa::Test
   end
 
   test "Generates a manifest from a require_tree directive" do
-    items = {"require_tree"=>"sass/"}
+    items = [{"require_tree"=>"sass/"}]
     manifest = Sherpa::Manifest.new(@base_dir, @template, items)
     files = []
     manifest.files.each do |file|
@@ -22,7 +22,7 @@ class ManifestTest < Sherpa::Test
   end
 
   test "Generates a manifest from a require directive" do
-    items = {"require"=>"*.{js,coffee}"}
+    items = [{"require"=>"*.{js,coffee}"}]
     manifest = Sherpa::Manifest.new(@base_dir, @template, items)
     files = []
     manifest.files.each do |file|
@@ -34,7 +34,7 @@ class ManifestTest < Sherpa::Test
   end
 
   test "Generates a manifest from a require directive for images" do
-    items = {"require"=>"*.{png,jpeg,jpg,gif,ico}"}
+    items = [{"require"=>"*.{png,jpeg,jpg,gif,ico}"}]
     manifest = Sherpa::Manifest.new(@base_dir, @template, items)
     files = []
 
@@ -48,7 +48,7 @@ class ManifestTest < Sherpa::Test
   end
 
   test "Generates a manifest from a listing of files" do
-    items = {"files" => ["css/links.css", "ruby/ruby.rb"]}
+    items = [{"files" => ["css/links.css", "ruby/ruby.rb"]}]
     manifest = Sherpa::Manifest.new(@base_dir, @template, items)
     files = []
     manifest.files.each do |file|
@@ -60,10 +60,10 @@ class ManifestTest < Sherpa::Test
   end
 
   test "Generates a manifest from a listing of file objects" do
-    items = {"files" => [
+    items = [{"files" => [
       {"file"=>"css/links.css", "template"=>"raw.mustache"},
       {"file"=>"ruby/ruby.rb", "template"=>"raw.mustache"}
-    ]}
+    ]}]
     manifest = Sherpa::Manifest.new(@base_dir, @template, items)
     files = []
     manifest.files.each do |file|
