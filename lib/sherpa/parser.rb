@@ -39,20 +39,22 @@ module Sherpa
       @definition.title = titleized_filepath
       usage_showcase = nil
       in_usage = false
+      in_fenced_block = false
 
       file.each_line do |line|
-
         if @inspector.markdown_usage_end?(line) && in_usage
           in_usage = false
+        elsif @inspector.is_fenced_block?(line)
+          in_fenced_block = in_fenced_block ? false : true
         elsif @inspector.markdown_usage_start?(line)
           in_usage = true
           usage_showcase = "" unless usage_showcase
-        elsif in_usage
+        elsif in_usage || in_fenced_block
           usage_showcase += line
         end
-
         @definition.raw += line
       end
+
       @definition.blocks.push(usage_showcase: usage_showcase) if usage_showcase
     end
 
@@ -166,7 +168,7 @@ module Sherpa
       # If in a usage block create a showcase block that gets rendered as straight markup (style guides)
       if current_key == 'usage'
         if current_block[:usage_showcase]
-          current_block[:usage_showcase] += current_line.gsub(/^\s{4}/, "\n")
+          current_block[:usage_showcase] += current_line.gsub(/^\s{4}/, "\n") unless @inspector.is_fenced_block?(current_line)
         else
           current_block[:usage_showcase] = ''
         end

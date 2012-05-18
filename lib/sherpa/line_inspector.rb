@@ -53,6 +53,10 @@ module Sherpa
         !!(line =~ /^\s{4,}/)
       end
 
+      def self.is_fenced_block?(line)
+        !!(line =~ /^`|^~/)
+      end
+
       def self.sherpa_section?(line)
         !!(line =~ /:\z/)
       end
@@ -67,10 +71,6 @@ module Sherpa
 
       def self.markdown_usage_end?(line)
         !!(line =~ /^\S/)
-      end
-
-      def self.is_fenced_markdown?(line)
-        !!(line =~ /^`|^~/)
       end
 
       def self.is_markdown_file?(filename)

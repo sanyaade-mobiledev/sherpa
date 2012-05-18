@@ -88,8 +88,8 @@ class LineInspectorTest < Sherpa::Test
   end
 
   test "If the current line is a fenced markdown block" do
-    assert @inspector.is_fenced_markdown?("```")
-    assert @inspector.is_fenced_markdown?("~~~")
+    assert @inspector.is_fenced_block?("```")
+    assert @inspector.is_fenced_block?("~~~")
   end
 
   test "Check to see if the filetype is markdown" do
