@@ -87,7 +87,7 @@ module Sherpa
         subnav = file_def[:subnav]
         repo_url = "#{repo}#{file_def[:filepath].gsub(/^\./, 'blob/master')}"
         filepath = pretty_path(file_def[:base_dir], file_def[:filepath])
-        id = uid(filepath).gsub(/_/, '-')
+        id = uid(filepath).gsub(/_/, '-').gsub(/--/,"-").downcase
         template = file_def[:template].gsub(/\./,"_")
 
         # Build the aside navigation and headers
@@ -101,7 +101,7 @@ module Sherpa
         # If an aside navigation has a sub navigation add it
         if !subnav.empty?
           subnav.each_with_index do |item, n|
-            link_id = "#{id}-#{item}"
+            link_id = "#{id}-#{item.gsub(/\s/, "-").downcase}"
             aside += "<li class='sherpa-subnav'><a href='##{link_id}'>#{item}</a></li>"
             # skip first block because it is a file summary so always add one to blocks to get the right block that matches the subnav
             file_def[:blocks][n + 1][:id] = "#{link_id}"
