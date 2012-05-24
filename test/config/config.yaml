@@ -9,25 +9,23 @@ settings:
 overview:
   base_dir: ./
   manifest:
-    - files:
-      - README.md
+    - require: README.md
 
 test:
   section_template: section.mustache
   base_dir: ./test/fixtures/
   manifest:
-    - files:
-      - sass/mixins/font-size.sass
-      - sass/visibility.sass
-      - sass/base/headings.sass
-      - css/links.css
-      - coffee/coffee.coffee
-      - javascript/javascript.js
-      - ruby/ruby.rb
-      - file: markdown/markdown.md
-        template: raw.mustache
-      - file: root.md
-        template: raw.mustache
+    - require: sass/mixins/font-size.sass
+    - require: sass/visibility.sass
+    - require: sass/base/headings.sass
+    - require: css/links.css
+    - require: coffee/coffee.coffee
+    - require: javascript/javascript.js
+    - require: ruby/ruby.rb
+    - require: markdown/markdown.md
+      template: raw.mustache
+    - require: root.md
+      template: raw.mustache
 
 globs:
   section_template: section.mustache
@@ -37,12 +35,11 @@ globs:
     - require: "**/*.{js,coffee}"
     - require: "**/*.{png}"
       template: raw.mustache
-    - files:
-      - file: markdown/markdown.md
-        template: raw.mustache
-      - css/links.css
-      - sass/base/headings.sass
-      - ruby/ruby.rb
+    - require: markdown/markdown.md
+      template: raw.mustache
+    - require: css/links.css
+    - require: sass/base/headings.sass
+    - require: ruby/ruby.rb
 
 images:
   base_dir: ./
@@ -57,6 +54,5 @@ unsupported:
 marked:
   base_dir: ./test/fixtures/markdown/
   manifest:
-    - files:
-      - code.md
+    - require: code.md
 

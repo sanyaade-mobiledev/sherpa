@@ -72,23 +72,22 @@ class ManifestTest < Sherpa::Test
     assert_includes files, "#{@base_dir}images/favicon.ico"
   end
 
-  test "Generates a manifest from a listing of files" do
-    items = [{"files" => ["css/links.css", "ruby/ruby.rb"]}]
+  test "Generates a manifest from a require file" do
+    items = [{"require" => "css/links.css"}]
     manifest = Sherpa::Manifest.new(@base_dir, @template, items)
     files = []
     manifest.files.each do |file|
       files.push file[:file]
       assert_includes file, :template
     end
-    assert_includes files, "#{@base_dir}ruby/ruby.rb"
     assert_includes files, "#{@base_dir}css/links.css"
   end
 
   test "Generates a manifest from a listing of file objects" do
-    items = [{"files" => [
-      {"file"=>"css/links.css", "template"=>"raw.mustache"},
-      {"file"=>"ruby/ruby.rb", "template"=>"raw.mustache"}
-    ]}]
+    items = [
+      {"require"=>"css/links.css", "template"=>"raw.mustache"},
+      {"require"=>"ruby/ruby.rb", "template"=>"raw.mustache"}
+    ]
     manifest = Sherpa::Manifest.new(@base_dir, @template, items)
     files = []
     manifest.files.each do |file|
