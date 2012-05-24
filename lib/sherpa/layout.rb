@@ -108,6 +108,9 @@ module Sherpa
           end
         end
 
+        puts filepath
+        filepath = filepath.gsub(/\/app\/assets\/images\//, "/assets/")
+
         html += Mustache.render(@templates[template], file: file_def, repo_url: repo_url, filepath: filepath, id: id)
       end
       {aside: aside, html: html}
