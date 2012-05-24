@@ -42,7 +42,7 @@ class LayoutTest < Sherpa::Test
   test "Renders an aside navigation for a given sherpa block" do
     key = "test"
     value = @blocks[key]
-    result = @layout.render_page key, value
+    result = @layout.render_page value
 
     assert_includes result[:aside], "<li class='sherpa-nav-header'>"
     assert_includes result[:aside], "<li><a href="
@@ -53,7 +53,7 @@ class LayoutTest < Sherpa::Test
   test "Renders an html string for a given sherpa block" do
     key = "test"
     value = @blocks[key]
-    result = @layout.render_page key, value
+    result = @layout.render_page value
 
     assert_includes result[:html], "blob"
     assert_includes result[:html], "headings.sass"
