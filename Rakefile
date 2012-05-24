@@ -10,7 +10,7 @@ Rake::TestTask.new(:test) do |t|
   t.verbose = false
 end
 
-desc 'Run a single test file'
+desc 'Run a single test file: ftest[filename_test.rb]'
 task :ftest, :file do |t, arg|
   system "ruby -I.:lib:test test/#{arg[:file]}"
 end
