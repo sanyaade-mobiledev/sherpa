@@ -35,6 +35,17 @@ class ParserTest < Sherpa::Test
     assert_empty definition.blocks
   end
 
+  test "Replaces a rails image asset route with the correct path" do
+    image_path = @parser.fix_rails_image_asset("/app/assets/images/image.jpg")
+    public_path = @parser.fix_rails_image_asset("/public/images/image.jpg")
+    favicon_path = @parser.fix_rails_image_asset("/public/favicon.ico")
+    js_path = @parser.fix_rails_image_asset("/app/assets/javascripts/js.js")
+    assert_equal image_path, "/assets/image.jpg"
+    assert_equal public_path, "/images/image.jpg"
+    assert_equal favicon_path, "/favicon.ico"
+    assert_equal js_path, "/app/assets/javascripts/js.js"
+  end
+
   test "Handles an unsupported asset file" do
     definition = @parser.parse({file:"./test/fixtures/unsupported/photoshop.psd", template:"raw.mustache"})
     assert definition.raw

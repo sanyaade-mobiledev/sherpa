@@ -61,8 +61,14 @@ module Sherpa
     def parse_image_file(file)
       path = file.gsub(/^\./, "")
       title = titleized_filepath.downcase.gsub(/_|-/, " ")
+      path = fix_rails_image_asset path
       @definition.raw = "![#{title}](#{path} '#{title}')"
       @definition.title = title
+    end
+
+    def fix_rails_image_asset(path)
+      line = path.gsub(/\/app\/assets\/images\//, "/assets/")
+      line.gsub(/\/public\//, "/")
     end
 
     def parse_unsupported_file(file)
