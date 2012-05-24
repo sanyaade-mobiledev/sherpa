@@ -58,7 +58,7 @@ module Sherpa
       primary = render_primary_nav
       @config.each do |key, section|
         unless key.to_s == "settings"
-          page = render_page key, section
+          page = render_page section
           save_page key, primary, page[:aside], page[:html]
         end
       end
@@ -70,13 +70,14 @@ module Sherpa
       @config.each do |key, value|
         unless key.to_s == "settings"
           path = @output_dir.sub(/^\./,"")
-          main_nav += "<li><a href='#{key}.html'>#{key.capitalize}</a></li>"
+          link = key.to_s == "overview" || key.to_s == "home" ? "index" : key
+          main_nav += "<li><a href='#{link}.html'>#{key.capitalize}</a></li>"
         end
       end
       main_nav
     end
 
-    def render_page(key, file_definitions)
+    def render_page(file_definitions)
       html = ""
       aside = ""
       section = nil
@@ -136,8 +137,9 @@ module Sherpa
     def save_page(key, primary_nav, aside_nav, html)
       title = @config[:settings]["title"]
       repo = @config[:settings]["repo"]
+      path = key.to_s == "overview" || key.to_s == "home" ? "index" : key
       layout = Mustache.render(@stache_layout, title: title, nav: primary_nav, aside: aside_nav, layout: html, repo: repo, page: key)
-      File.open("#{@output_dir}#{key}.html", "w") do |file|
+      File.open("#{@output_dir}#{path}.html", "w") do |file|
         file.write(layout)
       end
     end
