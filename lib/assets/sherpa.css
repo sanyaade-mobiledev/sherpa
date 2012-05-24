@@ -135,6 +135,17 @@ sherpa.css
   color: #999;
 }
 
+.sherpa-overview {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 0.4em;
+  background-color: #eaeaea;
+  margin-bottom: 1.25em;
+  padding: 2em;
+}
+
 .sherpa-summary > h2 {
   border-bottom: 1px solid #aaa;
   line-height: 1.2;
