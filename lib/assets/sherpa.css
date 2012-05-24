@@ -207,6 +207,20 @@ sherpa.css
   padding: 2em 2%;
 }
 
+.sherpa-hidden {
+  display: none;
+}
+
+.sherpa-togglable {
+  border-radius: 0.4em;
+  cursor: pointer;
+  padding: 0 0.5em;
+}
+.sherpa-togglable:hover {
+  color: #268bd2;
+  background-color: #f3f3f3;
+}
+
 /* Break down sizing for mobile */
 @media (max-width: 480px) {
   .sherpa-sidebar {
