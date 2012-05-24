@@ -34,8 +34,8 @@ globs:
   base_dir: ./test/fixtures/
   manifest:
     - require_tree: sass/
-    - require: "*.{js,coffee}"
-    - require: "*.{png}"
+    - require: "**/*.{js,coffee}"
+    - require: "**/*.{png}"
       template: raw.mustache
     - files:
       - file: markdown/markdown.md
@@ -45,14 +45,14 @@ globs:
       - ruby/ruby.rb
 
 images:
-  base_dir: ./test/fixtures/
+  base_dir: ./
   manifest:
-    - require: "*.{png,jpeg,jpg,gif,ico}"
+    - require: "test/fixtures/**/*.{png,jpeg,jpg,gif,ico}"
 
 unsupported:
   base_dir: ./test/fixtures/
   manifest:
-    - require: "*.{psd,pdf,swf}"
+    - require: "**/*.{psd,pdf,swf}"
 
 marked:
   base_dir: ./test/fixtures/markdown/

@@ -23,7 +23,8 @@ module Sherpa
 
           if item["require"]
             target_files = item["require"]
-            files = Dir["#{base}**/#{target_files}"]
+            # files = Dir["#{base}**/#{target_files}"]
+            files = Dir["#{base}#{target_files}"]
             files.each do |f|
               tmpl = item["template"] ? item["template"] : template
               @files.push({file: f, template: tmpl})

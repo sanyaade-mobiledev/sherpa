@@ -35,7 +35,7 @@ class ManifestTest < Sherpa::Test
   end
 
   test "Generates a manifest from a require directive" do
-    items = [{"require"=>"*.{js,coffee}"}]
+    items = [{"require"=>"**/*.{js,coffee}"}]
     manifest = Sherpa::Manifest.new(@base_dir, @template, items)
     files = []
     manifest.files.each do |file|
@@ -47,7 +47,7 @@ class ManifestTest < Sherpa::Test
   end
 
   test "Generates a manifest from a require directive overriden the default template" do
-    items = [{"require"=>"*.{js,coffee}", "template"=>"section.mustache"}]
+    items = [{"require"=>"**/*.{js,coffee}", "template"=>"section.mustache"}]
     manifest = Sherpa::Manifest.new(@base_dir, @template, items)
     files = []
     manifest.files.each do |file|
@@ -59,7 +59,7 @@ class ManifestTest < Sherpa::Test
   end
 
   test "Generates a manifest from a require directive for images" do
-    items = [{"require"=>"*.{png,jpeg,jpg,gif,ico}"}]
+    items = [{"require"=>"**/*.{png,jpeg,jpg,gif,ico}"}]
     manifest = Sherpa::Manifest.new(@base_dir, @template, items)
     files = []
 
