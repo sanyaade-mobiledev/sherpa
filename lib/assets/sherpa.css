@@ -222,8 +222,10 @@ sherpa.css
   padding: 2em;
 }
 .sherpa-footer {
+  border-top: 1px solid #ccc;
   font-size: 85%;
-  padding: 2em 2%;
+  margin-left: 21%;
+  padding: 2em 0;
 }
 
 .sherpa-hidden {
