@@ -16,19 +16,19 @@ class LayoutTest < Sherpa::Test
   end
 
   test "Preloads all templates found in a config file" do
-    assert_equal @layout.templates.size, 2
+    assert_equal @layout.templates.size, 4
     assert_equal @layout.templates['raw_mustache'], File.read(File.join(@layout.layout_dir, "raw.mustache"))
     assert_equal @layout.templates['section_mustache'], File.read(File.join(@layout.layout_dir, "section.mustache"))
   end
 
   test "Does not add a template if one with the same key already exists" do
     @layout.add_template('raw.mustache')
-    assert_equal @layout.templates.size, 2
+    assert_equal @layout.templates.size, 4
   end
 
   test "Adds a template if one does not already exists" do
     @layout.add_template('new.mustache')
-    assert_equal @layout.templates.size, 3
+    assert_equal @layout.templates.size, 5
     assert @layout.templates["new_mustache"]
   end
 

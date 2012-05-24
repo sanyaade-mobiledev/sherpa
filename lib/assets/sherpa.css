@@ -134,16 +134,24 @@ sherpa.css
 .sherpa-filepath a:active {
   color: #999;
 }
+.sherpa-filepath.sherpa-imagepath {
+  float: none;
+  margin-bottom: 0.5em;
+  margin-left: 1em;
+}
 
-.sherpa-overview {
+.sherpa-overview,
+.sherpa-imageview {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 0.4em;
-  background-color: #eaeaea;
   margin-bottom: 1.25em;
   padding: 2em;
+}
+.sherpa-overview {
+  background-color: #eaeaea;
 }
 
 .sherpa-summary > h2 {

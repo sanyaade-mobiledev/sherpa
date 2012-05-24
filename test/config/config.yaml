@@ -23,7 +23,7 @@ test:
     - require: javascript/javascript.js
     - require: ruby/ruby.rb
     - require: markdown/markdown.md
-      template: raw.mustache
+      template: overview.mustache
     - require: root.md
       template: raw.mustache
 
@@ -43,6 +43,7 @@ globs:
 
 images:
   base_dir: ./
+  section_template: images.mustache
   manifest:
     - require: "test/fixtures/**/*.{png,jpeg,jpg,gif,ico}"
 
