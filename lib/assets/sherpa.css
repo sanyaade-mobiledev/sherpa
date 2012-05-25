@@ -99,6 +99,13 @@ sherpa.css
   margin-top: 1em;
 }
 
+.sherpa-page-heading {
+  font-size: 48px;
+  font-size: 3rem;
+  text-transform: capitalize;
+  border-bottom: 1px solid #aaa;
+}
+
 /* Section Containers */
 .sherpa-container {
   -webkit-box-sizing: border-box;
@@ -222,7 +229,7 @@ sherpa.css
   padding: 2em;
 }
 .sherpa-footer {
-  border-top: 1px solid #ccc;
+  border-top: 1px solid #aaa;
   font-size: 85%;
   margin-left: 21%;
   padding: 2em 0;
