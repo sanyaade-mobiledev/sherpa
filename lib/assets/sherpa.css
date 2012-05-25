@@ -71,6 +71,7 @@ sherpa.css
 }
 .sherpa-nav-list .sherpa-subnav {
   text-indent: 0.5em;
+  margin-top: -0.3em;
 }
 .sherpa-dox-nav > li > a:active,
 .sherpa-dox-nav .active > a,
@@ -247,6 +248,15 @@ sherpa.css
 .sherpa-togglable:hover {
   color: #268bd2;
   background-color: #f3f3f3;
+}
+
+.sherpa-swatch {
+  background-color: #268bd2;
+  border-radius: 0.4em;
+  display: inline-block;
+  vertical-align: middle;
+  width: 30px;
+  height: 20px;
 }
 
 /* Break down sizing for mobile */
