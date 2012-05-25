@@ -5,13 +5,13 @@ require 'sherpa/cli'
 class CLITest < Sherpa::Test
 
   def setup
-    args = ["-i", "./test/config/config.yaml"]
+    args = ["-i", "./test/config/config.yml"]
     args.extend(::OptionParser::Arguable)
     @cli = Sherpa::CLI.new(args)
   end
 
   test "Options" do
-    assert_equal @cli.input, "./test/config/config.yaml"
+    assert_equal @cli.input, "./test/config/config.yml"
   end
 
   test "Has a configuration" do

@@ -15,13 +15,28 @@ task :ftest, :file do |t, arg|
   system "ruby -I.:lib:test test/#{arg[:file]}"
 end
 
-desc 'Mock config.yaml file used for testing and debugging'
-task :probe do
-  system "./bin/sherpa -i ./test/config/config.yaml"
+desc 'Debug the contents from running sherpa without any saved output'
+task :debug do
+  system "./bin/sherpa -i ./test/config/config.yml -d"
 end
 
-desc 'Mock config.yaml file and output results to the cli'
-task :debug do
-  system "./bin/sherpa -i ./test/config/config.yaml -d"
+desc 'Generate html output from a mock config.yml file'
+task :html do
+  system "./bin/sherpa -i ./test/config/config.yml --html"
+end
+
+desc 'Generate json output from a mock config.yml file'
+task :json do
+  system "./bin/sherpa -i ./test/config/config.yml --json"
+end
+
+desc 'Generate a single markdown output from a mock config.yml file'
+task :markdown do
+  system "./bin/sherpa -i ./test/config/config.yml --markdown"
+end
+
+desc 'Generates all output types supported by sherpa'
+task :outputs do
+  system "./bin/sherpa -i ./test/config/config.yml --html --markdown --json"
 end
 

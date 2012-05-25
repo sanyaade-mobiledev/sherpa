@@ -49,6 +49,7 @@ images:
 
 unsupported:
   base_dir: ./test/fixtures/
+  section_template: images.mustache
   manifest:
     - require: "**/*.{psd,pdf,swf}"
 

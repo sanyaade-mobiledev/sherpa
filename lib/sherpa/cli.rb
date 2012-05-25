@@ -4,16 +4,23 @@ require 'optparse'
 module Sherpa
   class CLI
     attr_accessor :input,
+                  :html_output,
+                  :json_output,
+                  :mkd_output,
                   :debug,
                   :options
 
     def initialize(args)
-      # puts args
       self.input = ""
+      self.html_output = false
+      self.json_output = false
       self.debug = false
       self.options = {}
       args.options { |o|
         o.on("-i", "--input=FILE") { |file| self.input += file }
+        o.on("--html")             { |value| self.html_output = true }
+        o.on("--json")             { |value| self.json_output = true }
+        o.on("--markdown")         { |value| self.mkd_output = true }
         o.on("-d", "--debug")      { |value| self.debug = true }
         o.on_tail("-h", "--help")  { usage(args) }
         o.parse!
@@ -52,27 +59,38 @@ module Sherpa
       puts JSON.pretty_generate(blocks) unless debug == false
 
       # Render outputs
-      save_layouts blocks
-      # save_as_json blocks
-      # save_single_markdown blocks
+      save_layouts blocks if html_output
+      save_as_markdown blocks if mkd_output
+      save_as_json blocks if json_output
       0
     end
 
+    def get_output_dir(blocks)
+      output = blocks[:settings]["output_dir"]
+      output_dir = output =~ %r(/$) ? output : "#{output}/"
+    end
+
+    # render the sherpa layout
     def save_layouts(blocks)
       layout = Sherpa::Layout.new blocks
       layout.render_and_save
     end
 
+    # export to json
     def save_as_json(blocks)
+      output_dir = get_output_dir blocks
+      blocks.delete_if {|key| key.to_s == "settings"}
       json = JSON.pretty_generate(blocks)
 
-      File.open("#{blocks[:settings]["output_dir"]}sherpa.json", "w") do |file|
+      File.open("#{output_dir}sherpa.json", "w") do |file|
         file.write(json)
       end
     end
 
-    def save_single_markdown(blocks)
+    # Saves a single markdown file based from the raw blocks
+    def save_as_markdown(blocks)
       mkd = ""
+      output_dir = get_output_dir blocks
       blocks.each do |key, value|
         if key.to_s != "settings"
           value.each do |definition|
@@ -80,7 +98,7 @@ module Sherpa
           end
         end
       end
-      File.open("#{blocks[:settings]["output_dir"]}sherpa.md", "w") do |file|
+      File.open("#{output_dir}sherpa.md", "w") do |file|
         file.write(mkd)
       end
     end

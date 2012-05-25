@@ -4,7 +4,7 @@ require 'helper'
 class LayoutTest < Sherpa::Test
 
   def setup
-    @config = YAML.load(File.read('./test/config/config.yaml'))
+    @config = YAML.load(File.read('./test/config/config.yml'))
     @blocks = Sherpa::Builder.new(@config).build
     @layout = Sherpa::Layout.new(@blocks)
   end
