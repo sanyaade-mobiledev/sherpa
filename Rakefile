@@ -15,8 +15,8 @@ task :ftest, :file do |t, arg|
   system "ruby -I.:lib:test test/#{arg[:file]}"
 end
 
-desc 'Debug the contents from running sherpa without any saved output'
-task :debug do
+desc 'Probe the contents from running sherpa without any saved output'
+task :probe do
   system "./bin/sherpa -i ./test/config/config.yml -d"
 end
 
