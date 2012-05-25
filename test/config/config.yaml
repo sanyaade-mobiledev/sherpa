@@ -48,7 +48,6 @@ images:
     - require: "test/fixtures/**/*.{png,jpeg,jpg,gif,ico}"
 
 unsupported:
-  section_template: images.mustache
   base_dir: ./test/fixtures/
   manifest:
     - require: "**/*.{psd,pdf,swf}"
