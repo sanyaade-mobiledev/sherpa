@@ -35,8 +35,13 @@ task :markdown do
   system "./bin/sherpa -i ./test/config/config.yml --markdown"
 end
 
+desc 'Generate a markdown files for each section from a mock config.yml file'
+task :markdown_sections do
+  system "./bin/sherpa -i ./test/config/config.yml --markdown-sections"
+end
+
 desc 'Generates all output types supported by sherpa'
 task :outputs do
-  system "./bin/sherpa -i ./test/config/config.yml --html --markdown --json"
+  system "./bin/sherpa -i ./test/config/config.yml --html --markdown --markdown-sections --json"
 end
 

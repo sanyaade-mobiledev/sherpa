@@ -1,0 +1,1 @@
+![apple touch icon 114x114 precomposed](/test/fixtures/images/apple-touch-icon-114x114-precomposed.png 'apple touch icon 114x114 precomposed')![haters1](/test/fixtures/images/haters1.jpeg 'haters1')![haters2](/test/fixtures/images/haters2.jpeg 'haters2')![loading](/test/fixtures/images/loading.gif 'loading')![favicon](/test/fixtures/images/favicon.ico 'favicon')

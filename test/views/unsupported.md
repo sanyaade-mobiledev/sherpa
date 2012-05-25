@@ -1,0 +1,1 @@
+### [view photoshop.psd](/test/fixtures/unsupported/photoshop.psd file)### [view portable.pdf](/test/fixtures/unsupported/portable.pdf file)### [view shockwave.swf](/test/fixtures/unsupported/shockwave.swf file)
