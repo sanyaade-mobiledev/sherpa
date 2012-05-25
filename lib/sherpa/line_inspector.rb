@@ -114,13 +114,23 @@ module Sherpa
 
       # Trim indentation, then comment markers, then sherpa marker
       def self.trim_comment_markers(line)
-        # cleaned = line.sub(/^\s*/, '')
         cleaned = line.sub(/^\s*\/+/, '')
         cleaned = cleaned.sub(/^\s*#/, '')
         cleaned = cleaned.sub(/^\s*\*+/, '')
         cleaned = cleaned.sub(/^\s*\/+/, '')
         cleaned = cleaned.sub(/^\s*~/, '')
         cleaned.rstrip
+      end
+
+      # Trims fold markers created by vim
+      def self.trim_fold_markers(line)
+        cleaned = line.sub(/\/\/\s{{{/, '')
+        cleaned = cleaned.sub(/\/\/\s}}}/, '')
+        cleaned = cleaned.sub(/\/\/{{{/, '')
+        cleaned = cleaned.sub(/\/\/}}}/, '')
+        cleaned = cleaned.sub(/#\s{{{/, '')
+        cleaned = cleaned.sub(/#\s}}}/, '')
+        cleaned = cleaned.sub(/{{{/, '')
       end
 
       def self.trim_left(line, content)

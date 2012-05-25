@@ -104,7 +104,8 @@ module Sherpa
     end
 
     def parse_first_line(line)
-      current_line = @inspector.trim_comment_markers(line)
+      current_line = @inspector.trim_fold_markers(line)
+      current_line = @inspector.trim_comment_markers(current_line)
 
       if @inspector.sherpa_section?(current_line) || !current_line.empty?
         current_line = "## #{current_line}\n" unless @inspector.markdown_header?(current_line)
@@ -137,7 +138,8 @@ module Sherpa
     end
 
     def normalize_line(line)
-      current_line = @inspector.trim_comment_markers(line)
+      current_line = @inspector.trim_fold_markers(line)
+      current_line = @inspector.trim_comment_markers(current_line)
       # Trim left spacing unless this is a `pre` block, allows for breaks in comments, but not in output
       # Seems like there could be a more efficient way here...
       if !@inspector.pre_line?(current_line)
