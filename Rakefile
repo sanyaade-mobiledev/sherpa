@@ -45,3 +45,11 @@ task :outputs do
   `./bin/sherpa -i ./test/config/config.yml --html --markdown --markdown-sections --json`
 end
 
+desc 'Compile CoffeeScript to JavaScript'
+task :javascripts do
+  `coffee -o lib/assets -c lib/assets`
+end
+
+desc 'Run test, generate all outputs and javascripts'
+task :deploy => ['test','outputs', 'javascripts']
+
